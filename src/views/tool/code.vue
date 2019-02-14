@@ -1,0 +1,204 @@
+<template>
+  <basic-container>
+    <avue-crud :option="option"
+               :data="data"
+               ref="crud"
+               v-model="form"
+               :page="page"
+               @row-del="rowDel"
+               @row-update="rowUpdate"
+               @row-save="rowSave"
+               :before-open="beforeOpen"
+               @selection-change="selectionChange"
+               @on-load="onLoad">
+      <template slot="menuLeft">
+        <el-button type="danger"
+                   size="small"
+                   icon="el-icon-delete"
+                   plain
+                   @click="handleDelete">删 除</el-button>
+        <el-button type="primary"
+                   size="small"
+                   plain
+                   icon="el-icon-refresh"
+                   @click="handleBuild">代码生成</el-button>
+      </template>
+      <template slot-scope="{row}"
+                slot="roleId">
+        <el-tag>{{row.roleName}}</el-tag>
+      </template>
+      <template slot-scope="{row}"
+                slot="deptId">
+        <el-tag>{{row.deptName}}</el-tag>
+      </template>
+    </avue-crud>
+  </basic-container>
+</template>
+
+<script>
+import { getList, getCode, build, remove, add, update } from "@/api/tool/code";
+export default {
+  data() {
+    return {
+      form: {},
+      selectionList: [],
+      page: {
+        pageSize: 10,
+        currentPage: 1,
+        total: 0
+      },
+      option: {
+        border: true,
+        index: true,
+        selection: true,
+        labelWidth: 120,
+        viewBtn: true,
+        column: [
+          {
+            label: "模块名",
+            prop: "codeName",
+            search: true
+          },
+          {
+            label: "服务名",
+            prop: "serviceName",
+            search: true
+          },
+          {
+            label: "表名",
+            prop: "tableName"
+          },
+          {
+            label: "表前缀",
+            prop: "tablePrefix"
+          },
+          {
+            label: "主键名",
+            prop: "pkName"
+          },
+          {
+            label: "包名",
+            prop: "packageName",
+            overHidden: true
+          },
+          {
+            label: "后端生成路径",
+            prop: "apiPath",
+            span: 24,
+            hide: true
+          },
+          {
+            label: "前端生成路径",
+            prop: "webPath",
+            span: 24,
+            hide: true
+          }
+        ]
+      },
+      data: []
+    };
+  },
+  computed: {
+    ids() {
+      let ids = [];
+      this.selectionList.forEach(ele => {
+        ids.push(ele.id);
+      });
+      return ids.join(",");
+    }
+  },
+  methods: {
+    rowSave(row, loading) {
+      add(row).then(() => {
+        loading();
+        this.$message({
+          type: "success",
+          message: "操作成功!"
+        });
+      });
+    },
+    rowUpdate(row, index, loading) {
+      update(row).then(() => {
+        loading();
+        this.$message({
+          type: "success",
+          message: "操作成功!"
+        });
+      });
+    },
+    rowDel(row) {
+      remove(row.id).then(() => {
+        this.$message({
+          type: "success",
+          message: "操作成功!"
+        });
+      });
+    },
+    selectionChange(list) {
+      this.selectionList = list;
+    },
+    handleDelete() {
+      if (this.selectionList.length === 0) {
+        this.$message.warning("请选择至少一条数据");
+        return;
+      }
+      this.$confirm("确定将选择账号删除?", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          return remove(this.ids);
+        })
+        .then(() => {
+          this.$message({
+            type: "success",
+            message: "操作成功!"
+          });
+          this.$refs.crud.toggleSelection();
+        });
+    },
+    handleBuild() {
+      if (this.selectionList.length === 0) {
+        this.$message.warning("请选择至少一条数据");
+        return;
+      }
+      this.$confirm("是否生成选中模块的代码?", {
+        title: "代码生成确认",
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          return build(this.ids);
+        })
+        .then(() => {
+          this.$message({
+            type: "success",
+            message: "操作成功!"
+          });
+          this.$refs.crud.toggleSelection();
+        });
+    },
+
+    beforeOpen(done, type) {
+      if (["edit", "view"].includes(type)) {
+        getCode(this.form.id).then(res => {
+          this.form = res.data.data;
+        });
+      }
+      done();
+    },
+    onLoad(page) {
+      getList(page.currentPage, page.pageSize).then(res => {
+        const data = res.data.data;
+        this.page.total = data.total;
+        this.data = data.records;
+      });
+    }
+  }
+};
+</script>
+
+<style>
+</style>
