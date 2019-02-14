@@ -1,5 +1,6 @@
 import request from '@/router/axios';
-import { baseUrl } from '@/config/env';
+import {baseUrl} from '@/config/env';
+
 export const loginByUsername = (account, password, type) => request({
     url: 'api/blade-auth/token',
     method: 'post',
@@ -7,6 +8,9 @@ export const loginByUsername = (account, password, type) => request({
         account,
         password,
         type
+    },
+    meta:{
+        isSerialize:true,
     }
 })
 

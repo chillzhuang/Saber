@@ -85,7 +85,7 @@ export default {
     },
     // 10分钟检测一次token
     refreshToken() {
-      this.refreshTime = setInterval(() => {
+      /*this.refreshTime = setInterval(() => {
         const token = getStore({
           name: "token",
           debug: true
@@ -103,7 +103,7 @@ export default {
               this.refreshLock = false;
             });
         }
-      }, 10000);
+      }, 10000);*/
     }
   }
 };
