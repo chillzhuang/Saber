@@ -33,7 +33,14 @@
 </template>
 
 <script>
-import { getList, remove, update, add, getDict } from "@/api/system/dict";
+import {
+  getList,
+  remove,
+  update,
+  add,
+  getDict,
+  getDictTree
+} from "@/api/system/dict";
 export default {
   data() {
     return {
@@ -65,7 +72,7 @@ export default {
             label: "上级字典",
             prop: "parentId",
             type: "tree",
-            dicUrl: "/api/blade-system/dict/tree?code=DICT",
+            dicData: [],
             hide: true,
             props: {
               label: "title"
@@ -174,6 +181,10 @@ export default {
       getList(page.currentPage, page.pageSize, params).then(res => {
         const data = res.data.data;
         this.data = data;
+        getDictTree().then(res => {
+          const data = res.data.data;
+          this.option.column[2].dicData = data;
+        });
       });
     }
   }

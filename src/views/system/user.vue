@@ -79,7 +79,6 @@ export default {
           {
             label: "所属角色",
             prop: "roleId",
-            checkStrictly: true,
             multiple: true,
             type: "tree",
             dicUrl: "/api/blade-system/role/tree",
@@ -92,7 +91,6 @@ export default {
             label: "所属部门",
             prop: "deptId",
             type: "tree",
-            checkStrictly: true,
             multiple: true,
             dicUrl: "/api/blade-system/dept/tree",
             props: {

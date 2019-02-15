@@ -49,3 +49,9 @@ export const getDict = (id) => {
     }
   })
 }
+export const getDictTree = () => {
+  return request({
+    url: 'api/blade-system/dict/tree?code=DICT',
+    method: 'get'
+  })
+}
