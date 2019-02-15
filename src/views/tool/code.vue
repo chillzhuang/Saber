@@ -111,6 +111,7 @@ export default {
     rowSave(row, loading) {
       add(row).then(() => {
         loading();
+        this.onLoad(this.page);
         this.$message({
           type: "success",
           message: "操作成功!"
@@ -120,6 +121,7 @@ export default {
     rowUpdate(row, index, loading) {
       update(row).then(() => {
         loading();
+        this.onLoad(this.page);
         this.$message({
           type: "success",
           message: "操作成功!"
@@ -127,12 +129,21 @@ export default {
       });
     },
     rowDel(row) {
-      remove(row.id).then(() => {
-        this.$message({
-          type: "success",
-          message: "操作成功!"
+      this.$confirm("确定将选删除?", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          return remove(row.id);
+        })
+        .then(() => {
+          this.onLoad(this.page);
+          this.$message({
+            type: "success",
+            message: "操作成功!"
+          });
         });
-      });
     },
     selectionChange(list) {
       this.selectionList = list;
@@ -151,6 +162,7 @@ export default {
           return remove(this.ids);
         })
         .then(() => {
+          this.onLoad(this.page);
           this.$message({
             type: "success",
             message: "操作成功!"
@@ -173,6 +185,7 @@ export default {
           return build(this.ids);
         })
         .then(() => {
+          this.onLoad(this.page);
           this.$message({
             type: "success",
             message: "操作成功!"

@@ -22,6 +22,9 @@ export const remove = (ids) => {
     method: 'post',
     data: {
       ids,
+    },
+    meta: {
+      isSerialize: true,
     }
   })
 }

@@ -1,6 +1,6 @@
 // 基础路径 注意发布之前要先修改这里
 let baseUrl = './'
-let url = 'http://localhost'
+let url = 'http://118.24.148.246:8800'
 module.exports = {
     baseUrl: baseUrl, // 根据你的实际情况更改这里
     lintOnSave: true,
