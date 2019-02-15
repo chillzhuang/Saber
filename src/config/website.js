@@ -2,9 +2,9 @@
  * 全局配置文件
  */
 export default {
-    title: "sword",
+    title: "saber",
     logo: "S",
-    key: 'sword',//配置主键,目前用于存储
+    key: 'saber',//配置主键,目前用于存储
     indexTitle: 'Saber Admin',
     lockPage: '/lock',
     tokenTime: 6000,

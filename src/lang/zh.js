@@ -1,6 +1,6 @@
 export default {
   tip: '提示',
-  title: 'Avue 通用管理 系统快速开发框架',
+  title: 'Saber企业级开发平台',
   logoutTip: '退出系统, 是否继续?',
   submitText: '确定',
   cancelText: '取消',
@@ -49,7 +49,7 @@ export default {
   },
   route: {
     info: '个人信息',
-    website: '官网',
+    website: 'bladex官网',
     avuexwebsite: 'avuex官网',
     dashboard: '首页',
     tags: '标签',

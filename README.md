@@ -1,37 +1,121 @@
-# Saber
 
-#### 介绍
-SpringBlade前端UI项目，基于现有的avue、element-ui库进行二次封装。
+## 简介
+Saber 是 [SpringBlade](https://gitee.com/smallc/SpringBlade)前端UI项目，基于vue、vuex、avue、element-ui，用于快速构建系统中后台业务。
 
-#### 软件架构
-软件架构说明
+## 官网
+* 官网地址：[https://bladex.vip](https://bladex.vip)
 
+## 在线演示
+* Sword演示地址：[https://sword.bladex.vip](https://sword.bladex.vip)
+* Saber演示地址：[https://saber.avue.top](https://saber.avue.top)
 
-#### 安装教程
+## 后端项目地址
+* [Gitee](https://gitee.com/smallc/SpringBlade)
+* [Github](https://github.com/chillzhuang/SpringBlade)
 
-1. xxxx
-2. xxxx
-3. xxxx
+## 前端项目地址
+* [Sword](https://gitee.com/smallc/Sword)
+* [Saber](https://gitee.com/smallc/Saber)
 
-#### 使用说明
+## 特性
 
-1. xxxx
-2. xxxx
-3. xxxx
+- 基于现有的element-ui库进行的二次封装，简化一些繁琐的操作，核心理念为数据驱动视图
+- 主要的组件库针对table表格和form表单场景，同时衍生出更多企业常用的组件，达到高复用，容易维护和扩展的框架
+- 同时内置了丰富了数据展示组件，让开发变得更加容易
 
-#### 参与贡献
+## 支持环境
 
-1. Fork 本仓库
-2. 新建 Feat_xxx 分支
-3. 提交代码
-4. 新建 Pull Request
+现代浏览器及 IE11。
 
+| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Opera |
+| --------- | --------- | --------- | --------- | --------- |
+| IE11, Edge| last 2 versions| last 2 versions| last 2 versions| last 2 versions
 
-#### 码云特技
+## 用户权益
+* 允许免费用于学习、毕设、公司项目、私活等。
+* 代码文件需保留相关license信息。
 
-1. 使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2. 码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3. 你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4. [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5. 码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6. 码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+## 禁止事项
+* 直接将本项目挂淘宝等商业平台出售。
+* 业务代码50%以上相似度的二次开源，二次开源需先联系作者。
+
+注意：若禁止条款被发现有权追讨19999的授权费。
+
+## 如何启动
+```
+$ git clone https://gitee.com/smallc/Saber.git
+$ cd Saber
+# 安装
+$ yarn install
+# 启动
+$ yarn run serve     
+```
+
+# 界面
+## Saber界面一览
+<table>
+    <tr>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/saber-user.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/saber-role.png"/></td>
+    </tr>
+    <tr>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/saber-dict.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/saber-dict-select.png"/></td>
+    </tr>
+    <tr>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/saber-log.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/saber-code.png"/></td>
+    </tr>
+</table>
+
+## 监控界面一览
+<table>
+    <tr>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/springblade-k8s1.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/springblade-k8s2.png"/></td>
+    </tr>
+    <tr>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/springblade-grafana.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/springblade-harbor.png"/></td>
+    </tr>
+    <tr>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/springblade-traefik.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/springblade-traefik-health.png"/></td>
+    </tr>
+    <tr>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/springblade-nacos.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/springblade-sentinel.png"/></td>
+    </tr>
+    <tr>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/springblade-admin1.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/springblade-admin2.png"/></td>
+    </tr>
+    <tr>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/springblade-swagger1.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/springblade-swagger2.png"/></td>
+    </tr>
+</table>
+
+## Sword界面一览
+<table>
+    <tr>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/sword-main.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/sword-menu.png"/></td>
+    </tr>
+    <tr>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/sword-menu-edit.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/sword-menu-icon.png"/></td>
+    </tr>
+    <tr>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/sword-role.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/sword-user.png"/></td>
+    </tr>
+    <tr>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/sword-dict.png "/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/sword-log.png"/></td>
+    </tr>
+    <tr>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/sword-locale-cn.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/sword-locale-us.png"/></td>
+    </tr>
+</table>

@@ -9,7 +9,7 @@ const top = [{
     parentId: 0
 },
 {
-    label: "官网",
+    label: "bladex官网",
     icon: 'el-icon-document',
     meta: {
         i18n: 'website',
