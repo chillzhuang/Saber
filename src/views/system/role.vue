@@ -130,6 +130,10 @@ export default {
       const menuLIst = this.$refs.tree.getCheckedKeys().join(",");
       grant(this.ids[0], menuLIst).then(() => {
         this.box = false;
+        this.$message({
+          type: "success",
+          message: "操作成功!"
+        });
         this.onLoad(this.page);
       });
     },
