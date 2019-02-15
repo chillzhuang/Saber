@@ -6,6 +6,8 @@
                :before-open="beforeOpen"
                v-model="form"
                :page="page"
+               @search-change="searchChange"
+               @search-reset="searchReset"
                @on-load="onLoad">
       <template slot-scope="{row}"
                 slot="roleId">
@@ -20,7 +22,7 @@
 </template>
 
 <script>
-import { getErrorList, getLogs } from "@/api/logs";
+import { getErrorList, getErrorLogs } from "@/api/logs";
 export default {
   data() {
     return {
@@ -85,13 +87,15 @@ export default {
             prop: "params",
             type: "textarea",
             span: 24,
-            minRows: 6,
+            minRows: 2,
             hide: true
           },
           {
             label: "日志数据",
             prop: "logData",
+            type: "textarea",
             span: 24,
+            minRows: 6,
             hide: true
           }
         ]
@@ -100,16 +104,22 @@ export default {
     };
   },
   methods: {
+    searchReset() {
+      this.onLoad(this.page);
+    },
+    searchChange(params) {
+      this.onLoad(this.page, params);
+    },
     beforeOpen(done, type) {
       if (["edit", "view"].includes(type)) {
-        getLogs(this.form.id).then(res => {
+        getErrorLogs(this.form.strId).then(res => {
           this.form = res.data.data;
         });
       }
       done();
     },
-    onLoad(page) {
-      getErrorList(page.currentPage, page.pageSize).then(res => {
+    onLoad(page, params = {}) {
+      getErrorList(page.currentPage, page.pageSize, params).then(res => {
         const data = res.data.data;
         this.page.total = data.total;
         this.data = data.records;

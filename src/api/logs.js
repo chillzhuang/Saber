@@ -33,7 +33,7 @@ export const getErrorList = (current, size) => {
 }
 
 
-export const getLogs = (id) => {
+export const getUsualLogs = (id) => {
   return request({
     url: 'api/blade-log/usual/detail',
     method: 'get',
@@ -42,3 +42,22 @@ export const getLogs = (id) => {
     }
   })
 }
+export const getApiLogs = (id) => {
+  return request({
+    url: 'api/blade-log/api/detail',
+    method: 'get',
+    params: {
+      id,
+    }
+  })
+}
+export const getErrorLogs = (id) => {
+  return request({
+    url: 'api/blade-log/error/detail',
+    method: 'get',
+    params: {
+      id,
+    }
+  })
+}
+

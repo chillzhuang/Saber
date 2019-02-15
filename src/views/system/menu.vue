@@ -9,6 +9,8 @@
                @row-del="rowDel"
                @row-update="rowUpdate"
                @row-save="rowSave"
+               @search-change="searchChange"
+               @search-reset="searchReset"
                @selection-change="selectionChange"
                @on-load="onLoad">
       <template slot="menuLeft">
@@ -43,6 +45,7 @@ export default {
         total: 0
       },
       option: {
+        dialogWidth: "70%",
         tree: true,
         border: true,
         index: true,
@@ -86,11 +89,11 @@ export default {
             dicData: [
               {
                 label: "菜单",
-                value: "1"
+                value: 1
               },
               {
                 label: "按钮",
-                value: "2"
+                value: 2
               }
             ],
             hide: true
@@ -98,6 +101,34 @@ export default {
           {
             label: "排序",
             prop: "sort"
+          },
+          {
+            label: "按钮功能",
+            prop: "action",
+            type: "radio",
+            dicData: [
+              {
+                label: "工具栏",
+                value: 0
+              },
+              {
+                label: "操作栏",
+                value: 1
+              },
+              {
+                label: "工具操作栏",
+                value: 2
+              }
+            ],
+            hide: true
+          },
+          {
+            label: "菜单备注",
+            prop: "remark",
+            type: "textarea",
+            span: 24,
+            minRows: 6,
+            hide: true
           }
         ]
       },
@@ -152,6 +183,12 @@ export default {
           });
         });
     },
+    searchReset() {
+      this.onLoad(this.page);
+    },
+    searchChange(params) {
+      this.onLoad(this.page, params);
+    },
     selectionChange(list) {
       this.selectionList = list;
     },
@@ -185,8 +222,8 @@ export default {
       }
       done();
     },
-    onLoad(page) {
-      getList(page.currentPage, page.pageSize).then(res => {
+    onLoad(page, params = {}) {
+      getList(page.currentPage, page.pageSize, params).then(res => {
         const data = res.data.data;
         this.data = data;
       });

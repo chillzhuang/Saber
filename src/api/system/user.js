@@ -6,14 +6,14 @@ export const resetPassword = (userIds) => {
     data: userIds
   })
 }
-export const getList = (current, size) => {
+export const getList = (current, size, params) => {
   return request({
     url: 'api/blade-user/list',
     method: 'get',
-    params: {
+    params: Object.assign(params, {
       current,
       size
-    }
+    })
   })
 }
 export const remove = (ids) => {

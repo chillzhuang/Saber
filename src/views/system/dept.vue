@@ -9,6 +9,8 @@
                @row-del="rowDel"
                @row-update="rowUpdate"
                @row-save="rowSave"
+               @search-change="searchChange"
+               @search-reset="searchReset"
                @selection-change="selectionChange"
                @on-load="onLoad">
       <template slot="menuLeft">
@@ -148,7 +150,12 @@ export default {
           this.$refs.crud.toggleSelection();
         });
     },
-
+    searchReset() {
+      this.onLoad(this.page);
+    },
+    searchChange(params) {
+      this.onLoad(this.page, params);
+    },
     selectionChange(list) {
       this.selectionList = list;
     },
@@ -160,8 +167,8 @@ export default {
       }
       done();
     },
-    onLoad(page) {
-      getList(page.currentPage, page.pageSize).then(res => {
+    onLoad(page, params = {}) {
+      getList(page.currentPage, page.pageSize, params).then(res => {
         const data = res.data.data;
         this.data = data;
       });

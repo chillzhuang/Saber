@@ -3,9 +3,9 @@
  */
 export default {
     title: "sword",
-    logo: "A",
-    key: 'avue',//配置主键,目前用于存储
-    indexTitle: 'avue-cli-sword By smallwei',
+    logo: "S",
+    key: 'sword',//配置主键,目前用于存储
+    indexTitle: 'Saber Admin',
     lockPage: '/lock',
     tokenTime: 6000,
     //http的status默认放行不才用统一处理的,

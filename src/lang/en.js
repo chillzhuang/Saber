@@ -1,5 +1,5 @@
 export default {
-  title: 'Avuex is a framework',
+  title: 'Avue is a framework',
   tip: 'tip',
   logoutTip: 'Exit the system, do you want to continue?',
   submitText: 'submit',

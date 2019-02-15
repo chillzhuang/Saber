@@ -17,7 +17,7 @@ export default {
       dangerouslyUseHTMLString: true,
       message:
         '<a target="_blank" href="https://www.kancloud.cn/smallwei/avue">点击查看</a>',
-      duration: 0,
+      duration: 3000,
       type: "success"
     });
   },

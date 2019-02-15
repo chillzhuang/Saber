@@ -1,13 +1,13 @@
 import request from '@/router/axios';
 
-export const getList = (current, size) => {
+export const getList = (current, size, params) => {
   return request({
     url: 'api/blade-system/role/list',
     method: 'get',
-    params: {
+    params: Object.assign(params, {
       current,
       size
-    }
+    })
   })
 }
 export const getTree = () => {

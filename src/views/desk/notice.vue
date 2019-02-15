@@ -4,9 +4,13 @@
                :data="data"
                :page="page"
                @row-del="rowDel"
-               @selection-change="selectionChange"
+               v-model="form"
                @row-update="rowUpdate"
                @row-save="rowSave"
+               :before-open="beforeOpen"
+               @search-change="searchChange"
+               @search-reset="searchReset"
+               @selection-change="selectionChange"
                @on-load="onLoad">
       <template slot="menuLeft">
         <el-button type="danger"
@@ -16,7 +20,7 @@
                    @click="handleDelete">删 除</el-button>
       </template>
       <template slot-scope="{row}"
-                slot="categoryId">
+                slot="category">
         <el-tag>{{row.categoryName}}</el-tag>
       </template>
     </avue-crud>
@@ -24,10 +28,11 @@
 </template>
 
 <script>
-import { getList, remove, update, add } from "@/api/dept/notice";
+import { getList, remove, update, add, getNotice } from "@/api/dept/notice";
 export default {
   data() {
     return {
+      form: {},
       page: {
         pageSize: 10,
         currentPage: 1,
@@ -56,7 +61,7 @@ export default {
               value: "dictKey"
             },
             slot: true,
-            prop: "categoryId",
+            prop: "category",
             search: true
           },
           {
@@ -91,6 +96,7 @@ export default {
     rowSave(row, loading) {
       add(row).then(() => {
         loading();
+        this.onLoad(this.page);
         this.$message({
           type: "success",
           message: "操作成功!"
@@ -100,6 +106,7 @@ export default {
     rowUpdate(row, index, loading) {
       update(row).then(() => {
         loading();
+        this.onLoad(this.page);
         this.$message({
           type: "success",
           message: "操作成功!"
@@ -107,12 +114,27 @@ export default {
       });
     },
     rowDel(row) {
-      remove(row.id).then(() => {
-        this.$message({
-          type: "success",
-          message: "操作成功!"
+      this.$confirm("确定将选删除?", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          return remove(row.id);
+        })
+        .then(() => {
+          this.onLoad(this.page);
+          this.$message({
+            type: "success",
+            message: "操作成功!"
+          });
         });
-      });
+    },
+    searchReset() {
+      this.onLoad(this.page);
+    },
+    searchChange(params) {
+      this.onLoad(this.page, params);
     },
     selectionChange(list) {
       this.selectionList = list;
@@ -131,6 +153,7 @@ export default {
           return remove(this.ids);
         })
         .then(() => {
+          this.onLoad(this.page);
           this.$message({
             type: "success",
             message: "操作成功!"
@@ -138,8 +161,17 @@ export default {
           this.$refs.crud.toggleSelection();
         });
     },
-    onLoad(page) {
-      getList(page.currentPage, page.pageSize).then(res => {
+
+    beforeOpen(done, type) {
+      if (["edit", "view"].includes(type)) {
+        getNotice(this.form.id).then(res => {
+          this.form = res.data.data;
+        });
+      }
+      done();
+    },
+    onLoad(page, params = {}) {
+      getList(page.currentPage, page.pageSize, params).then(res => {
         const data = res.data.data;
         this.page.total = data.total;
         this.data = data.records;
