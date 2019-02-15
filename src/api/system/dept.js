@@ -48,3 +48,10 @@ export const getDept = (id) => {
     }
   })
 }
+export const getDeptTree = () => {
+  return request({
+    url: 'api/blade-system/dept/tree',
+    method: 'get'
+  })
+}
+

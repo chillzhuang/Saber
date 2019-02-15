@@ -183,7 +183,8 @@ export default {
         this.data = data;
         getDictTree().then(res => {
           const data = res.data.data;
-          this.option.column[2].dicData = data;
+          const index = this.$refs.crud.findColumnIndex("parentId");
+          this.option.column[index].dicData = data;
         });
       });
     }

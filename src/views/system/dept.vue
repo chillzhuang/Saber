@@ -33,7 +33,14 @@
 </template>
 
 <script>
-import { getList, remove, update, add, getDept } from "@/api/system/dept";
+import {
+  getList,
+  remove,
+  update,
+  add,
+  getDept,
+  getDeptTree
+} from "@/api/system/dept";
 export default {
   data() {
     return {
@@ -64,7 +71,7 @@ export default {
           {
             label: "上级部门",
             prop: "parentId",
-            dicUrl: "api/blade-system/dept/tree",
+            dicData: [],
             type: "tree",
             hide: true,
             props: {
@@ -171,6 +178,11 @@ export default {
       getList(page.currentPage, page.pageSize, params).then(res => {
         const data = res.data.data;
         this.data = data;
+        getDeptTree().then(res => {
+          const data = res.data.data;
+          const index = this.$refs.crud.findColumnIndex("parentId");
+          this.option.column[index].dicData = data;
+        });
       });
     }
   }
