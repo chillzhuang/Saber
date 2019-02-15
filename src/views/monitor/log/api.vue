@@ -4,6 +4,7 @@
                :data="data"
                ref="crud"
                v-model="form"
+               :permission="permissionList"
                :before-open="beforeOpen"
                :page="page"
                @search-change="searchChange"
@@ -23,6 +24,7 @@
 
 <script>
 import { getApiList, getApiLogs } from "@/api/logs";
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -102,6 +104,15 @@ export default {
       },
       data: []
     };
+  },
+
+  computed: {
+    ...mapGetters(["permission"]),
+    permissionList() {
+      return {
+        viewBtn: this.permission.log_api_view
+      };
+    }
   },
   methods: {
     searchReset() {

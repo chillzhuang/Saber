@@ -5,6 +5,7 @@
                ref="crud"
                v-model="form"
                :page="page"
+               :permission="permissionList"
                @row-del="rowDel"
                @row-update="rowUpdate"
                @row-save="rowSave"
@@ -33,6 +34,7 @@
 
 <script>
 import { getList, remove, update, add } from "@/api/system/param";
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -69,6 +71,15 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(["permission"]),
+    permissionList() {
+      return {
+        addBtn: this.permission.param_add,
+        viewBtn: this.permission.param_view,
+        delBtn: this.permission.param_delete,
+        editBtn: this.permission.param_edit
+      };
+    },
     ids() {
       let ids = [];
       this.selectionList.forEach(ele => {

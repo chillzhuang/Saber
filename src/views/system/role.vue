@@ -4,6 +4,7 @@
                :data="data"
                ref="crud"
                v-model="form"
+               :permission="permissionList"
                @row-del="rowDel"
                @row-update="rowUpdate"
                @row-save="rowSave"
@@ -63,6 +64,7 @@ import {
   getTree,
   getRole
 } from "@/api/system/role";
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -107,6 +109,15 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(["permission"]),
+    permissionList() {
+      return {
+        addBtn: this.permission.role_add,
+        viewBtn: this.permission.role_view,
+        delBtn: this.permission.role_delete,
+        editBtn: this.permission.role_edit
+      };
+    },
     ids() {
       let ids = [];
       this.selectionList.forEach(ele => {

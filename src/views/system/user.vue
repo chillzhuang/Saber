@@ -4,6 +4,7 @@
                :data="data"
                ref="crud"
                v-model="form"
+               :permission="permissionList"
                @row-del="rowDel"
                @row-update="rowUpdate"
                @row-save="rowSave"
@@ -18,10 +19,12 @@
                    size="small"
                    icon="el-icon-delete"
                    plain
+                   v-if="permission.user_delete"
                    @click="handleDelete">删 除</el-button>
         <el-button type="primary"
                    size="small"
                    plain
+                   v-if="permission. user_reset"
                    icon="el-icon-refresh"
                    @click="handleReset">密码重置</el-button>
       </template>
@@ -46,6 +49,7 @@ import {
   add,
   resetPassword
 } from "@/api/system/user";
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -119,6 +123,15 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(["permission"]),
+    permissionList() {
+      return {
+        addBtn: this.permission.user_add,
+        viewBtn: this.permission.user_view,
+        delBtn: this.permission.user_delete,
+        editBtn: this.permission.user_edit
+      };
+    },
     ids() {
       let ids = [];
       this.selectionList.forEach(ele => {
