@@ -1,21 +1,18 @@
 import request from '@/router/axios';
-export const getList = (current, size, dateRange, begin_date, end_date, params) => {
+export const getList = (current, size, params) => {
   return request({
     url: 'api/blade-desk/notice/list',
     method: 'get',
     params: Object.assign(params, {
       current,
       size,
-      dateRange,
-      begin_date,
-      end_date,
     })
   })
 }
 
 export const remove = (ids) => {
   return request({
-    url: 'api/blade-system/notice/remove',
+    url: 'api/blade-desk/notice/remove',
     method: 'post',
     data: {
       ids,

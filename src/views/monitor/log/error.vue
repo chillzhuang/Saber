@@ -92,7 +92,7 @@ export default {
           },
           {
             label: "日志数据",
-            prop: "logData",
+            prop: "stackTrace",
             type: "textarea",
             span: 24,
             minRows: 6,

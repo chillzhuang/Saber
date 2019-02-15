@@ -79,6 +79,7 @@ export default {
           {
             label: "所属角色",
             prop: "roleId",
+            checkStrictly: true,
             multiple: true,
             type: "tree",
             dicUrl: "/api/blade-system/role/tree",
@@ -91,6 +92,7 @@ export default {
             label: "所属部门",
             prop: "deptId",
             type: "tree",
+            checkStrictly: true,
             multiple: true,
             dicUrl: "/api/blade-system/dept/tree",
             props: {
@@ -129,6 +131,8 @@ export default {
   },
   methods: {
     rowSave(row, loading) {
+      row.deptId = row.deptId.join(",");
+      row.roleId = row.roleId.join(",");
       add(row).then(() => {
         loading();
         this.onLoad(this.page);
@@ -139,6 +143,8 @@ export default {
       });
     },
     rowUpdate(row, index, loading) {
+      row.deptId = row.deptId.join(",");
+      row.roleId = row.roleId.join(",");
       update(row).then(() => {
         loading();
         this.onLoad(this.page);
@@ -221,6 +227,14 @@ export default {
       if (["edit", "view"].includes(type)) {
         getUser(this.form.id).then(res => {
           this.form = res.data.data;
+          this.form.deptId = this.form.deptId.split(",");
+          this.form.deptId.forEach((ele, index) => {
+            this.form.deptId[index] = Number(ele);
+          });
+          this.form.roleId = this.form.roleId.split(",");
+          this.form.roleId.forEach((ele, index) => {
+            this.form.roleId[index] = Number(ele);
+          });
         });
       }
       done();
