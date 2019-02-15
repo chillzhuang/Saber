@@ -5,6 +5,7 @@
                :page="page"
                @row-del="rowDel"
                v-model="form"
+               :permission="permissionList"
                @row-update="rowUpdate"
                @row-save="rowSave"
                :before-open="beforeOpen"
@@ -17,6 +18,7 @@
                    size="small"
                    icon="el-icon-delete"
                    plain
+                   v-if="permission.notice_delete"
                    @click="handleDelete">删 除</el-button>
       </template>
       <template slot-scope="{row}"
@@ -29,6 +31,7 @@
 
 <script>
 import { getList, remove, update, add, getNotice } from "@/api/dept/notice";
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -84,6 +87,15 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(["permission"]),
+    permissionList() {
+      return {
+        addBtn: this.permission.notice_add,
+        viewBtn: this.permission.notice_view,
+        delBtn: this.permission.notice_delete,
+        editBtn: this.permission.notice_edit
+      };
+    },
     ids() {
       let ids = [];
       this.selectionList.forEach(ele => {

@@ -3,7 +3,7 @@ import { setStore, getStore } from '@/util/store'
 import { isURL } from '@/util/validate'
 import { deepClone } from '@/util/util'
 import webiste from '@/config/website'
-import { loginByUsername, getUserInfo, getMenu, getTopMenu, logout, refeshToken } from '@/api/user'
+import { loginByUsername, getUserInfo, getMenu, getTopMenu, logout, refeshToken, getButtons } from '@/api/user'
 
 
 function addPath(ele, first) {
@@ -29,7 +29,7 @@ function addPath(ele, first) {
 const user = {
     state: {
         userInfo: getStore({ name: 'userInfo' }) || [],
-        permission: {},
+        permission: getStore({ name: 'permission' }) || {},
         roles: [],
         menu: getStore({ name: 'menu' }) || [],
         menuAll: [],
@@ -37,7 +37,7 @@ const user = {
     },
     actions: {
         //根据用户名登录
-        LoginByUsername({ commit }, userInfo) {
+        LoginByUsername({ commit, dispatch }, userInfo) {
             return new Promise((resolve) => {
                 loginByUsername(userInfo.username, userInfo.password, userInfo.type).then(res => {
                     const data = res.data.data;
@@ -45,6 +45,16 @@ const user = {
                     commit('SET_USERIFNO', data);
                     commit('DEL_ALL_TAG');
                     commit('CLEAR_LOCK');
+                    dispatch('GetButtons');
+                    resolve();
+                })
+            })
+        },
+        GetButtons({ commit }) {
+            return new Promise((resolve) => {
+                getButtons().then(res => {
+                    const data = res.data.data;
+                    commit('SET_PERMISSION', data);
                     resolve();
                 })
             })
@@ -66,7 +76,6 @@ const user = {
                 getUserInfo().then((res) => {
                     const data = res.data.data;
                     commit('SET_ROLES', data.roles);
-                    commit('SET_PERMISSION', data.permission)
                     resolve(data);
                 }).catch(err => {
                     reject(err);
@@ -157,10 +166,27 @@ const user = {
             state.roles = roles;
         },
         SET_PERMISSION: (state, permission) => {
+            let result = [];
+            function getCode(list) {
+                list.forEach(ele => {
+                    if (typeof (ele) === 'object') {
+                        const chiildren = ele.children;
+                        const code = ele.code;
+                        if (chiildren) {
+                            getCode(chiildren)
+                        } else {
+                            result.push(code);
+                        }
+                    }
+
+                })
+            }
+            getCode(permission);
             state.permission = {};
-            permission.forEach(ele => {
+            result.forEach(ele => {
                 state.permission[ele] = true;
             });
+            setStore({ name: 'permission', content: state.permission, type: 'session' })
         }
     }
 

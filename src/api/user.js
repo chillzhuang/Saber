@@ -1,5 +1,5 @@
 import request from '@/router/axios';
-import {baseUrl} from '@/config/env';
+import { baseUrl } from '@/config/env';
 
 export const loginByUsername = (account, password, type) => request({
     url: 'api/blade-auth/token',
@@ -9,10 +9,15 @@ export const loginByUsername = (account, password, type) => request({
         password,
         type
     },
-    meta:{
-        isSerialize:true,
+    meta: {
+        isSerialize: true,
     }
 })
+
+export const getButtons = () => request({
+    url: 'api/blade-system/menu/buttons',
+    method: 'get'
+});
 
 export const getUserInfo = () => request({
     url: baseUrl + '/user/getUserInfo',
