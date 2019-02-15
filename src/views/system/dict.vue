@@ -6,7 +6,6 @@
                v-model="form"
                :permission="permissionList"
                :before-open="beforeOpen"
-               :page="page"
                @row-del="rowDel"
                @row-update="rowUpdate"
                @row-save="rowSave"

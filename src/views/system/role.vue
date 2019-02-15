@@ -8,7 +8,6 @@
                @row-del="rowDel"
                @row-update="rowUpdate"
                @row-save="rowSave"
-               :page="page"
                @search-change="searchChange"
                @search-reset="searchReset"
                @selection-change="selectionChange"
