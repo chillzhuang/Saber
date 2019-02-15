@@ -156,7 +156,6 @@ export default {
       if (["edit", "view"].includes(type)) {
         getDept(this.form.id).then(res => {
           this.form = res.data.data;
-          this.form.parentId = this.form.parentId + "";
         });
       }
       done();

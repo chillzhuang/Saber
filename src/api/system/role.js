@@ -16,6 +16,21 @@ export const getTree = () => {
     method: 'get',
   })
 }
+
+export const grant = (roleIds, menuIds) => {
+  return request({
+    url: 'api/blade-system/role/grant',
+    method: 'post',
+    data: {
+      roleIds,
+      menuIds
+    },
+    meta: {
+      isSerialize: true,
+    }
+  })
+}
+
 export const remove = (ids) => {
   return request({
     url: 'api/blade-system/role/remove',

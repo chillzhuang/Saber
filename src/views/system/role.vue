@@ -36,6 +36,7 @@
       <el-tree :data="list"
                show-checkbox
                node-key="id"
+               ref="tree"
                :default-expanded-keys="defaultObj"
                :default-checked-keys="defaultObj"
                :props="props">
@@ -44,7 +45,7 @@
             class="dialog-footer">
         <el-button @click="box = false">取 消</el-button>
         <el-button type="primary"
-                   @click="box = false">确 定</el-button>
+                   @click="submit">确 定</el-button>
       </span>
     </el-dialog>
   </basic-container>
@@ -56,6 +57,7 @@ import {
   remove,
   update,
   add,
+  grant,
   getTree,
   getRole
 } from "@/api/system/role";
@@ -112,6 +114,13 @@ export default {
     }
   },
   methods: {
+    submit() {
+      const menuLIst = this.$refs.tree.getCheckedKeys().join(",");
+      grant(this.ids[0], menuLIst).then(() => {
+        this.box = false;
+        this.onLoad(this.page);
+      });
+    },
     rowSave(row, loading) {
       add(row).then(() => {
         loading();
@@ -160,11 +169,11 @@ export default {
       getTree()
         .then(res => {
           this.list = res.data.data;
-          this.box = true;
           return getRole(this.ids[0]);
         })
         .then(res => {
           this.defaultObj = res.data.data;
+          this.box = true;
         });
     },
     handleDelete() {

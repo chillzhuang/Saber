@@ -158,7 +158,6 @@ export default {
       if (["edit", "view"].includes(type)) {
         getDict(this.form.id).then(res => {
           this.form = res.data.data;
-          this.form.parentId = this.form.parentId + "";
         });
       }
       done();
