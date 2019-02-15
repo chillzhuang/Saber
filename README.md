@@ -10,12 +10,12 @@ Saber 是 [SpringBlade](https://gitee.com/smallc/SpringBlade)前端UI项目，�
 * Saber演示地址：[https://saber.avue.top](https://saber.avue.top)
 
 ## 后端项目地址
-* [Gitee](https://gitee.com/smallc/SpringBlade)
-* [Github](https://github.com/chillzhuang/SpringBlade)
+* [Gitee地址](https://gitee.com/smallc/SpringBlade)
+* [Github地址](https://github.com/chillzhuang/SpringBlade)
 
 ## 前端项目地址
-* [Sword](https://gitee.com/smallc/Sword)
-* [Saber](https://gitee.com/smallc/Saber)
+* [Sword--基于React](https://gitee.com/smallc/Sword)
+* [Saber--基于Vue](https://gitee.com/smallc/Saber)
 
 ## 特性
 
