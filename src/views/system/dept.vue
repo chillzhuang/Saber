@@ -4,6 +4,7 @@
                :data="data"
                ref="crud"
                v-model="form"
+               :permission="permissionList"
                :before-open="beforeOpen"
                :page="page"
                @row-del="rowDel"
@@ -17,6 +18,7 @@
         <el-button type="danger"
                    size="small"
                    icon="el-icon-delete"
+                   v-if="permission.dept_delete"
                    plain
                    @click="handleDelete">删 除</el-button>
       </template>
@@ -41,6 +43,7 @@ import {
   getDept,
   getDeptTree
 } from "@/api/system/dept";
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -89,6 +92,15 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(["permission"]),
+    permissionList() {
+      return {
+        addBtn: this.permission.dept_add,
+        viewBtn: this.permission.dept_view,
+        delBtn: this.permission.dept_delete,
+        editBtn: this.permission.dept_edit
+      };
+    },
     ids() {
       let ids = [];
       this.selectionList.forEach(ele => {
