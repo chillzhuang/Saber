@@ -45,7 +45,6 @@ const user = {
                     commit('SET_USERIFNO', data);
                     commit('DEL_ALL_TAG');
                     commit('CLEAR_LOCK');
-                    dispatch('GetButtons');
                     resolve();
                 })
             })
@@ -140,6 +139,7 @@ const user = {
                         addPath(ele, true);
                     })
                     commit('SET_MENU', menu)
+                    dispatch('GetButtons');
                     resolve(menu)
                 })
             })
@@ -153,7 +153,7 @@ const user = {
         },
         SET_USERIFNO: (state, userInfo) => {
             state.userInfo = userInfo;
-            setStore({ name: 'userInfo', content: state.userInfo, type: 'session' })
+            setStore({ name: 'userInfo', content: state.userInfo })
         },
         SET_MENU: (state, menu) => {
             state.menu = menu
