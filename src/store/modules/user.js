@@ -37,7 +37,7 @@ const user = {
     },
     actions: {
         //根据用户名登录
-        LoginByUsername({ commit, dispatch }, userInfo) {
+        LoginByUsername({ commit }, userInfo) {
             return new Promise((resolve) => {
                 loginByUsername(userInfo.username, userInfo.password, userInfo.type).then(res => {
                     const data = res.data.data;
@@ -130,7 +130,7 @@ const user = {
             })
         },
         //获取系统菜单
-        GetMenu({ commit }, parentId) {
+        GetMenu({ commit, dispatch }, parentId) {
             return new Promise(resolve => {
                 getMenu(parentId).then((res) => {
                     const data = res.data.data
