@@ -86,6 +86,7 @@
           total: 0
         },
         option: {
+          tip: false,
           tree: true,
           border: true,
           index: true,

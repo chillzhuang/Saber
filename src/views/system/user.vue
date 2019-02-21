@@ -64,6 +64,7 @@
           total: 0
         },
         option: {
+          tip: false,
           border: true,
           index: true,
           selection: true,

@@ -45,6 +45,7 @@
         },
         selectionList: [],
         option: {
+          tip: false,
           border: true,
           index: true,
           viewBtn: true,

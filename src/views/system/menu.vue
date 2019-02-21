@@ -49,6 +49,7 @@
           total: 0
         },
         option: {
+          tip: false,
           dialogWidth: "70%",
           tree: true,
           border: true,
