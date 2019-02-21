@@ -63,7 +63,8 @@
     add,
     grant,
     getTree,
-    getRole
+    getRole,
+    getRoleTree
   } from "@/api/system/role";
   import {mapGetters} from "vuex";
 
@@ -102,8 +103,19 @@
               search: true
             },
             {
-              label: "排序",
-              prop: "sort"
+              label: "上级角色",
+              prop: "parentId",
+              dicData: [],
+              type: "tree",
+              hide: true,
+              props: {
+                label: "title"
+              }
+            },
+            {
+              label: "角色排序",
+              prop: "sort",
+              type: "number"
             }
           ]
         },
@@ -228,6 +240,11 @@
         getList(page.currentPage, page.pageSize, params).then(res => {
           const data = res.data.data;
           this.data = data;
+          getRoleTree().then(res => {
+            const data = res.data.data;
+            const index = this.$refs.crud.findColumnIndex("parentId");
+            this.option.column[index].dicData = data;
+          });
         });
       }
     }

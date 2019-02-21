@@ -85,7 +85,8 @@
 
             {
               label: "排序",
-              prop: "sort"
+              prop: "sort",
+              type: "number"
             }
           ]
         },

@@ -84,11 +84,13 @@
             },
             {
               label: "字典键值",
-              prop: "dictKey"
+              prop: "dictKey",
+              type: "number"
             },
             {
               label: "排序",
-              prop: "sort"
+              prop: "sort",
+              type: "number"
             }
           ]
         },
