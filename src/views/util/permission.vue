@@ -14,66 +14,69 @@
       </avue-crud>
     </basic-container>
     <basic-container>
-      权限开关<el-switch :active-value="false"
+      权限开关
+      <el-switch :active-value="false"
                  :inactive-value="true"
                  v-model="text"
                  active-color="#13ce66"
                  inactive-color="#ff4949">
       </el-switch>
-      <p> 具体参考<a href="https://avuex.avue.top/#/doc/crud-permission">https://avuex.avue.top/#/doc/crud-permission</a></p>
+      <p> 具体参考<a
+        href="https://avuex.avue.top/#/doc/crud-permission">https://avuex.avue.top/#/doc/crud-permission</a>
+      </p>
     </basic-container>
   </div>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      text: false,
-      permission: {},
-      option: {
-        expand: true,
-        column: [
+  export default {
+    data() {
+      return {
+        text: false,
+        permission: {},
+        option: {
+          expand: true,
+          column: [
+            {
+              label: "姓名",
+              prop: "name"
+            },
+            {
+              label: "年龄",
+              prop: "sex"
+            }
+          ]
+        },
+        data: [
           {
-            label: "姓名",
-            prop: "name"
+            id: 1,
+            name: "张三",
+            sex: 12
           },
           {
-            label: "年龄",
-            prop: "sex"
+            id: 2,
+            name: "李四",
+            sex: 20
           }
         ]
-      },
-      data: [
-        {
-          id: 1,
-          name: "张三",
-          sex: 12
-        },
-        {
-          id: 2,
-          name: "李四",
-          sex: 20
+      };
+    },
+    watch: {
+      text() {
+        if (this.text === true) {
+          this.permission = {
+            delBtn: false,
+            addBtn: false
+          };
+        } else {
+          this.permission = {
+            delBtn: true,
+            addBtn: true
+          };
         }
-      ]
-    };
-  },
-  watch: {
-    text() {
-      if (this.text === true) {
-        this.permission = {
-          delBtn: false,
-          addBtn: false
-        };
-      } else {
-        this.permission = {
-          delBtn: true,
-          addBtn: true
-        };
       }
     }
-  }
-};
+  };
 </script>
 
 <style>

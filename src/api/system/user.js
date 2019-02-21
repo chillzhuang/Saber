@@ -1,9 +1,12 @@
 import request from '@/router/axios';
+
 export const resetPassword = (userIds) => {
   return request({
     url: 'api/blade-user/reset-password',
     method: 'post',
-    data: userIds
+    params: {
+      userIds,
+    }
   })
 }
 export const getList = (current, size, params) => {
@@ -18,13 +21,10 @@ export const getList = (current, size, params) => {
 }
 export const remove = (ids) => {
   return request({
-    url: 'api/blade-system/user/remove',
+    url: 'api/blade-user/remove',
     method: 'post',
-    data: {
+    params: {
       ids,
-    },
-    meta: {
-      isSerialize: true,
     }
   })
 }

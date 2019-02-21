@@ -1,51 +1,51 @@
 import request from '@/router/axios';
-import { baseUrl } from '@/config/env';
+import {baseUrl} from '@/config/env';
 
 export const loginByUsername = (account, password, type) => request({
-    url: 'api/blade-auth/token',
-    method: 'post',
-    data: {
-        account,
-        password,
-        type
-    },
-    meta: {
-        isSerialize: true,
-    }
+  url: 'api/blade-auth/token',
+  method: 'post',
+  data: {
+    account,
+    password,
+    type
+  },
+  meta: {
+    isSerialize: true,
+  }
 })
 
 export const getButtons = () => request({
-    url: 'api/blade-system/menu/buttons',
-    method: 'get'
+  url: 'api/blade-system/menu/buttons',
+  method: 'get'
 });
 
 export const getUserInfo = () => request({
-    url: baseUrl + '/user/getUserInfo',
-    method: 'get'
+  url: baseUrl + '/user/getUserInfo',
+  method: 'get'
 });
 
 export const refeshToken = () => request({
-    url: baseUrl + '/user/refesh',
-    method: 'post'
+  url: baseUrl + '/user/refesh',
+  method: 'post'
 })
 
 export const getMenu = () => request({
-    url: 'api/blade-system/menu/routes',
-    method: 'get'
+  url: 'api/blade-system/menu/routes',
+  method: 'get'
 });
 
 export const getTopMenu = () => request({
-    url: baseUrl + '/user/getTopMenu',
-    method: 'get'
+  url: baseUrl + '/user/getTopMenu',
+  method: 'get'
 });
 
 export const sendLogs = (list) => request({
-    url: baseUrl + '/user/logout',
-    method: 'post',
-    data: list
+  url: baseUrl + '/user/logout',
+  method: 'post',
+  data: list
 })
 
 export const logout = () => request({
-    url: baseUrl + '/user/logout',
-    method: 'get'
+  url: baseUrl + '/user/logout',
+  method: 'get'
 })

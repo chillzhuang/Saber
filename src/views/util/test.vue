@@ -5,15 +5,16 @@
 </template>
 
 <script>
-export default {
-  name: "wel",
-  data() {
-    return {};
-  },
-  computed: {},
-  created() {},
-  methods: {}
-};
+  export default {
+    name: "wel",
+    data() {
+      return {};
+    },
+    computed: {},
+    created() {
+    },
+    methods: {}
+  };
 </script>
 
 <style scoped="scoped" lang="scss">
