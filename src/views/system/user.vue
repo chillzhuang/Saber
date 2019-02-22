@@ -86,7 +86,6 @@
           index: true,
           selection: true,
           viewBtn: true,
-          calcHeight:800,
           column: [
             {
               label: "登录账号",
@@ -103,13 +102,17 @@
               label: '密码',
               prop: 'password',
               hide: true,
-              rules: [{validator: validatePass, trigger: 'blur'}]
+              editDisplay: false,
+              viewDisplay: false,
+              rules: [{required: true, validator: validatePass, trigger: 'blur'}]
             },
             {
               label: '确认密码',
               prop: 'password2',
               hide: true,
-              rules: [{validator: validatePass2, trigger: 'blur'}]
+              editDisplay: false,
+              viewDisplay: false,
+              rules: [{required: true, validator: validatePass2, trigger: 'blur'}]
             },
             {
               label: "用户昵称",
