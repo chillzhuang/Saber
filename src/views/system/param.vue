@@ -57,16 +57,31 @@
             {
               label: "参数名称",
               prop: "paramName",
-              search: true
+              search: true,
+              rules: [{
+                required: true,
+                message: "请输入参数名称",
+                trigger: "blur"
+              }]
             },
             {
               label: "参数键名",
               prop: "paramKey",
-              search: true
+              search: true,
+              rules: [{
+                required: true,
+                message: "请输入参数键名",
+                trigger: "blur"
+              }]
             },
             {
               label: "参数键值",
-              prop: "paramValue"
+              prop: "paramValue",
+              rules: [{
+                required: true,
+                message: "请输入参数键值",
+                trigger: "blur"
+              }]
             }
           ]
         },

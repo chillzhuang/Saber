@@ -96,12 +96,22 @@
             {
               label: "角色名称",
               prop: "roleName",
-              search: true
+              search: true,
+              rules: [{
+                required: true,
+                message: "请输入角色名称",
+                trigger: "blur"
+              }]
             },
             {
               label: "角色别名",
               prop: "roleAlias",
-              search: true
+              search: true,
+              rules: [{
+                required: true,
+                message: "请输入角色别名",
+                trigger: "blur"
+              }]
             },
             {
               label: "上级角色",
@@ -111,12 +121,22 @@
               hide: true,
               props: {
                 label: "title"
-              }
+              },
+              rules: [{
+                required: true,
+                message: "请选择上级角色",
+                trigger: "blur"
+              }]
             },
             {
               label: "角色排序",
               prop: "sort",
-              type: "number"
+              type: "number",
+              rules: [{
+                required: true,
+                message: "请输入角色排序",
+                trigger: "blur"
+              }]
             }
           ]
         },

@@ -66,12 +66,22 @@
             {
               label: "字典名称",
               prop: "dictValue",
-              search: true
+              search: true,
+              rules: [{
+                required: true,
+                message: "请输入字典名称",
+                trigger: "blur"
+              }]
             },
             {
               label: "字典编号",
               prop: "code",
-              search: true
+              search: true,
+              rules: [{
+                required: true,
+                message: "请输入字典编号",
+                trigger: "blur"
+              }]
             },
             {
               label: "上级字典",
@@ -81,17 +91,32 @@
               hide: true,
               props: {
                 label: "title"
-              }
+              },
+              rules: [{
+                required: true,
+                message: "请选择上级字典",
+                trigger: "blur"
+              }]
             },
             {
               label: "字典键值",
               prop: "dictKey",
-              type: "number"
+              type: "number",
+              rules: [{
+                required: true,
+                message: "请输入字典键值",
+                trigger: "blur"
+              }]
             },
             {
-              label: "排序",
+              label: "字典排序",
               prop: "sort",
-              type: "number"
+              type: "number",
+              rules: [{
+                required: true,
+                message: "请输入字典排序",
+                trigger: "blur"
+              }]
             }
           ]
         },

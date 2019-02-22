@@ -93,14 +93,6 @@
               span: 24,
               minRows: 2,
               hide: true
-            },
-            {
-              label: "日志数据",
-              prop: "stackTrace",
-              type: "textarea",
-              span: 24,
-              minRows: 6,
-              hide: true
             }
           ]
         },

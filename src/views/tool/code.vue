@@ -65,41 +65,81 @@
             {
               label: "模块名",
               prop: "codeName",
-              search: true
+              search: true,
+              rules: [{
+                required: true,
+                message: "请输入模块名",
+                trigger: "blur"
+              }]
             },
             {
               label: "服务名",
               prop: "serviceName",
-              search: true
+              search: true,
+              rules: [{
+                required: true,
+                message: "请输入服务名",
+                trigger: "blur"
+              }]
             },
             {
               label: "表名",
-              prop: "tableName"
+              prop: "tableName",
+              rules: [{
+                required: true,
+                message: "请输入表名",
+                trigger: "blur"
+              }]
             },
             {
               label: "表前缀",
-              prop: "tablePrefix"
+              prop: "tablePrefix",
+              rules: [{
+                required: true,
+                message: "请输入表前缀",
+                trigger: "blur"
+              }]
             },
             {
               label: "主键名",
-              prop: "pkName"
+              prop: "pkName",
+              rules: [{
+                required: true,
+                message: "请输入主键名",
+                trigger: "blur"
+              }]
             },
             {
               label: "包名",
               prop: "packageName",
-              overHidden: true
+              overHidden: true,
+              rules: [{
+                required: true,
+                message: "请输入包名",
+                trigger: "blur"
+              }]
             },
             {
               label: "后端生成路径",
               prop: "apiPath",
               span: 24,
-              hide: true
+              hide: true,
+              rules: [{
+                required: true,
+                message: "请输入后端生成路径",
+                trigger: "blur"
+              }]
             },
             {
               label: "前端生成路径",
               prop: "webPath",
               span: 24,
-              hide: true
+              hide: true,
+              rules: [{
+                required: true,
+                message: "请输入前端生成路径",
+                trigger: "blur"
+              }]
             }
           ]
         },

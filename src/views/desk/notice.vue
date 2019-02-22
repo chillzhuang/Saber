@@ -55,7 +55,12 @@
               label: "通知标题",
               prop: "title",
               row: true,
-              search: true
+              search: true,
+              rules: [{
+                required: true,
+                message: "请输入通知标题",
+                trigger: "blur"
+              }]
             },
             {
               label: "通知类型",
@@ -68,7 +73,24 @@
               },
               slot: true,
               prop: "category",
-              search: true
+              search: true,
+              rules: [{
+                required: true,
+                message: "请输入通知类型",
+                trigger: "blur"
+              }]
+            },
+            {
+              label: "通知日期",
+              type: "date",
+              prop: "date",
+              format: "yyyy-MM-dd hh:mm:ss",
+              valueFormat: "yyyy-MM-dd hh:mm:ss",
+              rules: [{
+                required: true,
+                message: "请输入通知日期",
+                trigger: "blur"
+              }]
             },
             {
               label: "通知内容",
@@ -76,13 +98,6 @@
               span: 24,
               minRows: 6,
               type: "textarea"
-            },
-            {
-              label: "通知日期",
-              type: "date",
-              prop: "date",
-              format: "yyyy-MM-dd hh:mm:ss",
-              valueFormat: "yyyy-MM-dd hh:mm:ss"
             }
           ]
         },

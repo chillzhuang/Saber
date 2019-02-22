@@ -66,12 +66,22 @@
             {
               label: "部门名称",
               prop: "deptName",
-              search: true
+              search: true,
+              rules: [{
+                required: true,
+                message: "请输入部门名称",
+                trigger: "blur"
+              }]
             },
             {
               label: "部门全称",
               prop: "fullName",
-              search: true
+              search: true,
+              rules: [{
+                required: true,
+                message: "请输入部门全称",
+                trigger: "blur"
+              }]
             },
             {
               label: "上级部门",
@@ -81,13 +91,23 @@
               hide: true,
               props: {
                 label: "title"
-              }
+              },
+              rules: [{
+                required: true,
+                message: "请选择上级部门",
+                trigger: "blur"
+              }]
             },
 
             {
               label: "排序",
               prop: "sort",
-              type: "number"
+              type: "number",
+              rules: [{
+                required: true,
+                message: "请输入排序",
+                trigger: "blur"
+              }]
             }
           ]
         },

@@ -55,6 +55,23 @@
 
   export default {
     data() {
+      const validatePass = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请输入密码'));
+        } else {
+          callback();
+        }
+      };
+      const validatePass2 = (rule, value, callback) => {
+        debugger
+        if (value === '') {
+          callback(new Error('请再次输入密码'));
+        } else if (value !== this.form.password) {
+          callback(new Error('两次输入密码不一致!'));
+        } else {
+          callback();
+        }
+      };
       return {
         form: {},
         selectionList: [],
@@ -69,20 +86,49 @@
           index: true,
           selection: true,
           viewBtn: true,
+          calcHeight:800,
           column: [
             {
               label: "登录账号",
               prop: "account",
-              search: true
+              span: 24,
+              search: true,
+              rules: [{
+                required: true,
+                message: "请输入登录账号",
+                trigger: "blur"
+              }]
+            },
+            {
+              label: '密码',
+              prop: 'password',
+              hide: true,
+              rules: [{validator: validatePass, trigger: 'blur'}]
+            },
+            {
+              label: '确认密码',
+              prop: 'password2',
+              hide: true,
+              rules: [{validator: validatePass2, trigger: 'blur'}]
             },
             {
               label: "用户昵称",
               prop: "name",
-              search: true
+              search: true,
+              rules: [{
+                required: true,
+                message: "请输入用户昵称",
+                trigger: "blur"
+              }]
             },
             {
               label: "用户姓名",
-              prop: "realName"
+              prop: "realName",
+              rules: [{
+                required: true,
+                message: "请输入用户姓名",
+                trigger: "blur"
+              }]
             },
             {
               label: "所属角色",
@@ -93,7 +139,12 @@
               props: {
                 label: "title"
               },
-              slot: true
+              slot: true,
+              rules: [{
+                required: true,
+                message: "请选择所属角色",
+                trigger: "blur"
+              }]
             },
             {
               label: "所属部门",
@@ -104,7 +155,12 @@
               props: {
                 label: "title"
               },
-              slot: true
+              slot: true,
+              rules: [{
+                required: true,
+                message: "请选择所属部门",
+                trigger: "blur"
+              }]
             },
             {
               label: "手机号码",
@@ -115,6 +171,33 @@
               label: "电子邮箱",
               prop: "email",
               overHidden: true
+            },
+            {
+              label: "用户性别",
+              prop: "sex",
+              type: "select",
+              dicData: [
+                {
+                  label: "男",
+                  value: 1
+                },
+                {
+                  label: "女",
+                  value: 2
+                },
+                {
+                  label: "未知",
+                  value: 3
+                }
+              ],
+              hide: true
+            },
+            {
+              label: "用户生日",
+              type: "date",
+              prop: "birthday",
+              format: "yyyy-MM-dd hh:mm:ss",
+              valueFormat: "yyyy-MM-dd hh:mm:ss"
             },
             {
               label: "账号状态",

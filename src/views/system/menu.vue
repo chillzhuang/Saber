@@ -60,20 +60,40 @@
             {
               label: "菜单名称",
               prop: "name",
-              search: true
+              search: true,
+              rules: [{
+                required: true,
+                message: "请输入菜单名称",
+                trigger: "blur"
+              }]
             },
             {
               label: "菜单编号",
               prop: "code",
-              search: true
+              search: true,
+              rules: [{
+                required: true,
+                message: "请输入菜单编号",
+                trigger: "blur"
+              }]
             },
             {
               label: "菜单别名",
-              prop: "alias"
+              prop: "alias",
+              rules: [{
+                required: true,
+                message: "请输入菜单别名",
+                trigger: "blur"
+              }]
             },
             {
               label: "路由地址",
-              prop: "path"
+              prop: "path",
+              rules: [{
+                required: true,
+                message: "请输入路由地址",
+                trigger: "blur"
+              }]
             },
 
             {
@@ -84,7 +104,12 @@
               hide: true,
               props: {
                 label: "title"
-              }
+              },
+              rules: [{
+                required: true,
+                message: "请选择上级菜单",
+                trigger: "blur"
+              }]
             },
 
             {
@@ -101,12 +126,22 @@
                   value: 2
                 }
               ],
-              hide: true
+              hide: true,
+              rules: [{
+                required: true,
+                message: "请选择菜单类型",
+                trigger: "blur"
+              }]
             },
             {
-              label: "排序",
+              label: "菜单排序",
               prop: "sort",
-              type: "number"
+              type: "number",
+              rules: [{
+                required: true,
+                message: "请输入菜单排序",
+                trigger: "blur"
+              }]
             },
             {
               label: "按钮功能",
@@ -126,7 +161,12 @@
                   value: 2
                 }
               ],
-              hide: true
+              hide: true,
+              rules: [{
+                required: true,
+                message: "请选择按钮功能",
+                trigger: "blur"
+              }]
             },
             {
               label: "菜单备注",
