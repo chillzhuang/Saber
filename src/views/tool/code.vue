@@ -186,7 +186,7 @@
         });
       },
       rowDel(row) {
-        this.$confirm("确定将选删除?", {
+        this.$confirm("确定将选择数据删除?", {
           confirmButtonText: "确定",
           cancelButtonText: "取消",
           type: "warning"
@@ -217,7 +217,7 @@
           this.$message.warning("请选择至少一条数据");
           return;
         }
-        this.$confirm("确定将选择账号删除?", {
+        this.$confirm("确定将选择数据删除?", {
           confirmButtonText: "确定",
           cancelButtonText: "取消",
           type: "warning"

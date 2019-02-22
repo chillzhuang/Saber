@@ -2,7 +2,7 @@ import request from '@/router/axios';
 import {baseUrl} from '@/config/env';
 
 export const loginByUsername = (account, password, type) => request({
-  url: 'api/blade-auth/token',
+  url: '/api/blade-auth/token',
   method: 'post',
   params: {
     account,
@@ -12,7 +12,7 @@ export const loginByUsername = (account, password, type) => request({
 })
 
 export const getButtons = () => request({
-  url: 'api/blade-system/menu/buttons',
+  url: '/api/blade-system/menu/buttons',
   method: 'get'
 });
 
@@ -27,7 +27,7 @@ export const refeshToken = () => request({
 })
 
 export const getMenu = () => request({
-  url: 'api/blade-system/menu/routes',
+  url: '/api/blade-system/menu/routes',
   method: 'get'
 });
 

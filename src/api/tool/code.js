@@ -2,7 +2,7 @@ import request from '@/router/axios';
 
 export const getList = (current, size) => {
   return request({
-    url: 'api/blade-develop/code/list',
+    url: '/api/blade-develop/code/list',
     method: 'get',
     params: {
       current,
@@ -13,7 +13,7 @@ export const getList = (current, size) => {
 
 export const build = (ids) => {
   return request({
-    url: 'api/blade-develop/code/gen-code',
+    url: '/api/blade-develop/code/gen-code',
     method: 'post',
     params: {
       ids,
@@ -22,7 +22,7 @@ export const build = (ids) => {
 }
 export const remove = (ids) => {
   return request({
-    url: 'api/blade-develop/code/remove',
+    url: '/api/blade-develop/code/remove',
     method: 'post',
     params: {
       ids,
@@ -32,7 +32,7 @@ export const remove = (ids) => {
 
 export const add = (row) => {
   return request({
-    url: 'api/blade-develop/code/submit',
+    url: '/api/blade-develop/code/submit',
     method: 'post',
     data: row
   })
@@ -48,7 +48,7 @@ export const update = (row) => {
 
 export const getCode = (id) => {
   return request({
-    url: 'api/blade-develop/code/detail',
+    url: '/api/blade-develop/code/detail',
     method: 'get',
     params: {
       id,
