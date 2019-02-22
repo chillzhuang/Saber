@@ -62,7 +62,7 @@
     update,
     add,
     grant,
-    getTree,
+    grantTree,
     getRole,
     getRoleTree
   } from "@/api/system/role";
@@ -225,7 +225,7 @@
           this.$message.warning("请选择至少一条数据");
           return;
         }
-        getTree()
+        grantTree()
           .then(res => {
             this.list = res.data.data;
             return getRole(this.ids[0]);

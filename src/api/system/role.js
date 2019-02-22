@@ -11,7 +11,7 @@ export const getList = (current, size, params) => {
     }
   })
 }
-export const getTree = () => {
+export const grantTree = () => {
   return request({
     url: '/api/blade-system/menu/grant-tree',
     method: 'get',
