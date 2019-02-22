@@ -4,10 +4,11 @@ export const getList = (current, size, params) => {
   return request({
     url: 'api/blade-desk/notice/list',
     method: 'get',
-    params: Object.assign(params, {
+    params: {
+      ...params,
       current,
       size,
-    })
+    }
   })
 }
 
@@ -15,11 +16,8 @@ export const remove = (ids) => {
   return request({
     url: 'api/blade-desk/notice/remove',
     method: 'post',
-    data: {
+    params: {
       ids,
-    },
-    meta: {
-      isSerialize: true,
     }
   })
 }

@@ -4,10 +4,11 @@ export const getList = (current, size, params) => {
   return request({
     url: 'api/blade-system/role/list',
     method: 'get',
-    params: Object.assign(params, {
+    params: {
+      ...params,
       current,
-      size
-    })
+      size,
+    }
   })
 }
 export const getTree = () => {
@@ -21,12 +22,9 @@ export const grant = (roleIds, menuIds) => {
   return request({
     url: 'api/blade-system/role/grant',
     method: 'post',
-    data: {
+    params: {
       roleIds,
       menuIds
-    },
-    meta: {
-      isSerialize: true,
     }
   })
 }
@@ -35,11 +33,8 @@ export const remove = (ids) => {
   return request({
     url: 'api/blade-system/role/remove',
     method: 'post',
-    data: {
+    params: {
       ids,
-    },
-    meta: {
-      isSerialize: true,
     }
   })
 }

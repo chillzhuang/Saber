@@ -15,7 +15,7 @@ export const build = (ids) => {
   return request({
     url: 'api/blade-develop/code/gen-code',
     method: 'post',
-    data: {
+    params: {
       ids,
     }
   })
@@ -24,11 +24,8 @@ export const remove = (ids) => {
   return request({
     url: 'api/blade-develop/code/remove',
     method: 'post',
-    data: {
+    params: {
       ids,
-    },
-    meta: {
-      isSerialize: true,
     }
   })
 }

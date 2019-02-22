@@ -4,21 +4,19 @@ export const getList = (current, size, params) => {
   return request({
     url: 'api/blade-system/dict/list',
     method: 'get',
-    params: Object.assign(params, {
+    params: {
+      ...params,
       current,
-      size
-    })
+      size,
+    }
   })
 }
 export const remove = (ids) => {
   return request({
     url: 'api/blade-system/dict/remove',
     method: 'post',
-    data: {
+    params: {
       ids,
-    },
-    meta: {
-      isSerialize: true,
     }
   })
 }

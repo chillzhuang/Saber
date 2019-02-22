@@ -13,10 +13,11 @@ export const getList = (current, size, params) => {
   return request({
     url: 'api/blade-user/list',
     method: 'get',
-    params: Object.assign(params, {
+    params: {
+      ...params,
       current,
-      size
-    })
+      size,
+    }
   })
 }
 export const remove = (ids) => {
