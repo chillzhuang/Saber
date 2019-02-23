@@ -106,7 +106,7 @@
                 label: "title"
               },
               rules: [{
-                required: true,
+                required: false,
                 message: "请选择上级菜单",
                 trigger: "blur"
               }]

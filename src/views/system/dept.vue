@@ -93,7 +93,7 @@
                 label: "title"
               },
               rules: [{
-                required: true,
+                required: false,
                 message: "请选择上级部门",
                 trigger: "blur"
               }]
@@ -106,6 +106,17 @@
               rules: [{
                 required: true,
                 message: "请输入排序",
+                trigger: "blur"
+              }]
+            },
+
+            {
+              label: "备注",
+              prop: "remark",
+              span: 24,
+              rules: [{
+                required: false,
+                message: "请输入备注",
                 trigger: "blur"
               }]
             }

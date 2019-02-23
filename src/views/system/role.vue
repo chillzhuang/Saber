@@ -123,7 +123,7 @@
                 label: "title"
               },
               rules: [{
-                required: true,
+                required: false,
                 message: "请选择上级角色",
                 trigger: "blur"
               }]
