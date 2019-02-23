@@ -17,7 +17,7 @@ export const build = (ids) => {
     method: 'post',
     params: {
       ids,
-      key: 'saber'
+      system: 'saber'
     }
   })
 }
