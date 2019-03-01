@@ -34,6 +34,7 @@ export default [
       "iconfont iconicon_redpacket",
       "iconfont iconicon_photo",
       "iconfont iconicon_qq",
+      "iconfont iconicon_wechat",
       "iconfont iconicon_phone",
       "iconfont iconicon_namecard",
       "iconfont iconicon_notice",
