@@ -18,11 +18,14 @@
 @import './media.scss';
 //通用配置
 @import './normalize.scss';
+//通用配置
+@import './avue.scss';
 
-a{
+a {
   text-decoration: none;
-  color:#333;
+  color: #333;
 }
-*{
+
+* {
   outline: none;
 }

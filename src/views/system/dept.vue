@@ -95,7 +95,7 @@
               rules: [{
                 required: false,
                 message: "请选择上级部门",
-                trigger: "blur"
+                trigger: "click"
               }]
             },
 

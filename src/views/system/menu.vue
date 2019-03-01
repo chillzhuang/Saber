@@ -27,6 +27,13 @@
         <el-tag>{{row.roleName}}</el-tag>
       </template>
       <template slot-scope="{row}"
+                slot="source">
+        <div style="text-align:center">
+          <i :class="row.source"></i>
+        </div>
+      </template>
+
+      <template slot-scope="{row}"
                 slot="deptId">
         <el-tag>{{row.deptName}}</el-tag>
       </template>
@@ -37,6 +44,7 @@
 <script>
   import {getList, remove, update, add, getMenu} from "@/api/system/menu";
   import {mapGetters} from "vuex";
+  import iconList from "@/config/iconList";
 
   export default {
     data() {
@@ -50,7 +58,7 @@
         },
         option: {
           tip: false,
-          dialogWidth: "70%",
+          dialogWidth: "60%",
           tree: true,
           border: true,
           index: true,
@@ -61,41 +69,25 @@
               label: "菜单名称",
               prop: "name",
               search: true,
-              rules: [{
-                required: true,
-                message: "请输入菜单名称",
-                trigger: "blur"
-              }]
-            },
-            {
-              label: "菜单编号",
-              prop: "code",
-              search: true,
-              rules: [{
-                required: true,
-                message: "请输入菜单编号",
-                trigger: "blur"
-              }]
-            },
-            {
-              label: "菜单别名",
-              prop: "alias",
-              rules: [{
-                required: true,
-                message: "请输入菜单别名",
-                trigger: "blur"
-              }]
+              rules: [
+                {
+                  required: true,
+                  message: "请输入菜单名称",
+                  trigger: "blur"
+                }
+              ]
             },
             {
               label: "路由地址",
               prop: "path",
-              rules: [{
-                required: true,
-                message: "请输入路由地址",
-                trigger: "blur"
-              }]
+              rules: [
+                {
+                  required: true,
+                  message: "请输入路由地址",
+                  trigger: "blur"
+                }
+              ]
             },
-
             {
               label: "上级菜单",
               prop: "parentId",
@@ -105,13 +97,40 @@
               props: {
                 label: "title"
               },
-              rules: [{
-                required: false,
-                message: "请选择上级菜单",
-                trigger: "blur"
-              }]
+              rules: [
+                {
+                  required: false,
+                  message: "请选择上级菜单",
+                  trigger: "click"
+                }
+              ]
             },
-
+            {
+              label: "菜单图标",
+              prop: "source",
+              type: "icon-select",
+              slot: true,
+              iconList: iconList,
+              rules: [
+                {
+                  required: true,
+                  message: "请输入菜单图标",
+                  trigger: "click"
+                }
+              ]
+            },
+            {
+              label: "菜单编号",
+              prop: "code",
+              search: true,
+              rules: [
+                {
+                  required: true,
+                  message: "请输入菜单编号",
+                  trigger: "blur"
+                }
+              ]
+            },
             {
               label: "菜单类型",
               prop: "category",
@@ -127,21 +146,24 @@
                 }
               ],
               hide: true,
-              rules: [{
-                required: true,
-                message: "请选择菜单类型",
-                trigger: "blur"
-              }]
+              rules: [
+                {
+                  required: true,
+                  message: "请选择菜单类型",
+                  trigger: "blur"
+                }
+              ]
             },
             {
-              label: "菜单排序",
-              prop: "sort",
-              type: "number",
-              rules: [{
-                required: true,
-                message: "请输入菜单排序",
-                trigger: "blur"
-              }]
+              label: "菜单别名",
+              prop: "alias",
+              rules: [
+                {
+                  required: true,
+                  message: "请输入菜单别名",
+                  trigger: "blur"
+                }
+              ]
             },
             {
               label: "按钮功能",
@@ -162,11 +184,41 @@
                 }
               ],
               hide: true,
-              rules: [{
-                required: true,
-                message: "请选择按钮功能",
-                trigger: "blur"
-              }]
+              rules: [
+                {
+                  required: true,
+                  message: "请选择按钮功能",
+                  trigger: "blur"
+                }
+              ]
+            },
+            {
+              label: "菜单排序",
+              prop: "sort",
+              type: "number",
+              rules: [
+                {
+                  required: true,
+                  message: "请输入菜单排序",
+                  trigger: "blur"
+                }
+              ]
+            },
+            {
+              label: "新窗口",
+              prop: "isOpen",
+              type: "radio",
+              dicData: [
+                {
+                  label: "否",
+                  value: 0
+                },
+                {
+                  label: "是",
+                  value: 1
+                },
+              ],
+              hide: true
             },
             {
               label: "菜单备注",

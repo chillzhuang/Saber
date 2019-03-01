@@ -13,10 +13,10 @@
            v-if="showMenu">
         <top-menu></top-menu>
       </div>
-      <!--<span class="top-bar__item"
+      <span class="top-bar__item"
             v-if="showSearch">
         <top-search></top-search>
-      </span>-->
+      </span>
     </div>
     <div class="top-bar__right">
       <el-tooltip v-if="showColor"
@@ -93,7 +93,7 @@ import { mapGetters, mapState } from "vuex";
 import { fullscreenToggel, listenfullscreen } from "@/util/util";
 import topLock from "./top-lock";
 import topMenu from "./top-menu";
-// import topSearch from "./top-search";
+import topSearch from "./top-search";
 import topTheme from "./top-theme";
 import topLogs from "./top-logs";
 import topColor from "./top-color";
@@ -102,7 +102,7 @@ export default {
   components: {
     topLock,
     topMenu,
-    // topSearch,
+    topSearch,
     topTheme,
     topLogs,
     topColor,

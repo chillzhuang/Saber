@@ -95,7 +95,7 @@
               rules: [{
                 required: false,
                 message: "请选择上级字典",
-                trigger: "blur"
+                trigger: "click"
               }]
             },
             {

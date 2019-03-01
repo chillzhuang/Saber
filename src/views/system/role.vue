@@ -41,7 +41,6 @@
                show-checkbox
                node-key="id"
                ref="tree"
-               :default-expanded-keys="defaultObj"
                :default-checked-keys="defaultObj"
                :props="props">
       </el-tree>
@@ -97,21 +96,25 @@
               label: "角色名称",
               prop: "roleName",
               search: true,
-              rules: [{
-                required: true,
-                message: "请输入角色名称",
-                trigger: "blur"
-              }]
+              rules: [
+                {
+                  required: true,
+                  message: "请输入角色名称",
+                  trigger: "blur"
+                }
+              ]
             },
             {
               label: "角色别名",
               prop: "roleAlias",
               search: true,
-              rules: [{
-                required: true,
-                message: "请输入角色别名",
-                trigger: "blur"
-              }]
+              rules: [
+                {
+                  required: true,
+                  message: "请输入角色别名",
+                  trigger: "blur"
+                }
+              ]
             },
             {
               label: "上级角色",
@@ -122,21 +125,25 @@
               props: {
                 label: "title"
               },
-              rules: [{
-                required: false,
-                message: "请选择上级角色",
-                trigger: "blur"
-              }]
+              rules: [
+                {
+                  required: false,
+                  message: "请选择上级角色",
+                  trigger: "click"
+                }
+              ]
             },
             {
               label: "角色排序",
               prop: "sort",
               type: "number",
-              rules: [{
-                required: true,
-                message: "请输入角色排序",
-                trigger: "blur"
-              }]
+              rules: [
+                {
+                  required: true,
+                  message: "请输入角色排序",
+                  trigger: "blur"
+                }
+              ]
             }
           ]
         },
@@ -225,6 +232,7 @@
           this.$message.warning("请选择至少一条数据");
           return;
         }
+        this.defaultObj = [];
         grantTree()
           .then(res => {
             this.list = res.data.data;
