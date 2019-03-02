@@ -16,6 +16,7 @@
         <el-button type="danger"
                    size="small"
                    icon="el-icon-delete"
+                   v-if="permission.role_delete"
                    plain
                    @click="handleDelete">删 除
         </el-button>
