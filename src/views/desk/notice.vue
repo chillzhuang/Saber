@@ -108,10 +108,10 @@
       ...mapGetters(["permission"]),
       permissionList() {
         return {
-          addBtn: this.permission.notice_add,
-          viewBtn: this.permission.notice_view,
-          delBtn: this.permission.notice_delete,
-          editBtn: this.permission.notice_edit
+          addBtn: this.vaildData(this.permission.notice_add, false),
+          viewBtn: this.vaildData(this.permission.notice_view, false),
+          delBtn: this.vaildData(this.permission.notice_delete, false),
+          editBtn: this.vaildData(this.permission.notice_edit, false)
         };
       },
       ids() {

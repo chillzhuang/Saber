@@ -103,7 +103,7 @@
       ...mapGetters(["permission"]),
       permissionList() {
         return {
-          viewBtn: this.permission.log_usual_view
+          viewBtn: this.vaildData(this.permission.log_usual_view, false)
         };
       }
     },

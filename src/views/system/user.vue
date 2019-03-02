@@ -86,6 +86,7 @@
           index: true,
           selection: true,
           viewBtn: true,
+          dialogHeight: 450,
           column: [
             {
               label: "登录账号",
@@ -216,10 +217,10 @@
       ...mapGetters(["permission"]),
       permissionList() {
         return {
-          addBtn: this.permission.user_add,
-          viewBtn: this.permission.user_view,
-          delBtn: this.permission.user_delete,
-          editBtn: this.permission.user_edit
+          addBtn: this.vaildData(this.permission.user_add, false),
+          viewBtn: this.vaildData(this.permission.user_view, false),
+          delBtn: this.vaildData(this.permission.user_delete, false),
+          editBtn: this.vaildData(this.permission.user_edit, false)
         };
       },
       ids() {

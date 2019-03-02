@@ -111,7 +111,7 @@
       ...mapGetters(["permission"]),
       permissionList() {
         return {
-          viewBtn: this.permission.log_error_view
+          viewBtn: this.vaildData(this.permission.log_error_view, false)
         };
       }
     },

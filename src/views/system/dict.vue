@@ -127,10 +127,10 @@
       ...mapGetters(["permission"]),
       permissionList() {
         return {
-          addBtn: this.permission.dict_add,
-          viewBtn: this.permission.dict_view,
-          delBtn: this.permission.dict_delete,
-          editBtn: this.permission.dict_edit
+          addBtn: this.vaildData(this.permission.dict_add, false),
+          viewBtn: this.vaildData(this.permission.dict_view, false),
+          delBtn: this.vaildData(this.permission.dict_delete, false),
+          editBtn: this.vaildData(this.permission.dict_edit, false)
         };
       },
       ids() {
