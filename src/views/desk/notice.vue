@@ -82,8 +82,8 @@
             },
             {
               label: "通知日期",
-              type: "releaseTime",
-              prop: "date",
+              prop: "releaseTime",
+              type: "date",
               format: "yyyy-MM-dd hh:mm:ss",
               valueFormat: "yyyy-MM-dd hh:mm:ss",
               rules: [{
