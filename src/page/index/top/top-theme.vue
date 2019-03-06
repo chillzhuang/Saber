@@ -52,6 +52,10 @@ export default {
         {
           name: "d2主题",
           value: "theme-d2"
+        },
+        {
+          name: "hey主题",
+          value: "theme-hey"
         }
       ]
     };
