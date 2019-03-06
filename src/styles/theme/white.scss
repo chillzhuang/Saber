@@ -1,4 +1,32 @@
 .theme-white {
+    .el-menu--popup{
+        .el-menu-item{
+            background-color: #fff;
+            i,span{
+                color:#666;
+            }
+            &:hover{
+                i,span{
+                    color:#333;
+                }
+            }
+            &.is-active {
+                background-color: #409EFF;
+                &:before {
+                    content: '';
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    width: 4px;
+                    background: #409eff;
+                    position: absolute;
+                }
+                i,span{
+                    color:#fff;
+                }
+            }
+        }
+    }
   .avue-header,
   .avue-logo,
   .tags-container {
@@ -16,7 +44,7 @@
     color:#fff;
   }
   .logo_title,
-  .avue-breadcrumb,
+  .avue-breadcrumb
   {
       color: #fff ;
       i {
@@ -37,60 +65,31 @@
       }
     }
   }
-  .el-menu--popup{
-    background-color: #fff ;
-    .el-menu-item{
-      background-color: #fff ;
-      span,i {
-        color:#666 ;
-      }
-      &.is-active{
-        background-color:#409EFF ;
-        span,i {
-          color:#fff ;
-        }
-      }
-    }
-  }
   .avue-sidebar{
     box-shadow: 2px 0 6px rgba(0, 21, 41, 0.15);
-    .el-menu{
-      background-color: #fff ;
-    }
-    background-color:#fff ;
+    background-color: #fff;
+    padding-top: 70px;
     .el-menu-item,.el-submenu__title{
       i,span{
-        color:#666 ;
-      }
-      background-color:#fff ;
-    }
-    .el-menu-item,.el-submenu__title{
-      &:hover{
-        background-color: transparent ;
-        i,span{
-          color:#666 ;
-        }
-      }
-    }
-    .el-menu-item.is-active,.el-submenu__title.is-active{
-      background-color:#409EFF ;
-      i,span{
-        color:#fff ;
-      }
-      &::before{
-        display: none;
+          color:#666
       }
       &:hover{
-        background-color: #409EFF ;
-        i,span{
-          color:#fff ;
-        }
+          background: transparent;
+          i,span{
+             color:#333;
+          }
+      }
+      &.is-active {
+          background-color: #409EFF;
+          i,span{
+              color:#fff;
+          }
       }
     }
   }
   .top-search {
       .el-input__inner{
-        color: #fff;
+        color: #333;
       }
       input::-webkit-input-placeholder,
       textarea::-webkit-input-placeholder {

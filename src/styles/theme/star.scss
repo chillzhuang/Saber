@@ -3,112 +3,66 @@
         background-image: url("/img/bg/star-squashed.jpg");
         background-size: 100% 100%;
     }
+    .avue-logo{
+        color: #fff;
+    }
     .avue-header,
     .avue-logo,
     .tags-container {
         background-color: transparent;
     }
-    .el-card {
+    .el-card,.error-page {
         opacity: .9;
-    }
-    .top {
-        .el-dropdown {
-            color: #fff;
-            i {
-                color: #fff;
-            }
-        }
-        .top-item {
-            i {
-                color: #fff;
-            }
-        }
     }
     .avue-tabs {
         padding: 0 20px ;
     }
-    .avue-sidebar,
-    .logo,
-    .el-menu-item,
-    .el-submenu__title,
-    .el-menu {
-        background-color: transparent 
-    }
-    .logo_title,
-    .avue-breadcrumb,
-    {
-        color: #fff ;
-        i {
-            color: #fff;
-        }
-    }
-    .el-menu--horizontal>.el-menu-item.is-active {
-        border-bottom: none;
-    }
-    .top {
-        border-bottom: none;
-    }
-    .avue-tags {
+    .avue-tags{
         background-color: transparent;
-        border: none;
+        border-top: none;
     }
-    .tag-item {
-        color: #fff ;
-        border: none ;
-        background-color: rgba(255, 255, 255, .5);
+    .avue-top{
+        .avue-breadcrumb{
+            color:#fff;
+        }
+        .el-menu-item{
+            i,span{
+                color:#fff;
+            }
+            &.is-active{
+                background-color: rgba(0,0,0,.4)
+            }
+        }
+        .el-dropdown{
+            color:#fff;
+        }
+    }
+    .avue-sidebar{
+        box-shadow: 2px 0 6px rgba(0, 21, 41, 0.15);
+        background-color:transparent;
+        .el-menu-item,.el-submenu__title{
+        i,span{
+            color:#fff
+        }
+        &:hover{
+            background: transparent;
+            i,span{
+                color:#409EFF;
+            }
+        }
         &.is-active {
-            color: #fff ;
-            border: 1px solid #fff ;
-            background-color: rgba(0, 0, 0, .4);
-            .tag-item-icon {
-                color: #fff ;
+            background-color: rgba(0,0,0,.4);
+            i,span{
+                color:#fff;
             }
+        }
         }
     }
-    .el-menu-item {
-        i,
-        span {
-            color: #fff ;
+
+  .top-search {
+        .el-input__inner{
+        color: #333;
         }
-        &:hover {
-            i,
-            span {
-                color: #409eff ;
-            }
-        }
-        &.is-active {
-            background-color: rgba(0, 0, 0, .4) ;
-            &:hover {
-                background-color: rgba(0, 0, 0, .4) ;
-            }
-        }
-    }
-    .el-submenu__title {
-        i,
-        span {
-            color: #fff ;
-        }
-        &:hover {
-            i,
-            span {
-                color: #409eff ;
-            }
-            background-color:transparent ;
-        }
-    }
-    .el-submenu .el-menu-item {
-        &.is-active {
-            background-color: rgba(0, 0, 0, .4) ;
-            span,
-            i {
-                color: $mainBg ;
-            }
-            &:hover {
-                background-color: rgba(0, 0, 0, .4) ;
-            }
-        }
-    }
-    .top-search {
         input::-webkit-input-placeholder,
         textarea::-webkit-input-placeholder {
             /* WebKit browsers */
