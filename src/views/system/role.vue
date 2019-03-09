@@ -92,8 +92,6 @@ export default {
         index: true,
         selection: true,
         viewBtn: true,
-        dialogWidth: 300,
-        dialogHeight: 400,
         column: [
           {
             label: "角色名称",
@@ -111,6 +109,7 @@ export default {
           {
             label: "租户编号",
             prop: "tenantCode",
+            search: true,
             addDisplay: false,
             editDisplay: false,
             span: 24,
@@ -118,25 +117,6 @@ export default {
               required: true,
               message: "请输入租户编号",
               trigger: "blur"
-            }]
-          },
-          {
-            label: "所属租户",
-            prop: "tenantCode",
-            type: "tree",
-            dicUrl: "/api/blade-system/tenant/select",
-            addDisplay: false,
-            editDisplay: false,
-            span: 24,
-            props: {
-              label: "tenantName",
-              value: "tenantCode"
-            },
-            search: true,
-            rules: [{
-              required: true,
-              message: "请输入所属租户",
-              trigger: "click"
             }]
           },
           {

@@ -54,8 +54,6 @@
           index: true,
           selection: true,
           viewBtn: true,
-          dialogWidth: 300,
-          dialogHeight: 400,
           column: [
             {
               label: "租户编号",
