@@ -92,11 +92,14 @@ export default {
         index: true,
         selection: true,
         viewBtn: true,
+        dialogWidth: 300,
+        dialogHeight: 400,
         column: [
           {
             label: "角色名称",
             prop: "roleName",
             search: true,
+            span: 24,
             rules: [
               {
                 required: true,
@@ -106,9 +109,41 @@ export default {
             ]
           },
           {
+            label: "租户编号",
+            prop: "tenantCode",
+            addDisplay: false,
+            editDisplay: false,
+            span: 24,
+            rules: [{
+              required: true,
+              message: "请输入租户编号",
+              trigger: "blur"
+            }]
+          },
+          {
+            label: "所属租户",
+            prop: "tenantCode",
+            type: "tree",
+            dicUrl: "/api/blade-system/tenant/select",
+            addDisplay: false,
+            editDisplay: false,
+            span: 24,
+            props: {
+              label: "tenantName",
+              value: "tenantCode"
+            },
+            search: true,
+            rules: [{
+              required: true,
+              message: "请输入所属租户",
+              trigger: "click"
+            }]
+          },
+          {
             label: "角色别名",
             prop: "roleAlias",
             search: true,
+            span: 24,
             rules: [
               {
                 required: true,
@@ -123,6 +158,7 @@ export default {
             dicData: [],
             type: "tree",
             hide: true,
+            span: 24,
             props: {
               label: "title"
             },
@@ -138,6 +174,7 @@ export default {
             label: "角色排序",
             prop: "sort",
             type: "number",
+            span: 24,
             rules: [
               {
                 required: true,

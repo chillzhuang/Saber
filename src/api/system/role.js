@@ -66,9 +66,12 @@ export const getRole = (roleIds) => {
   })
 }
 
-export const getRoleTree = () => {
+export const getRoleTree = (tenantCode) => {
   return request({
     url: '/api/blade-system/role/tree',
-    method: 'get'
+    method: 'get',
+    params: {
+      tenantCode,
+    }
   })
 }

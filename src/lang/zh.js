@@ -66,6 +66,7 @@ export default {
   login: {
     title: '登录 ',
     info: '企业级开发平台',
+    tenantCode: '请输入租户编号',
     username: '请输入账号',
     password: '请输入密码',
     wechat: '微信',

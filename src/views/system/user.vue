@@ -51,6 +51,8 @@
     add,
     resetPassword
   } from "@/api/system/user";
+  import {getDeptTree} from "@/api/system/dept";
+  import {getRoleTree} from "@/api/system/role";
   import {mapGetters} from "vuex";
 
   export default {
@@ -80,6 +82,10 @@
           currentPage: 1,
           total: 0
         },
+        init: {
+          roleTree: [],
+          deptTree: [],
+        },
         option: {
           tip: false,
           border: true,
@@ -91,12 +97,34 @@
             {
               label: "登录账号",
               prop: "account",
-              span: 24,
               search: true,
               rules: [{
                 required: true,
                 message: "请输入登录账号",
                 trigger: "blur"
+              }]
+            },
+            {
+              label: "租户编号",
+              prop: "tenantCode",
+              addDisplay: false,
+              editDisplay: false,
+              viewDisplay: false,
+            },
+            {
+              label: "所属租户",
+              prop: "tenantCode",
+              type: "tree",
+              dicUrl: "/api/blade-system/tenant/select",
+              props: {
+                label: "tenantName",
+                value: "tenantCode"
+              },
+              search: true,
+              rules: [{
+                required: true,
+                message: "请输入所属租户",
+                trigger: "click"
               }]
             },
             {
@@ -139,7 +167,7 @@
               prop: "roleId",
               multiple: true,
               type: "tree",
-              dicUrl: "/api/blade-system/role/tree",
+              dicData: [],
               props: {
                 label: "title"
               },
@@ -155,7 +183,7 @@
               prop: "deptId",
               type: "tree",
               multiple: true,
-              dicUrl: "/api/blade-system/dept/tree",
+              dicData: [],
               props: {
                 label: "title"
               },
@@ -174,6 +202,7 @@
             {
               label: "电子邮箱",
               prop: "email",
+              hide: true,
               overHidden: true
             },
             {
@@ -201,17 +230,33 @@
               type: "date",
               prop: "birthday",
               format: "yyyy-MM-dd hh:mm:ss",
-              valueFormat: "yyyy-MM-dd hh:mm:ss"
+              valueFormat: "yyyy-MM-dd hh:mm:ss",
+              hide: true
             },
             {
               label: "账号状态",
               prop: "statusName",
+              hide: true,
               display: false
             }
           ]
         },
         data: []
       };
+    },
+    watch: {
+      'form.tenantCode'() {
+        if (this.form.tenantCode !== '') {
+          getDeptTree(this.form.tenantCode).then(res => {
+            const index = this.$refs.crud.findColumnIndex("deptId");
+            this.option.column[index].dicData = res.data.data;
+          });
+          getRoleTree(this.form.tenantCode).then(res => {
+            const index = this.$refs.crud.findColumnIndex("roleId");
+            this.option.column[index].dicData = res.data.data;
+          });
+        }
+      }
     },
     computed: {
       ...mapGetters(["permission"]),
@@ -346,6 +391,14 @@
           const data = res.data.data;
           this.page.total = data.total;
           this.data = data.records;
+        });
+        getDeptTree(this.form.tenantCode).then(res => {
+          const index = this.$refs.crud.findColumnIndex("deptId");
+          this.option.column[index].dicData = res.data.data;
+        });
+        getRoleTree(this.form.tenantCode).then(res => {
+          const index = this.$refs.crud.findColumnIndex("roleId");
+          this.option.column[index].dicData = res.data.data;
         });
       }
     }

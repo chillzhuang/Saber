@@ -5,6 +5,16 @@
            ref="loginForm"
            :model="loginForm"
            label-width="0">
+    <el-form-item prop="tenantCode">
+      <el-input size="small"
+                @keyup.enter.native="handleLogin"
+                v-model="loginForm.tenantCode"
+                auto-complete="off"
+                :placeholder="$t('login.tenantCode')">
+        <i slot="prefix"
+           class="icon-quanxian"></i>
+      </el-input>
+    </el-form-item>
     <el-form-item prop="username">
       <el-input size="small"
                 @keyup.enter.native="handleLogin"
@@ -45,11 +55,15 @@ export default {
   data() {
     return {
       loginForm: {
+        tenantCode: "000000",
         username: "admin",
         password: "admin",
         type: "account"
       },
       loginRules: {
+        tenantCode: [
+          { required: true, message: "请输入租户编号", trigger: "blur" }
+        ],
         username: [
           { required: true, message: "请输入用户名", trigger: "blur" }
         ],

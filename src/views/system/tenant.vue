@@ -4,8 +4,8 @@
                :data="data"
                ref="crud"
                v-model="form"
+               :page="page"
                :permission="permissionList"
-               :before-open="beforeOpen"
                @row-del="rowDel"
                @row-update="rowUpdate"
                @row-save="rowSave"
@@ -17,7 +17,7 @@
         <el-button type="danger"
                    size="small"
                    icon="el-icon-delete"
-                   v-if="permission.dept_delete"
+                   v-if="permission.tenant_delete"
                    plain
                    @click="handleDelete">删 除
         </el-button>
@@ -35,14 +35,7 @@
 </template>
 
 <script>
-  import {
-    getList,
-    remove,
-    update,
-    add,
-    getDept,
-    getDeptTree
-  } from "@/api/system/dept";
+  import {getList, remove, update, add} from "@/api/system/tenant";
   import {mapGetters} from "vuex";
 
   export default {
@@ -57,28 +50,20 @@
         },
         option: {
           tip: false,
-          tree: true,
           border: true,
           index: true,
           selection: true,
           viewBtn: true,
+          dialogWidth: 300,
+          dialogHeight: 400,
           column: [
-            {
-              label: "部门名称",
-              prop: "deptName",
-              search: true,
-              rules: [{
-                required: true,
-                message: "请输入部门名称",
-                trigger: "blur"
-              }]
-            },
             {
               label: "租户编号",
               prop: "tenantCode",
               search: true,
               addDisplay: false,
               editDisplay: false,
+              span: 24,
               rules: [{
                 required: true,
                 message: "请输入租户编号",
@@ -86,51 +71,38 @@
               }]
             },
             {
-              label: "部门全称",
-              prop: "fullName",
+              label: "租户名称",
+              prop: "tenantName",
               search: true,
-              rules: [{
-                required: true,
-                message: "请输入部门全称",
-                trigger: "blur"
-              }]
-            },
-            {
-              label: "上级部门",
-              prop: "parentId",
-              dicData: [],
-              type: "tree",
-              hide: true,
-              props: {
-                label: "title"
-              },
-              rules: [{
-                required: false,
-                message: "请选择上级部门",
-                trigger: "click"
-              }]
-            },
-
-            {
-              label: "排序",
-              prop: "sort",
-              type: "number",
-              rules: [{
-                required: true,
-                message: "请输入排序",
-                trigger: "blur"
-              }]
-            },
-
-            {
-              label: "备注",
-              prop: "remark",
               span: 24,
               rules: [{
-                required: false,
-                message: "请输入备注",
+                required: true,
+                message: "请输入参数名称",
                 trigger: "blur"
               }]
+            },
+            {
+              label: "联系人",
+              prop: "linkman",
+              search: true,
+              span: 24,
+              rules: [{
+                required: true,
+                message: "请输入联系人",
+                trigger: "blur"
+              }]
+            },
+            {
+              label: "联系电话",
+              prop: "contactNumber",
+              span: 24,
+            },
+            {
+              label: "联系地址",
+              prop: "address",
+              span: 24,
+              minRows: 6,
+              type: "textarea",
             }
           ]
         },
@@ -141,10 +113,10 @@
       ...mapGetters(["permission"]),
       permissionList() {
         return {
-          addBtn: this.vaildData(this.permission.dept_add, false),
-          viewBtn: this.vaildData(this.permission.dept_view, false),
-          delBtn: this.vaildData(this.permission.dept_delete, false),
-          editBtn: this.vaildData(this.permission.dept_edit, false)
+          addBtn: this.vaildData(this.permission.tenant_add, false),
+          viewBtn: this.vaildData(this.permission.tenant_view, false),
+          delBtn: this.vaildData(this.permission.tenant_delete, false),
+          editBtn: this.vaildData(this.permission.tenant_edit, false)
         };
       },
       ids() {
@@ -193,6 +165,15 @@
             });
           });
       },
+      searchReset() {
+        this.onLoad(this.page);
+      },
+      searchChange(params) {
+        this.onLoad(this.page, params);
+      },
+      selectionChange(list) {
+        this.selectionList = list;
+      },
       handleDelete() {
         if (this.selectionList.length === 0) {
           this.$message.warning("请选择至少一条数据");
@@ -207,7 +188,6 @@
             return remove(this.ids);
           })
           .then(() => {
-            this.onLoad(this.page);
             this.$message({
               type: "success",
               message: "操作成功!"
@@ -215,32 +195,11 @@
             this.$refs.crud.toggleSelection();
           });
       },
-      searchReset() {
-        this.onLoad(this.page);
-      },
-      searchChange(params) {
-        this.onLoad(this.page, params);
-      },
-      selectionChange(list) {
-        this.selectionList = list;
-      },
-      beforeOpen(done, type) {
-        if (["edit", "view"].includes(type)) {
-          getDept(this.form.id).then(res => {
-            this.form = res.data.data;
-          });
-        }
-        done();
-      },
       onLoad(page, params = {}) {
         getList(page.currentPage, page.pageSize, params).then(res => {
           const data = res.data.data;
-          this.data = data;
-          getDeptTree().then(res => {
-            const data = res.data.data;
-            const index = this.$refs.crud.findColumnIndex("parentId");
-            this.option.column[index].dicData = data;
-          });
+          this.page.total = data.total;
+          this.data = data.records;
         });
       }
     }
