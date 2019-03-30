@@ -3,9 +3,10 @@
  */
 export default {
   title: "saber",
+  indexTitle: 'Saber Admin',
+  tenantMode: true, // 是否开启租户模式
   logo: "S",
   key: 'saber',//配置主键,目前用于存储
-  indexTitle: 'Saber Admin',
   lockPage: '/lock',
   tokenTime: 6000,
   //http的status默认放行不才用统一处理的,

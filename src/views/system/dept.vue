@@ -44,6 +44,7 @@
     getDeptTree
   } from "@/api/system/dept";
   import {mapGetters} from "vuex";
+  import website from '@/config/website';
 
   export default {
     data() {
@@ -76,9 +77,11 @@
             {
               label: "租户编号",
               prop: "tenantCode",
-              search: true,
+              search: website.tenantMode,
+              hide: !website.tenantMode,
               addDisplay: false,
               editDisplay: false,
+              viewDisplay: website.tenantMode,
               rules: [{
                 required: true,
                 message: "请输入租户编号",

@@ -5,7 +5,7 @@
            ref="loginForm"
            :model="loginForm"
            label-width="0">
-    <el-form-item prop="tenantCode">
+    <el-form-item v-if="tenantMode" prop="tenantCode">
       <el-input size="small"
                 @keyup.enter.native="handleLogin"
                 v-model="loginForm.tenantCode"
@@ -50,10 +50,12 @@
 
 <script>
 import { mapGetters } from "vuex";
+import website from '@/config/website';
 export default {
   name: "userlogin",
   data() {
     return {
+      tenantMode: website.tenantMode,
       loginForm: {
         tenantCode: "000000",
         username: "admin",

@@ -54,6 +54,7 @@
   import {getDeptTree} from "@/api/system/dept";
   import {getRoleTree} from "@/api/system/role";
   import {mapGetters} from "vuex";
+  import website from '@/config/website';
 
   export default {
     data() {
@@ -102,11 +103,13 @@
                 required: true,
                 message: "请输入登录账号",
                 trigger: "blur"
-              }]
+              }],
+              span: website.tenantMode ? 12 : 24,
             },
             {
               label: "租户编号",
               prop: "tenantCode",
+              hide: !website.tenantMode,
               addDisplay: false,
               editDisplay: false,
               viewDisplay: false,
@@ -120,7 +123,11 @@
                 label: "tenantName",
                 value: "tenantCode"
               },
-              search: true,
+              hide: !website.tenantMode,
+              addDisplay: website.tenantMode,
+              editDisplay: website.tenantMode,
+              viewDisplay: website.tenantMode,
+              search: website.tenantMode,
               rules: [{
                 required: true,
                 message: "请输入所属租户",
@@ -274,7 +281,7 @@
           ids.push(ele.id);
         });
         return ids.join(",");
-      }
+      },
     },
     methods: {
       rowSave(row, loading) {
