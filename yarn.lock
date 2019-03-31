@@ -4490,9 +4490,9 @@ joi@^14.3.0:
     isemail "3.x.x"
     topo "3.x.x"
 
-js-base64@^2.1.8:
+js-base64@^2.1.8, js-base64@^2.5.1:
   version "2.5.1"
-  resolved "http://registry.npm.taobao.org/js-base64/download/js-base64-2.5.1.tgz#1efa39ef2c5f7980bb1784ade4a8af2de3291121"
+  resolved "http://registry.npm.taobao.org/js-base64/download/js-base64-2.5.1.tgz?cache=0&other_urls=http%3A%2F%2Fregistry.npm.taobao.org%2Fjs-base64%2Fdownload%2Fjs-base64-2.5.1.tgz#1efa39ef2c5f7980bb1784ade4a8af2de3291121"
   integrity sha1-Hvo57yxfeYC7F4St5KivLeMpESE=
 
 js-cookie@^2.2.0:
