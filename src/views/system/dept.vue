@@ -12,6 +12,8 @@
                @search-change="searchChange"
                @search-reset="searchReset"
                @selection-change="selectionChange"
+               @current-change="currentChange"
+               @size-change="sizeChange"
                @on-load="onLoad">
       <template slot="menuLeft">
         <el-button type="danger"
@@ -21,14 +23,6 @@
                    plain
                    @click="handleDelete">删 除
         </el-button>
-      </template>
-      <template slot-scope="{row}"
-                slot="roleId">
-        <el-tag>{{row.roleName}}</el-tag>
-      </template>
-      <template slot-scope="{row}"
-                slot="deptId">
-        <el-tag>{{row.deptName}}</el-tag>
       </template>
     </avue-crud>
   </basic-container>
@@ -75,17 +69,24 @@
               }]
             },
             {
-              label: "租户编号",
+              label: "所属租户",
               prop: "tenantCode",
-              search: website.tenantMode,
-              hide: !website.tenantMode,
+              type: "tree",
+              dicUrl: "/api/blade-system/tenant/select",
               addDisplay: false,
               editDisplay: false,
               viewDisplay: website.tenantMode,
+              span: 24,
+              props: {
+                label: "tenantName",
+                value: "tenantCode"
+              },
+              hide: !website.tenantMode,
+              search: website.tenantMode,
               rules: [{
                 required: true,
-                message: "请输入租户编号",
-                trigger: "blur"
+                message: "请输入所属租户",
+                trigger: "click"
               }]
             },
             {
@@ -159,7 +160,7 @@
       }
     },
     methods: {
-      rowSave(row, loading) {
+      rowSave(row, loading, done) {
         add(row).then(() => {
           loading();
           this.onLoad(this.page);
@@ -167,9 +168,12 @@
             type: "success",
             message: "操作成功!"
           });
+        }, error => {
+          done();
+          console.log(error);
         });
       },
-      rowUpdate(row, index, loading) {
+      rowUpdate(row, index, loading, done) {
         update(row).then(() => {
           loading();
           this.onLoad(this.page);
@@ -177,6 +181,9 @@
             type: "success",
             message: "操作成功!"
           });
+        }, error => {
+          done();
+          console.log(error);
         });
       },
       rowDel(row) {
@@ -234,6 +241,12 @@
           });
         }
         done();
+      },
+      currentChange(currentPage){
+        this.page.currentPage = currentPage;
+      },
+      sizeChange(pageSize){
+        this.page.pageSize = pageSize;
       },
       onLoad(page, params = {}) {
         getList(page.currentPage, page.pageSize, params).then(res => {

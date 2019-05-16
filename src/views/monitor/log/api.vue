@@ -9,15 +9,9 @@
                :page="page"
                @search-change="searchChange"
                @search-reset="searchReset"
+               @current-change="currentChange"
+               @size-change="sizeChange"
                @on-load="onLoad">
-      <template slot-scope="{row}"
-                slot="roleId">
-        <el-tag>{{row.roleName}}</el-tag>
-      </template>
-      <template slot-scope="{row}"
-                slot="deptId">
-        <el-tag>{{row.deptName}}</el-tag>
-      </template>
     </avue-crud>
   </basic-container>
 </template>
@@ -122,6 +116,12 @@
           });
         }
         done();
+      },
+      currentChange(currentPage){
+        this.page.currentPage = currentPage;
+      },
+      sizeChange(pageSize){
+        this.page.pageSize = pageSize;
       },
       onLoad(page, params = {}) {
         getApiList(page.currentPage, page.pageSize, params).then(res => {

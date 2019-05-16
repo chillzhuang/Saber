@@ -2883,10 +2883,10 @@ electron-to-chromium@^1.3.103:
   resolved "http://registry.npm.taobao.org/electron-to-chromium/download/electron-to-chromium-1.3.113.tgz#b1ccf619df7295aea17bc6951dc689632629e4a9"
   integrity sha1-scz2Gd9yla6he8aVHcaJYyYp5Kk=
 
-element-ui@^2.4.5:
-  version "2.5.4"
-  resolved "http://registry.npm.taobao.org/element-ui/download/element-ui-2.5.4.tgz#1e051032026a144bc18f7920f0be927977541cb8"
-  integrity sha1-HgUQMgJqFEvBj3kg8L6SeXdUHLg=
+element-ui@^2.8.2:
+  version "2.8.2"
+  resolved "https://registry.npm.taobao.org/element-ui/download/element-ui-2.8.2.tgz#21a7a4cb92616b0f8b75d4d4e637d3a1cd8c09de"
+  integrity sha1-Iaeky5Jhaw+LddTU5jfToc2MCd4=
   dependencies:
     async-validator "~1.8.1"
     babel-helper-vue-jsx-merge-props "^2.0.0"

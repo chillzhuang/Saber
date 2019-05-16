@@ -12,6 +12,8 @@
                @search-change="searchChange"
                @search-reset="searchReset"
                @selection-change="selectionChange"
+               @current-change="currentChange"
+               @size-change="sizeChange"
                @on-load="onLoad">
       <template slot="menuLeft">
         <el-button type="danger"
@@ -181,7 +183,7 @@
       }
     },
     methods: {
-      rowSave(row, loading) {
+      rowSave(row, loading, done) {
         add(row).then(() => {
           loading();
           this.onLoad(this.page);
@@ -189,9 +191,12 @@
             type: "success",
             message: "操作成功!"
           });
+        }, error => {
+          done();
+          console.log(error);
         });
       },
-      rowUpdate(row, index, loading) {
+      rowUpdate(row, index, loading, done) {
         update(row).then(() => {
           loading();
           this.onLoad(this.page);
@@ -199,6 +204,9 @@
             type: "success",
             message: "操作成功!"
           });
+        }, error => {
+          done();
+          console.log(error);
         });
       },
       rowDel(row) {
@@ -249,7 +257,6 @@
             this.$refs.crud.toggleSelection();
           });
       },
-
       beforeOpen(done, type) {
         if (["edit", "view"].includes(type)) {
           getDetail(this.form.id).then(res => {
@@ -257,6 +264,12 @@
           });
         }
         done();
+      },
+      currentChange(currentPage){
+        this.page.currentPage = currentPage;
+      },
+      sizeChange(pageSize){
+        this.page.pageSize = pageSize;
       },
       onLoad(page, params = {}) {
         getList(page.currentPage, page.pageSize, params).then(res => {

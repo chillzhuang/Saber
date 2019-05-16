@@ -11,6 +11,8 @@
                @search-change="searchChange"
                @search-reset="searchReset"
                @selection-change="selectionChange"
+               @current-change="currentChange"
+               @size-change="sizeChange"
                @on-load="onLoad">
       <template slot="menuLeft">
         <el-button type="danger"
@@ -26,18 +28,10 @@
                    plain>权限设置
         </el-button>
       </template>
-      <template slot-scope="{row}"
-                slot="roleId">
-        <el-tag>{{row.roleName}}</el-tag>
-      </template>
-      <template slot-scope="{row}"
-                slot="deptId">
-        <el-tag>{{row.deptName}}</el-tag>
-      </template>
     </avue-crud>
-    <el-dialog title="提示"
+    <el-dialog title="角色配置"
                :visible.sync="box"
-               width="40%">
+               width="20%">
       <el-tree :data="list"
                show-checkbox
                node-key="id"
@@ -76,7 +70,7 @@ export default {
       box: false,
       props: {
         label: "title",
-        valie: "key"
+        value: "key"
       },
       list: [],
       defaultObj: [],
@@ -108,20 +102,6 @@ export default {
                 trigger: "blur"
               }
             ]
-          },
-          {
-            label: "租户编号",
-            prop: "tenantCode",
-            addDisplay: false,
-            editDisplay: false,
-            viewDisplay: website.tenantMode,
-            hide: !website.tenantMode,
-            span: 24,
-            rules: [{
-              required: true,
-              message: "请输入租户编号",
-              trigger: "blur"
-            }]
           },
           {
             label: "所属租户",
@@ -214,7 +194,7 @@ export default {
   methods: {
     submit() {
       const menuLIst = this.$refs.tree.getCheckedKeys().join(",");
-      grant(this.ids[0], menuLIst).then(() => {
+      grant(this.ids, menuLIst).then(() => {
         this.box = false;
         this.$message({
           type: "success",
@@ -223,7 +203,7 @@ export default {
         this.onLoad(this.page);
       });
     },
-    rowSave(row, loading) {
+    rowSave(row, loading, done) {
       add(row).then(() => {
         loading();
         this.onLoad(this.page);
@@ -231,9 +211,12 @@ export default {
           type: "success",
           message: "操作成功!"
         });
+      }, error => {
+        done();
+        console.log(error);
       });
     },
-    rowUpdate(row, index, loading) {
+    rowUpdate(row, index, loading, done) {
       update(row).then(() => {
         this.onLoad(this.page);
         loading();
@@ -241,6 +224,9 @@ export default {
           type: "success",
           message: "操作成功!"
         });
+      }, error => {
+        done();
+        console.log(error);
       });
     },
     rowDel(row) {
@@ -272,14 +258,14 @@ export default {
     },
     handleRole() {
       if (this.selectionList.length !== 1) {
-        this.$message.warning("请选择至少一条数据");
+        this.$message.warning("只能选择一条数据");
         return;
       }
       this.defaultObj = [];
       grantTree()
         .then(res => {
           this.list = res.data.data;
-          return getRole(this.ids[0]);
+          return getRole(this.ids);
         })
         .then(res => {
           this.defaultObj = res.data.data;
@@ -307,6 +293,12 @@ export default {
           });
           this.$refs.crud.toggleSelection();
         });
+    },
+    currentChange(currentPage){
+      this.page.currentPage = currentPage;
+    },
+    sizeChange(pageSize){
+      this.page.pageSize = pageSize;
     },
     onLoad(page, params = {}) {
       getList(page.currentPage, page.pageSize, params).then(res => {

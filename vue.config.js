@@ -1,5 +1,3 @@
-// 基础路径 注意发布之前要先修改这里
-let url = 'http://localhost'
 module.exports = {
   lintOnSave: true,
   productionSourceMap: false,
@@ -24,9 +22,10 @@ module.exports = {
       .end()
   },
   devServer: {
+    // 反向代理配置
     proxy: {
       '/api': {
-        target: url,
+        target: 'http://localhost',
         ws: true,
         pathRewrite: {
           '^/api': '/'

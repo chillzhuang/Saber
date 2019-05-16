@@ -49,57 +49,64 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import website from '@/config/website';
-export default {
-  name: "userlogin",
-  data() {
-    return {
-      tenantMode: website.tenantMode,
-      loginForm: {
-        tenantCode: "000000",
-        username: "admin",
-        password: "admin",
-        type: "account"
-      },
-      loginRules: {
-        tenantCode: [
-          { required: true, message: "请输入租户编号", trigger: "blur" }
-        ],
-        username: [
-          { required: true, message: "请输入用户名", trigger: "blur" }
-        ],
-        password: [
-          { required: true, message: "请输入密码", trigger: "blur" },
-          { min: 5, message: "密码长度最少为6位", trigger: "blur" }
-        ]
-      },
-      passwordType: "password"
-    };
-  },
-  created() {},
-  mounted() {},
-  computed: {
-    ...mapGetters(["tagWel"])
-  },
-  props: [],
-  methods: {
-    showPassword() {
-      this.passwordType == ""
-        ? (this.passwordType = "password")
-        : (this.passwordType = "");
+  import { mapGetters } from "vuex";
+  import website from '@/config/website';
+
+  export default {
+    name: "userlogin",
+    data() {
+      return {
+        tenantMode: website.tenantMode,
+        loginForm: {
+          tenantCode: "000000",
+          username: "admin",
+          password: "admin",
+          type: "account"
+        },
+        loginRules: {
+          tenantCode: [
+            { required: false, message: "请输入租户编号", trigger: "blur" }
+          ],
+          username: [
+            { required: true, message: "请输入用户名", trigger: "blur" }
+          ],
+          password: [
+            { required: true, message: "请输入密码", trigger: "blur" },
+            { min: 1, message: "密码长度最少为6位", trigger: "blur" }
+          ]
+        },
+        passwordType: "password"
+      };
     },
-    handleLogin() {
-      this.$refs.loginForm.validate(valid => {
-        if (valid) {
-          this.$store.dispatch("LoginByUsername", this.loginForm).then(() => {
-            this.$router.push({ path: this.tagWel.value });
-          });
-        }
-      });
+    created() {},
+    mounted() {},
+    computed: {
+      ...mapGetters(["tagWel"])
+    },
+    props: [],
+    methods: {
+      showPassword() {
+        this.passwordType == ""
+          ? (this.passwordType = "password")
+          : (this.passwordType = "");
+      },
+      handleLogin() {
+        this.$refs.loginForm.validate(valid => {
+          if (valid) {
+            const loading = this.$loading({
+              lock: true,
+              text: '登录中,请稍后。。。',
+              spinner: "el-icon-loading"
+            });
+            this.$store.dispatch("LoginByUsername", this.loginForm).then(() => {
+              this.$router.push({ path: this.tagWel.value });
+              loading.close();
+            });
+          }
+        });
+      }
     }
-  }
-};
+  };
 </script>
 
 <style>

@@ -12,6 +12,8 @@
                @search-change="searchChange"
                @search-reset="searchReset"
                @selection-change="selectionChange"
+               @current-change="currentChange"
+               @size-change="sizeChange"
                @on-load="onLoad">
       <template slot="menuLeft">
         <el-button type="danger"
@@ -21,14 +23,6 @@
                    plain
                    @click="handleDelete">删 除
         </el-button>
-      </template>
-      <template slot-scope="{row}"
-                slot="roleId">
-        <el-tag>{{row.roleName}}</el-tag>
-      </template>
-      <template slot-scope="{row}"
-                slot="deptId">
-        <el-tag>{{row.deptName}}</el-tag>
       </template>
     </avue-crud>
   </basic-container>
@@ -54,6 +48,8 @@
           index: true,
           selection: true,
           viewBtn: true,
+          dialogWidth: 300,
+          dialogHeight: 400,
           column: [
             {
               label: "租户编号",
@@ -126,7 +122,7 @@
       }
     },
     methods: {
-      rowSave(row, loading) {
+      rowSave(row, loading, done) {
         add(row).then(() => {
           loading();
           this.onLoad(this.page);
@@ -134,9 +130,12 @@
             type: "success",
             message: "操作成功!"
           });
+        }, error => {
+          done();
+          console.log(error);
         });
       },
-      rowUpdate(row, index, loading) {
+      rowUpdate(row, index, loading, done) {
         update(row).then(() => {
           loading();
           this.onLoad(this.page);
@@ -144,6 +143,9 @@
             type: "success",
             message: "操作成功!"
           });
+        }, error => {
+          done();
+          console.log(error);
         });
       },
       rowDel(row) {
@@ -186,12 +188,19 @@
             return remove(this.ids);
           })
           .then(() => {
+            this.onLoad(this.page);
             this.$message({
               type: "success",
               message: "操作成功!"
             });
             this.$refs.crud.toggleSelection();
           });
+      },
+      currentChange(currentPage){
+        this.page.currentPage = currentPage;
+      },
+      sizeChange(pageSize){
+        this.page.pageSize = pageSize;
       },
       onLoad(page, params = {}) {
         getList(page.currentPage, page.pageSize, params).then(res => {

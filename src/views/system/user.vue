@@ -13,6 +13,8 @@
                @search-change="searchChange"
                @search-reset="searchReset"
                @selection-change="selectionChange"
+               @current-change="currentChange"
+               @size-change="sizeChange"
                @on-load="onLoad">
       <template slot="menuLeft">
         <el-button type="danger"
@@ -25,7 +27,7 @@
         <el-button type="primary"
                    size="small"
                    plain
-                   v-if="permission. user_reset"
+                   v-if="permission.user_reset"
                    icon="el-icon-refresh"
                    @click="handleReset">密码重置
         </el-button>
@@ -66,7 +68,6 @@
         }
       };
       const validatePass2 = (rule, value, callback) => {
-        debugger
         if (value === '') {
           callback(new Error('请再次输入密码'));
         } else if (value !== this.form.password) {
@@ -105,14 +106,6 @@
                 trigger: "blur"
               }],
               span: website.tenantMode ? 12 : 24,
-            },
-            {
-              label: "租户编号",
-              prop: "tenantCode",
-              hide: !website.tenantMode,
-              addDisplay: false,
-              editDisplay: false,
-              viewDisplay: false,
             },
             {
               label: "所属租户",
@@ -284,7 +277,7 @@
       },
     },
     methods: {
-      rowSave(row, loading) {
+      rowSave(row, loading, done) {
         row.deptId = row.deptId.join(",");
         row.roleId = row.roleId.join(",");
         add(row).then(() => {
@@ -294,9 +287,12 @@
             type: "success",
             message: "操作成功!"
           });
+        }, error => {
+          done();
+          console.log(error);
         });
       },
-      rowUpdate(row, index, loading) {
+      rowUpdate(row, index, loading, done) {
         row.deptId = row.deptId.join(",");
         row.roleId = row.roleId.join(",");
         update(row).then(() => {
@@ -306,6 +302,9 @@
             type: "success",
             message: "操作成功!"
           });
+        }, error => {
+          done();
+          console.log(error);
         });
       },
       rowDel(row) {
@@ -392,6 +391,12 @@
           });
         }
         done();
+      },
+      currentChange(currentPage){
+        this.page.currentPage = currentPage;
+      },
+      sizeChange(pageSize){
+        this.page.pageSize = pageSize;
       },
       onLoad(page, params = {}) {
         getList(page.currentPage, page.pageSize, params).then(res => {
