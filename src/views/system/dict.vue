@@ -29,14 +29,7 @@
 </template>
 
 <script>
-  import {
-    getList,
-    remove,
-    update,
-    add,
-    getDict,
-    getDictTree
-  } from "@/api/system/dict";
+  import {add, getDict, getDictTree, getList, remove, update} from "@/api/system/dict";
   import {mapGetters} from "vuex";
 
   export default {
@@ -44,6 +37,7 @@
       return {
         form: {},
         selectionList: [],
+        query: {},
         page: {
           pageSize: 10,
           currentPage: 1,
@@ -188,9 +182,11 @@
           });
       },
       searchReset() {
+        this.query = {};
         this.onLoad(this.page);
       },
       searchChange(params) {
+        this.query = params;
         this.onLoad(this.page, params);
       },
       selectionChange(list) {
@@ -233,9 +229,8 @@
         this.page.pageSize = pageSize;
       },
       onLoad(page, params = {}) {
-        getList(page.currentPage, page.pageSize, params).then(res => {
-          const data = res.data.data;
-          this.data = data;
+        getList(page.currentPage, page.pageSize, Object.assign(params, this.query)).then(res => {
+          this.data = res.data.data;
           getDictTree().then(res => {
             const data = res.data.data;
             const index = this.$refs.crud.findColumnIndex("parentId");

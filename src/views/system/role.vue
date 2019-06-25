@@ -50,20 +50,11 @@
 </template>
 
 <script>
-import {
-  getList,
-  remove,
-  update,
-  add,
-  grant,
-  grantTree,
-  getRole,
-  getRoleTree
-} from "@/api/system/role";
-import { mapGetters } from "vuex";
-import website from '@/config/website';
+  import {add, getList, getRole, getRoleTree, grant, grantTree, remove, update} from "@/api/system/role";
+  import {mapGetters} from "vuex";
+  import website from '@/config/website';
 
-export default {
+  export default {
   data() {
     return {
       form: {},
@@ -75,11 +66,12 @@ export default {
       list: [],
       defaultObj: [],
       selectionList: [],
-      page: {
-        pageSize: 10,
-        currentPage: 1,
-        total: 0
-      },
+      query: {},
+        page: {
+          pageSize: 10,
+          currentPage: 1,
+          total: 0
+        },
       option: {
         tip: false,
         tree: true,
@@ -248,11 +240,13 @@ export default {
     },
 
     searchReset() {
-      this.onLoad(this.page);
-    },
-    searchChange(params) {
-      this.onLoad(this.page, params);
-    },
+        this.query = {};
+        this.onLoad(this.page);
+      },
+      searchChange(params) {
+        this.query = params;
+        this.onLoad(this.page, params);
+      },
     selectionChange(list) {
       this.selectionList = list;
     },
@@ -301,9 +295,8 @@ export default {
       this.page.pageSize = pageSize;
     },
     onLoad(page, params = {}) {
-      getList(page.currentPage, page.pageSize, params).then(res => {
-        const data = res.data.data;
-        this.data = data;
+      getList(page.currentPage, page.pageSize, Object.assign(params, this.query)).then(res => {
+        this.data = res.data.data;
         getRoleTree().then(res => {
           const data = res.data.data;
           const index = this.$refs.crud.findColumnIndex("parentId");

@@ -35,7 +35,7 @@
 </template>
 
 <script>
-  import {getList, remove, update, add, getMenu} from "@/api/system/menu";
+  import {add, getList, getMenu, remove, update} from "@/api/system/menu";
   import {mapGetters} from "vuex";
   import iconList from "@/config/iconList";
 
@@ -44,6 +44,7 @@
       return {
         form: {},
         selectionList: [],
+        query: {},
         page: {
           pageSize: 10,
           currentPage: 1,
@@ -290,9 +291,11 @@
           });
       },
       searchReset() {
+        this.query = {};
         this.onLoad(this.page);
       },
       searchChange(params) {
+        this.query = params;
         this.onLoad(this.page, params);
       },
       selectionChange(list) {
@@ -335,9 +338,8 @@
         this.page.pageSize = pageSize;
       },
       onLoad(page, params = {}) {
-        getList(page.currentPage, page.pageSize, params).then(res => {
-          const data = res.data.data;
-          this.data = data;
+        getList(page.currentPage, page.pageSize, Object.assign(params, this.query)).then(res => {
+          this.data = res.data.data;
         });
       }
     }

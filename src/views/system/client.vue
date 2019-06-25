@@ -36,6 +36,7 @@
     data() {
       return {
         form: {},
+        query: {},
         page: {
           pageSize: 10,
           currentPage: 1,
@@ -227,9 +228,11 @@
           });
       },
       searchReset() {
+        this.query = {};
         this.onLoad(this.page);
       },
       searchChange(params) {
+        this.query = params;
         this.onLoad(this.page, params);
       },
       selectionChange(list) {
@@ -272,7 +275,7 @@
         this.page.pageSize = pageSize;
       },
       onLoad(page, params = {}) {
-        getList(page.currentPage, page.pageSize, params).then(res => {
+        getList(page.currentPage, page.pageSize, Object.assign(params, this.query)).then(res => {
           const data = res.data.data;
           this.page.total = data.total;
           this.data = data.records;

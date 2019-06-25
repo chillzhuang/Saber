@@ -25,6 +25,7 @@
       return {
         form: {},
         selectionList: [],
+        query: {},
         page: {
           pageSize: 10,
           currentPage: 1,
@@ -111,9 +112,11 @@
     },
     methods: {
       searchReset() {
+        this.query = {};
         this.onLoad(this.page);
       },
       searchChange(params) {
+        this.query = params;
         this.onLoad(this.page, params);
       },
       beforeOpen(done, type) {
@@ -124,14 +127,14 @@
         }
         done();
       },
-      currentChange(currentPage){
+      currentChange(currentPage) {
         this.page.currentPage = currentPage;
       },
-      sizeChange(pageSize){
+      sizeChange(pageSize) {
         this.page.pageSize = pageSize;
       },
       onLoad(page, params = {}) {
-        getErrorList(page.currentPage, page.pageSize, params).then(res => {
+        getErrorList(page.currentPage, page.pageSize, Object.assign(params, this.query)).then(res => {
           const data = res.data.data;
           this.page.total = data.total;
           this.data = data.records;
