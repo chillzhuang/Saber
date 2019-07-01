@@ -25,7 +25,8 @@ module.exports = {
     // 反向代理配置
     proxy: {
       '/api': {
-        target: 'http://localhost',
+        //target: 'http://localhost',
+        target: 'https://saber.bladex.vip/api',
         ws: true,
         pathRewrite: {
           '^/api': '/'
