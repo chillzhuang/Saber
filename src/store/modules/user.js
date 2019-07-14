@@ -40,7 +40,7 @@ const user = {
     actions: {
         //根据用户名登录
         LoginByUsername({ commit }, userInfo) {
-            return new Promise((resolve) => {
+            return new Promise((resolve, reject) => {
                 loginByUsername(userInfo.tenantCode, userInfo.username, userInfo.password, userInfo.type).then(res => {
                     const data = res.data.data;
                     commit('SET_TOKEN', data.accessToken);
@@ -48,6 +48,8 @@ const user = {
                     commit('DEL_ALL_TAG');
                     commit('CLEAR_LOCK');
                     resolve();
+                }).catch(error => {
+                  reject(error);
                 })
             })
         },
