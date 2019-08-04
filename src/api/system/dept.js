@@ -46,12 +46,12 @@ export const getDept = (id) => {
     }
   })
 }
-export const getDeptTree = (tenantCode) => {
+export const getDeptTree = (tenantId) => {
   return request({
     url: '/api/blade-system/dept/tree',
     method: 'get',
     params: {
-      tenantCode,
+      tenantId,
     }
   })
 }

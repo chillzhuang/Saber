@@ -21,7 +21,7 @@ export default {
         '<p>若要商用强烈推荐高度定制的商业化框架，具体授权信息请访问如下地址。️</p>' +
         '</br>' +
         '<p>BladeX 授权地址：<a target="_blank" href="https://bladex.vip/#/vip">点击授权</a></p>' +
-        '<p>AvueX 授权地址：<a target="_blank" href="https://avuex.avue.top/#/vip">点击授权</a></p>',
+        '<p>AvueX 授权地址：<a target="_blank" href="https://avue.top/vip">点击授权</a></p>',
       duration: 20000,
       type: "success"
     });

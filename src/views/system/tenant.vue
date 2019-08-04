@@ -53,15 +53,15 @@
           dialogHeight: 400,
           column: [
             {
-              label: "租户编号",
-              prop: "tenantCode",
+              label: "租户ID",
+              prop: "tenantId",
               search: true,
               addDisplay: false,
               editDisplay: false,
               span: 24,
               rules: [{
                 required: true,
-                message: "请输入租户编号",
+                message: "请输入租户ID",
                 trigger: "blur"
               }]
             },

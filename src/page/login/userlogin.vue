@@ -5,12 +5,12 @@
            ref="loginForm"
            :model="loginForm"
            label-width="0">
-    <el-form-item v-if="tenantMode" prop="tenantCode">
+    <el-form-item v-if="tenantMode" prop="tenantId">
       <el-input size="small"
                 @keyup.enter.native="handleLogin"
-                v-model="loginForm.tenantCode"
+                v-model="loginForm.tenantId"
                 auto-complete="off"
-                :placeholder="$t('login.tenantCode')">
+                :placeholder="$t('login.tenantId')">
         <i slot="prefix"
            class="icon-quanxian"></i>
       </el-input>
@@ -58,14 +58,14 @@
       return {
         tenantMode: website.tenantMode,
         loginForm: {
-          tenantCode: "000000",
+          tenantId: "000000",
           username: "admin",
           password: "admin",
           type: "account"
         },
         loginRules: {
-          tenantCode: [
-            { required: false, message: "请输入租户编号", trigger: "blur" }
+          tenantId: [
+            { required: false, message: "请输入租户ID", trigger: "blur" }
           ],
           username: [
             { required: true, message: "请输入用户名", trigger: "blur" }

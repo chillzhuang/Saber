@@ -110,12 +110,12 @@
             },
             {
               label: "所属租户",
-              prop: "tenantCode",
+              prop: "tenantId",
               type: "tree",
               dicUrl: "/api/blade-system/tenant/select",
               props: {
                 label: "tenantName",
-                value: "tenantCode"
+                value: "tenantId"
               },
               hide: !website.tenantMode,
               addDisplay: website.tenantMode,
@@ -246,13 +246,13 @@
       };
     },
     watch: {
-      'form.tenantCode'() {
-        if (this.form.tenantCode !== '') {
-          getDeptTree(this.form.tenantCode).then(res => {
+      'form.tenantId'() {
+        if (this.form.tenantId !== '') {
+          getDeptTree(this.form.tenantId).then(res => {
             const index = this.$refs.crud.findColumnIndex("deptId");
             this.option.column[index].dicData = res.data.data;
           });
-          getRoleTree(this.form.tenantCode).then(res => {
+          getRoleTree(this.form.tenantId).then(res => {
             const index = this.$refs.crud.findColumnIndex("roleId");
             this.option.column[index].dicData = res.data.data;
           });
@@ -407,11 +407,11 @@
           this.page.total = data.total;
           this.data = data.records;
         });
-        getDeptTree(this.form.tenantCode).then(res => {
+        getDeptTree(this.form.tenantId).then(res => {
           const index = this.$refs.crud.findColumnIndex("deptId");
           this.option.column[index].dicData = res.data.data;
         });
-        getRoleTree(this.form.tenantCode).then(res => {
+        getRoleTree(this.form.tenantId).then(res => {
           const index = this.$refs.crud.findColumnIndex("roleId");
           this.option.column[index].dicData = res.data.data;
         });

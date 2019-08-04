@@ -1,7 +1,7 @@
  <p align="center">
   <img src="https://img.shields.io/badge/license-Apache%202-blue.svg" alt="Build Status">
-   <img src="https://img.shields.io/badge/Spring%20Cloud-Greenwich.SR1-blue.svg" alt="Coverage Status">
-   <img src="https://img.shields.io/badge/Spring%20Boot-2.1.5.RELEASE-blue.svg" alt="Downloads">
+   <img src="https://img.shields.io/badge/Spring%20Cloud-Greenwich.SR2-blue.svg" alt="Coverage Status">
+   <img src="https://img.shields.io/badge/Spring%20Boot-2.1.6.RELEASE-blue.svg" alt="Downloads">
  </p>  
 
 ## SpringBlade微服务开发平台
@@ -67,6 +67,16 @@ SpringBlade
 * 代码文件需保留相关license信息。
 * 禁止直接将本项目挂淘宝等商业平台出售。
 * 非界面代码50%以上相似度的二次开源，二次开源需先联系作者。
+
+## 如何启动
+```
+$ git clone https://gitee.com/smallc/Saber.git
+$ cd Saber
+# 安装
+$ yarn install
+# 启动
+$ yarn run serve     
+```
 
 # 界面
 

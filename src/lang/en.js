@@ -66,7 +66,7 @@ export default {
   login: {
     title: 'Login ',
     info: 'Enterprise Development Platform',
-    tenantCode: 'Please input tenantCode',
+    tenantId: 'Please input tenantId',
     username: 'Please input username',
     password: 'Please input a password',
     wechat: 'Wechat',
