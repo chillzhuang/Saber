@@ -1,10 +1,11 @@
 import request from '@/router/axios';
 
-export const getList = (current, size) => {
+export const getList = (current, size, params) => {
   return request({
     url: '/api/blade-develop/code/list',
     method: 'get',
     params: {
+      ...params,
       current,
       size
     }
@@ -44,6 +45,16 @@ export const update = (row) => {
     url: '/api/blade-develop/code/submit',
     method: 'post',
     data: row
+  })
+}
+
+export const copy = (id) => {
+  return request({
+    url: '/api/blade-develop/code/copy',
+    method: 'post',
+    params: {
+      id,
+    }
   })
 }
 
