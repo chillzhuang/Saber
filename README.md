@@ -45,7 +45,8 @@ SpringBlade
 * 官网地址：[https://bladex.vip](https://bladex.vip)
 * 问答社区：[https://sns.bladex.vip](https://sns.bladex.vip)
 * 会员计划：[SpringBlade会员计划](https://gitee.com/smallc/SpringBlade/wikis/SpringBlade会员计划)
-* 交流群：`477853168`
+* 交流一群：`477853168`
+* 交流二群：`751253339`
 
 ## 在线演示
 * Sword演示地址：[https://sword.bladex.vip](https://sword.bladex.vip)
@@ -60,7 +61,11 @@ SpringBlade
 * 核心框架项目地址：[https://github.com/chillzhuang/blade-tool](https://github.com/chillzhuang/blade-tool)
 
 ## 技术文档
-* [SpringBlade开发手册](https://gitee.com/smallc/SpringBlade/wikis/SpringBlade开发手册)
+* [Saber开发手册](https://www.kancloud.cn/smallchill/saber)
+* [Sword开发手册](https://www.kancloud.cn/smallchill/sword)
+* [SpringBlade开发手册](https://www.kancloud.cn/smallchill/blade)
+* [开发手册一览](https://gitee.com/smallc/SpringBlade/wikis/SpringBlade开发手册)
+* [SpringBlade常见问题集锦](https://sns.bladex.vip/article-14966.html)
 
 ## 用户权益
 * 允许免费用于学习、毕设、公司项目、私活等。
