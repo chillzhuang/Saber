@@ -31,7 +31,7 @@ export default {
         dangerouslyUseHTMLString: true,
         message:
           '<p>后端开发手册：<a target="_blank" href="https://www.kancloud.cn/smallchill/blade">点击查看</a></p>'+
-          '<p>前端开发手册：<a target="_blank" href="https://www.kancloud.cn/smallwei/avue">点击查看</a></p>',
+          '<p>前端开发手册：<a target="_blank" href="https://www.kancloud.cn/smallchill/saber">点击查看</a></p>',
         duration: 20000,
         type: "success"
       });
