@@ -29,6 +29,9 @@ SpringBlade
 ├── blade-ops -- 运维中心
 ├    ├── blade-admin -- spring-cloud后台管理
 ├    ├── blade-develop -- 代码生成
+├    ├── blade-resource -- 资源管理
+├    ├── blade-seata-order -- seata分布式事务demo
+├    ├── blade-seata-storage -- seata分布式事务demo
 ├── blade-service -- 业务模块
 ├    ├── blade-desk -- 工作台模块 
 ├    ├── blade-log -- 日志模块 
@@ -52,6 +55,10 @@ SpringBlade
 * Sword演示地址：[https://sword.bladex.vip](https://sword.bladex.vip)
 * Saber演示地址：[https://saber.bladex.vip](https://saber.bladex.vip)
 
+## 技术文档
+* [开发手册一览](https://gitee.com/smallc/SpringBlade/wikis/SpringBlade开发手册)
+* [常见问题集锦](https://sns.bladex.vip/article-14966.html)
+
 ## 项目地址
 * 后端Gitee地址：[https://gitee.com/smallc/SpringBlade](https://gitee.com/smallc/SpringBlade)
 * 后端Github地址：[https://github.com/chillzhuang/SpringBlade](https://github.com/chillzhuang/SpringBlade)
@@ -59,13 +66,6 @@ SpringBlade
 * 前端框架Sword(基于React)：[https://gitee.com/smallc/Sword](https://gitee.com/smallc/Sword)
 * 前端框架Saber(基于Vue)：[https://gitee.com/smallc/Saber](https://gitee.com/smallc/Saber)
 * 核心框架项目地址：[https://github.com/chillzhuang/blade-tool](https://github.com/chillzhuang/blade-tool)
-
-## 技术文档
-* [Saber开发手册](https://www.kancloud.cn/smallchill/saber)
-* [Sword开发手册](https://www.kancloud.cn/smallchill/sword)
-* [SpringBlade开发手册](https://www.kancloud.cn/smallchill/blade)
-* [开发手册一览](https://gitee.com/smallc/SpringBlade/wikis/SpringBlade开发手册)
-* [SpringBlade常见问题集锦](https://sns.bladex.vip/article-14966.html)
 
 ## 用户权益
 * 允许免费用于学习、毕设、公司项目、私活等。
