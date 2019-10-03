@@ -1,15 +1,15 @@
 <template>
   <basic-container>
-    <p align="left">
-      <img src="https://img.shields.io/badge/Release-V2.5.0-green.svg" alt="Downloads">
-      <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status">
-      <img src="https://img.shields.io/badge/Spring%20Cloud-Greenwich.SR3-blue.svg" alt="Coverage Status">
-      <img src="https://img.shields.io/badge/Spring%20Boot-2.1.8.RELEASE-blue.svg" alt="Downloads">
+    <p style="text-align: center;">
+      <img src="https://img.shields.io/badge/Release-V2.5.0-green.svg" alt="Downloads"/>
+      <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
+      <img src="https://img.shields.io/badge/Spring%20Cloud-Greenwich.SR3-blue.svg" alt="Coverage Status"/>
+      <img src="https://img.shields.io/badge/Spring%20Boot-2.1.8.RELEASE-blue.svg" alt="Downloads"/>
       <a target="_blank" href="https://bladex.vip">
-        <img src="https://img.shields.io/badge/Saber%20Author-Small%20Chill-ff69b4.svg" alt="Downloads">
+        <img src="https://img.shields.io/badge/Saber%20Author-Small%20Chill-ff69b4.svg" alt="Downloads"/>
       </a>
       <a target="_blank" href="https://bladex.vip">
-        <img src="https://img.shields.io/badge/Copyright%20-@BladeX-%23ff3f59.svg" alt="Downloads">
+        <img src="https://img.shields.io/badge/Copyright%20-@BladeX-%23ff3f59.svg" alt="Downloads"/>
       </a>
     </p>
     <el-collapse v-model="activeNames" @change="handleChange">
@@ -40,7 +40,7 @@
       </el-collapse-item>
       <el-collapse-item title="拥有的核心功能" name="4">
         <div>1.前后端分离-采用前后端分离模式，前端提供两套架构，Sword基于React，Saber基于Vue</div>
-        <div>2.	分布式单体式后端架构-提供两套后端架构，基于SpringCloud的分布式架构以及基于SpringBoot的单体式架构</div>
+        <div>2. 分布式单体式后端架构-提供两套后端架构，基于SpringCloud的分布式架构以及基于SpringBoot的单体式架构</div>
         <div>3.API完全兼容-两套后端架构与两套前端架构，共四套架构可以任意组合，所有API完全兼容</div>
         <div>4.前后端代码生成-定制针对两套前端与后端的代码生成模板，轻松生成整个模块的前后端代码，减少重复工作量</div>
         <div>5.组件化、插件化架构-针对功能深度定制各个starter，引入开箱即用，为整个架构解耦，提升效率</div>
@@ -81,7 +81,7 @@
     name: "wel",
     data() {
       return {
-        activeNames: ['1','2','3']
+        activeNames: ['1', '2', '3']
       };
     },
     computed: {
