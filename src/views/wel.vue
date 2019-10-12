@@ -1,7 +1,7 @@
 <template>
   <basic-container>
     <p style="text-align: center;">
-      <img src="https://img.shields.io/badge/Release-V2.5.0-green.svg" alt="Downloads"/>
+      <img src="https://img.shields.io/badge/Release-V2.5.1-green.svg" alt="Downloads"/>
       <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
       <img src="https://img.shields.io/badge/Spring%20Cloud-Greenwich.SR3-blue.svg" alt="Coverage Status"/>
       <img src="https://img.shields.io/badge/Spring%20Boot-2.1.8.RELEASE-blue.svg" alt="Downloads"/>
@@ -75,6 +75,13 @@
     </el-col>
     <el-col :span="8">
       <el-collapse v-model="logActiveNames" @change="handleChange">
+        <el-collapse-item title="2.5.1发布 增加动态网关鉴权" name="10">
+          <div>1.增加网关动态鉴权</div>
+          <div>2.secure安全模块token校验默认关闭，交由网关处理</div>
+          <div>3.boot版本开启secure token校验功能</div>
+          <div>4.优化blade-gateway代码逻辑</div>
+          <div>5.修复blade-resource无法启动的问题</div>
+        </el-collapse-item>
         <el-collapse-item title="2.5.0发布 集成seata支持分布式事务" name="9">
           <div>1.封装集成seata，支持分布式事务</div>
           <div>2.重写blade-core-cloud模块，增强cloud场景支持</div>
@@ -170,7 +177,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3'],
-        logActiveNames: ['9']
+        logActiveNames: ['10']
       };
     },
     computed: {
