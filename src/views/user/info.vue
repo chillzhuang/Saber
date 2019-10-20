@@ -11,6 +11,8 @@
 
 <script>
   import option from "@/const/user/info";
+  import {getUserInfo, update, updatePassword} from "@/api/system/user";
+
 
   export default {
     data() {
@@ -25,25 +27,49 @@
     },
     methods: {
       handleSubmit() {
-        this.$message({
-          message: this.form,
-          type: "success"
-        });
+        if (this.type === "info") {
+          update(this.form).then(res => {
+            if (res.data.success) {
+              this.$message({
+                type: "success",
+                message: "修改信息成功!"
+              });
+            } else {
+              this.$message({
+                type: "error",
+                message: res.data.msg
+              });
+            }
+          })
+        } else {
+          updatePassword(this.form.oldPassword, this.form.newPassword, this.form.newPassword1).then(res => {
+            if (res.data.success) {
+              this.$message({
+                type: "success",
+                message: "修改密码成功!"
+              });
+            } else {
+              this.$message({
+                type: "error",
+                message: res.data.msg
+              });
+            }
+          })
+        }
       },
       handleWitch() {
         if (this.type === "info") {
-          this.form = {
-            username: "smallwei",
-            name: "smallwei",
-            phone: "1888888888888",
-            detail: "这是一个个性签名"
-          };
-        } else if (this.type === "password") {
-          this.form = {
-            oldpassword: 11111111,
-            newpassword: 22222222,
-            newpasswords: 22222222
-          };
+          getUserInfo().then(res => {
+            const user = res.data.data;
+            this.form = {
+              id: user.id,
+              avatar: user.avatar,
+              name: user.name,
+              realName: user.realName,
+              phone: user.phone,
+              email: user.email,
+            }
+          });
         }
       },
       handleChange(item) {

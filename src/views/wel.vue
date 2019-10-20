@@ -75,6 +75,13 @@
     </el-col>
     <el-col :span="8">
       <el-collapse v-model="logActiveNames" @change="handleChange">
+        <el-collapse-item title="2.5.2发布 增加个人中心" name="11">
+          <div>1.增加个人中心，支持用户信息自定义修改</div>
+          <div>2.增加网关鉴权配置示例</div>
+          <div>3.token的SIGN_KEY修改为一致</div>
+          <div>4.admin模块增加对seata服务的过滤</div>
+          <div>5.blade-tool增加部分工具类方法</div>
+        </el-collapse-item>
         <el-collapse-item title="2.5.1发布 增加动态网关鉴权" name="10">
           <div>1.增加网关动态鉴权</div>
           <div>2.secure安全模块token校验默认关闭，交由网关处理</div>
@@ -177,7 +184,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3'],
-        logActiveNames: ['10']
+        logActiveNames: ['11']
       };
     },
     computed: {
