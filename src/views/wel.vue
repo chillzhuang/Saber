@@ -1,10 +1,10 @@
 <template>
   <basic-container>
     <p style="text-align: center;">
-      <img src="https://img.shields.io/badge/Release-V2.5.1-green.svg" alt="Downloads"/>
+      <img src="https://img.shields.io/badge/Release-V2.5.3-green.svg" alt="Downloads"/>
       <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
       <img src="https://img.shields.io/badge/Spring%20Cloud-Greenwich.SR3-blue.svg" alt="Coverage Status"/>
-      <img src="https://img.shields.io/badge/Spring%20Boot-2.1.8.RELEASE-blue.svg" alt="Downloads"/>
+      <img src="https://img.shields.io/badge/Spring%20Boot-2.1.9.RELEASE-blue.svg" alt="Downloads"/>
       <a target="_blank" href="https://bladex.vip">
         <img src="https://img.shields.io/badge/Saber%20Author-Small%20Chill-ff69b4.svg" alt="Downloads"/>
       </a>
@@ -75,6 +75,11 @@
     </el-col>
     <el-col :span="8">
       <el-collapse v-model="logActiveNames" @change="handleChange">
+        <el-collapse-item title="2.5.3发布 集成分布式链路追踪" name="12">
+          <div>1.封装集成zipkin，支持分布式链路追踪</div>
+          <div>2.seata升级至0.9.0，解决部分分布式事务遇到的bug</div>
+          <div>3.springboot版本升级至2.1.9</div>
+        </el-collapse-item>
         <el-collapse-item title="2.5.2发布 增加个人中心" name="11">
           <div>1.增加个人中心，支持用户信息自定义修改</div>
           <div>2.增加网关鉴权配置示例</div>
@@ -184,7 +189,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3'],
-        logActiveNames: ['11']
+        logActiveNames: ['12']
       };
     },
     computed: {
