@@ -11,7 +11,7 @@
     "test:e2e": "vue-cli-service test:e2e"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "babel-polyfill": "^6.26.0",
     "classlist-polyfill": "^1.2.0",
     "element-ui": "^2.8.2",
