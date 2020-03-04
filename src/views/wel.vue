@@ -2,10 +2,10 @@
   <div>
     <basic-container>
       <p style="text-align: center;">
-        <img src="https://img.shields.io/badge/Release-V2.6.1-green.svg" alt="Downloads"/>
+        <img src="https://img.shields.io/badge/Release-V2.6.2-green.svg" alt="Downloads"/>
         <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
-        <img src="https://img.shields.io/badge/Spring%20Cloud-Hoxton.SR1-blue.svg" alt="Coverage Status"/>
-        <img src="https://img.shields.io/badge/Spring%20Boot-2.2.4.RELEASE-blue.svg" alt="Downloads"/>
+        <img src="https://img.shields.io/badge/Spring%20Cloud-Hoxton.SR2-blue.svg" alt="Coverage Status"/>
+        <img src="https://img.shields.io/badge/Spring%20Boot-2.2.5.RELEASE-blue.svg" alt="Downloads"/>
         <a target="_blank" href="https://bladex.vip">
           <img src="https://img.shields.io/badge/Saber%20Author-Small%20Chill-ff69b4.svg" alt="Downloads"/>
         </a>
@@ -124,7 +124,15 @@
       <el-row>
         <basic-container>
           <el-collapse v-model="logActiveNames" @change="handleChange">
-            <el-collapse-item title="2.6.1发布 增加登陆验证码，支持seata1.0" name="15">
+            <el-collapse-item title="2.6.2发布 升级支持seata1.1 支持阿里云oss" name="16">
+              <div>1.升级SpringBoot 2.2.5.RELEASE</div>
+              <div>2.升级SpringCloud Hoxton.SR2</div>
+              <div>3.升级Seata 1.1.0</div>
+              <div>4.增加阿里云对象存储封装</div>
+              <div>5.优化BladeFeignTargeter的加载逻辑</div>
+              <div>6.优化系统配置</div>
+            </el-collapse-item>
+            <el-collapse-item title="2.6.1发布 增加登陆验证码 支持seata1.0" name="15">
               <div>1.升级SpringBoot 2.2.4.RELEASE</div>
               <div>2.升级Alibaba Cloud 2.2.0.RELEASE</div>
               <div>3.升级Mybatis-Plus 3.3.1</div>
@@ -270,7 +278,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['14']
+        logActiveNames: ['16']
       };
     },
     computed: {
