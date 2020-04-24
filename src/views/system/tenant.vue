@@ -1,6 +1,7 @@
 <template>
   <basic-container>
     <avue-crud :option="option"
+               :table-loading="loading"
                :data="data"
                ref="crud"
                v-model="form"
@@ -38,19 +39,22 @@
         form: {},
         selectionList: [],
         query: {},
+        loading: true,
         page: {
           pageSize: 10,
           currentPage: 1,
           total: 0
         },
         option: {
+          height: 'auto',
+          calcHeight: 80,
+          searchShow: true,
+          searchMenuSpan: 6,
           tip: false,
           border: true,
           index: true,
           selection: true,
           viewBtn: true,
-          dialogWidth: 300,
-          dialogHeight: 400,
           column: [
             {
               label: "租户ID",
@@ -123,30 +127,30 @@
       }
     },
     methods: {
-      rowSave(row, loading, done) {
+      rowSave(row, done, loading) {
         add(row).then(() => {
-          loading();
+          done();
           this.onLoad(this.page);
           this.$message({
             type: "success",
             message: "操作成功!"
           });
         }, error => {
-          done();
-          console.log(error);
+          window.console.log(error);
+          loading();
         });
       },
-      rowUpdate(row, index, loading, done) {
+      rowUpdate(row, index, done, loading) {
         update(row).then(() => {
-          loading();
+          done();
           this.onLoad(this.page);
           this.$message({
             type: "success",
             message: "操作成功!"
           });
         }, error => {
-          done();
-          console.log(error);
+          window.console.log(error);
+          loading();
         });
       },
       rowDel(row) {
@@ -170,9 +174,11 @@
         this.query = {};
         this.onLoad(this.page);
       },
-      searchChange(params) {
+      searchChange(params, done) {
         this.query = params;
+        this.page.currentPage = 1;
         this.onLoad(this.page, params);
+        done();
       },
       selectionChange(list) {
         this.selectionList = list;
@@ -199,17 +205,19 @@
             this.$refs.crud.toggleSelection();
           });
       },
-      currentChange(currentPage){
+      currentChange(currentPage) {
         this.page.currentPage = currentPage;
       },
-      sizeChange(pageSize){
+      sizeChange(pageSize) {
         this.page.pageSize = pageSize;
       },
       onLoad(page, params = {}) {
+        this.loading = true;
         getList(page.currentPage, page.pageSize, Object.assign(params, this.query)).then(res => {
           const data = res.data.data;
           this.page.total = data.total;
           this.data = data.records;
+          this.loading = false;
         });
       }
     }

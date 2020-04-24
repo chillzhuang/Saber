@@ -37,6 +37,17 @@ export const update = (row) => {
   })
 }
 
+export const grant = (userIds, roleIds) => {
+  return request({
+    url: '/api/blade-user/grant',
+    method: 'post',
+    params: {
+      userIds,
+      roleIds,
+    }
+  })
+}
+
 export const getUser = (id) => {
   return request({
     url: '/api/blade-user/detail',

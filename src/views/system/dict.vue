@@ -1,6 +1,7 @@
 <template>
   <basic-container>
     <avue-crud :option="option"
+               :table-loading="loading"
                :data="data"
                ref="crud"
                v-model="form"
@@ -24,6 +25,16 @@
                    @click="handleDelete">删 除
         </el-button>
       </template>
+      <template slot-scope="scope" slot="menu">
+        <el-button
+          type="text"
+          icon="el-icon-circle-plus-outline"
+          size="small"
+          @click.stop="handleAdd(scope.row,scope.index)"
+          v-if="userInfo.authority.includes('admin')"
+        >新增子项
+        </el-button>
+      </template>
     </avue-crud>
   </basic-container>
 </template>
@@ -37,6 +48,7 @@
       return {
         form: {},
         selectionList: [],
+        loading: true,
         query: {},
         page: {
           pageSize: 10,
@@ -44,12 +56,17 @@
           total: 0
         },
         option: {
+          height: 'auto',
+          calcHeight: 80,
+          searchShow: true,
+          searchMenuSpan: 6,
           tip: false,
           tree: true,
           border: true,
           index: true,
           selection: true,
           viewBtn: true,
+          menuWidth: 300,
           column: [
             {
               label: "字典编号",
@@ -120,7 +137,7 @@
       };
     },
     computed: {
-      ...mapGetters(["permission"]),
+      ...mapGetters(["userInfo", "permission"]),
       permissionList() {
         return {
           addBtn: this.vaildData(this.permission.dict_add, false),
@@ -138,30 +155,45 @@
       }
     },
     methods: {
-      rowSave(row, loading, done) {
+      handleAdd(row) {
+        this.$refs.crud.value.code = row.code;
+        this.$refs.crud.value.parentId = row.id;
+        this.$refs.crud.option.column.filter(item => {
+          if (item.prop === "code") {
+            item.value = row.code;
+            item.addDisabled = true;
+          }
+          if (item.prop === "parentId") {
+            item.value = row.id;
+            item.addDisabled = true;
+          }
+        });
+        this.$refs.crud.rowAdd();
+      },
+      rowSave(row, done, loading) {
         add(row).then(() => {
-          loading();
+          done();
           this.onLoad(this.page);
           this.$message({
             type: "success",
             message: "操作成功!"
           });
         }, error => {
-          done();
-          console.log(error);
+          window.console.log(error);
+          loading();
         });
       },
-      rowUpdate(row, index, loading, done) {
+      rowUpdate(row, index, done, loading) {
         update(row).then(() => {
-          loading();
+          done();
           this.onLoad(this.page);
           this.$message({
             type: "success",
             message: "操作成功!"
           });
         }, error => {
-          done();
-          console.log(error);
+          window.console.log(error);
+          loading();
         });
       },
       rowDel(row) {
@@ -185,9 +217,11 @@
         this.query = {};
         this.onLoad(this.page);
       },
-      searchChange(params) {
+      searchChange(params, done) {
         this.query = params;
+        this.page.currentPage = 1;
         this.onLoad(this.page, params);
+        done();
       },
       selectionChange(list) {
         this.selectionList = list;
@@ -229,12 +263,13 @@
         this.page.pageSize = pageSize;
       },
       onLoad(page, params = {}) {
+        this.loading = true;
         getList(page.currentPage, page.pageSize, Object.assign(params, this.query)).then(res => {
           this.data = res.data.data;
+          this.loading = false;
           getDictTree().then(res => {
-            const data = res.data.data;
-            const index = this.$refs.crud.findColumnIndex("parentId");
-            this.option.column[index].dicData = data;
+            const column = this.findObject(this.option.column, "parentId");
+            column.dicData = res.data.data;
           });
         });
       }

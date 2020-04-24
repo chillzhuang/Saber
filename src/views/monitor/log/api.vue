@@ -32,6 +32,10 @@
           total: 0
         },
         option: {
+          height: 'auto',
+          calcHeight: 80,
+          searchShow: true,
+          searchMenuSpan: 6,
           tip: false,
           border: true,
           index: true,
@@ -40,6 +44,7 @@
           addBtn: false,
           delBtn: false,
           menuWidth: 120,
+          dialogType: 'drawer',
           column: [
             {
               label: "服务id",
@@ -108,9 +113,11 @@
         this.query = {};
         this.onLoad(this.page);
       },
-      searchChange(params) {
+      searchChange(params, done) {
         this.query = params;
+        this.page.currentPage = 1;
         this.onLoad(this.page, params);
+        done();
       },
       beforeOpen(done, type) {
         if (["edit", "view"].includes(type)) {

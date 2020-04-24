@@ -39,7 +39,7 @@
            class="icon-mima"></i>
       </el-input>
     </el-form-item>
-    <el-form-item prop="code">
+    <el-form-item v-if="captchaMode" prop="code">
       <el-row :span="24">
         <el-col :span="16">
           <el-input size="small"
@@ -78,6 +78,7 @@
     data() {
       return {
         tenantMode: website.tenantMode,
+        captchaMode: website.captchaMode,
         loginForm: {
           //租户ID
           tenantId: "000000",

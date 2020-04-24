@@ -1,6 +1,6 @@
 {
   "name": "saber-admin",
-  "version": "2.6.2",
+  "version": "2.7.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -14,18 +14,18 @@
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "classlist-polyfill": "^1.2.0",
-    "element-ui": "^2.8.2",
+    "element-ui": "^2.12.0",
     "js-base64": "^2.5.1",
     "js-cookie": "^2.2.0",
     "mockjs": "^1.0.1-beta3",
     "node-gyp": "^5.0.6",
     "nprogress": "^0.2.0",
     "script-loader": "^0.7.2",
-    "vue": "^2.5.16",
+    "vue": "^2.6.10",
     "vue-axios": "^2.1.2",
     "vue-i18n": "^8.7.0",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vuex": "^3.1.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.1.1",

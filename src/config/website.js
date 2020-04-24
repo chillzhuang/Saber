@@ -7,6 +7,7 @@ export default {
   clientId: 'saber', // 客户端id
   clientSecret: 'saber_secret', // 客户端密钥
   tenantMode: true, // 是否开启租户模式
+  captchaMode: true, // 是否开启验证码模式
   logo: "S",
   key: 'saber',//配置主键,目前用于存储
   lockPage: '/lock',
