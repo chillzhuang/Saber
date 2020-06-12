@@ -51,7 +51,7 @@
         selectionList: [],
         option: {
           height: 'auto',
-          calcHeight: 80,
+          calcHeight: 210,
           searchShow: true,
           searchMenuSpan: 6,
           tip: false,
@@ -63,7 +63,7 @@
             {
               label: "通知标题",
               prop: "title",
-              row: true,
+              span: 24,
               search: true,
               rules: [{
                 required: true,
@@ -74,7 +74,6 @@
             {
               label: "通知类型",
               type: "select",
-              row: true,
               dicUrl: "/api/blade-system/dict/dictionary?code=notice",
               props: {
                 label: "dictValue",
@@ -218,10 +217,10 @@
         }
         done();
       },
-      currentChange(currentPage){
+      currentChange(currentPage) {
         this.page.currentPage = currentPage;
       },
-      sizeChange(pageSize){
+      sizeChange(pageSize) {
         this.page.pageSize = pageSize;
       },
       onLoad(page, params = {}) {

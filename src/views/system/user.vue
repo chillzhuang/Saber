@@ -157,7 +157,7 @@
         roleTreeObj: [],
         option: {
           height: 'auto',
-          calcHeight: 80,
+          calcHeight: 210,
           searchShow: true,
           searchMenuSpan: 6,
           tip: false,

@@ -57,8 +57,6 @@
           total: 0
         },
         option: {
-          height: 'auto',
-          calcHeight: 80,
           searchShow: true,
           searchMenuSpan: 6,
           tip: false,

@@ -54,7 +54,7 @@
         selectionList: [],
         option: {
           height: 'auto',
-          calcHeight: 80,
+          calcHeight: 210,
           tip: false,
           searchShow: true,
           searchMenuSpan: 6,

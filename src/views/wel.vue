@@ -124,6 +124,18 @@
       <el-row>
         <basic-container>
           <el-collapse v-model="logActiveNames" @change="handleChange">
+            <el-collapse-item title="2.7.1发布 增加行政区划管理，支持seata1.2" name="18">
+              <div>1.升级至 SpringCloud Hoxton.SR5</div>
+              <div>2.升级至 SpringBoot 2.2.7.RELEASE</div>
+              <div>3.升级至 Seata 1.2.0</div>
+              <div>4.升级至 FastJson 1.2.70</div>
+              <div>5.升级至 Avue 2.5.3</div>
+              <div>6.新增行政区划管理模块</div>
+              <div>7.优化用户导入的密码配置逻辑</div>
+              <div>8.优化INode结构支持懒加载数据格式</div>
+              <div>9.优化代码生成模板，支持最新版Saber结构</div>
+              <div>10.修复Log模块在多线程、异步场景下报错的问题</div>
+            </el-collapse-item>
             <el-collapse-item title="2.7.0发布 内核全面升级，增加岗位管理，用户导入导出" name="17">
               <div>1.升级至 SpringCloud Hoxton.SR3</div>
               <div>2.升级至 SpringBoot 2.2.6.RELEASE</div>
@@ -290,7 +302,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['17']
+        logActiveNames: ['18']
       };
     },
     computed: {
