@@ -71,6 +71,8 @@ export default {
     password: '请输入密码',
     wechat: '微信',
     qq: 'QQ',
+    github: 'github',
+    gitee: '码云',
     phone: '请输入手机号',
     code: '请输入验证码',
     submit: '登录',

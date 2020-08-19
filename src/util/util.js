@@ -26,6 +26,7 @@ export const getObjType = obj => {
     }
     return map[toString.call(obj)];
 };
+
 /**
  * 对象深拷贝
  */
@@ -285,4 +286,22 @@ export const openWindow = (url, title, w, h) => {
     if (window.focus) {
         newWindow.focus()
     }
+}
+
+/**
+ * 获取顶部地址栏地址
+ */
+export const getTopUrl = () => {
+  return window.location.href.split("/#/")[0];
+}
+
+/**
+ * 获取url参数
+ * @param name 参数名
+ */
+export const getQueryString = (name) => {
+  let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+  let r = window.location.search.substr(1).match(reg);
+  if (r != null) return unescape(decodeURI(r[2]));
+  return null;
 }

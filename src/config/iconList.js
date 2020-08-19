@@ -64,6 +64,8 @@ export default [
       "iconfont iconicon_addmessage",
       "iconfont iconicon_addresslist",
       "iconfont iconicon_add",
+      "iconfont icongithub",
+      "iconfont icongitee2",
     ]
   },
   {

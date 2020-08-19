@@ -180,15 +180,15 @@
               dicData: [
                 {
                   label: "工具栏",
-                  value: 0
-                },
-                {
-                  label: "操作栏",
                   value: 1
                 },
                 {
-                  label: "工具操作栏",
+                  label: "操作栏",
                   value: 2
+                },
+                {
+                  label: "工具操作栏",
+                  value: 3
                 }
               ],
               hide: true,

@@ -18,6 +18,22 @@ export const loginByUsername = (tenantId, account, password, type, key, code) =>
   }
 });
 
+export const loginBySocial = (tenantId, source, code, state) => request({
+  url: '/api/blade-auth/token',
+  method: 'post',
+  headers: {
+    'Tenant-Id': tenantId
+  },
+  params: {
+    tenantId,
+    source,
+    code,
+    state,
+    grantType: "social",
+    scope: "all",
+  }
+});
+
 export const getButtons = () => request({
   url: '/api/blade-system/menu/buttons',
   method: 'get'
@@ -28,10 +44,22 @@ export const getUserInfo = () => request({
   method: 'get'
 });
 
-export const refeshToken = () => request({
+export const refreshToken = () => request({
   url: baseUrl + '/user/refesh',
   method: 'post'
 })
+
+export const registerGuest = (form, oauthId) => request({
+  url: '/api/blade-user/register-guest',
+  method: 'post',
+  params: {
+    tenantId: form.tenantId,
+    name: form.name,
+    account: form.account,
+    password: form.password,
+    oauthId
+  }
+});
 
 export const getMenu = () => request({
   url: '/api/blade-system/menu/routes',

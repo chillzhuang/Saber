@@ -102,6 +102,7 @@
 <script>
   import {
     getList,
+    getUser,
     remove,
     update,
     add,
@@ -555,7 +556,18 @@
       },
       beforeOpen(done, type) {
         if (["edit", "view"].includes(type)) {
-          // 预留
+          getUser(this.form.id).then(res => {
+            this.form = res.data.data;
+            if(this.form.hasOwnProperty("deptId")){
+              this.form.deptId = this.form.deptId.split(",");
+            }
+            if(this.form.hasOwnProperty("roleId")){
+              this.form.roleId = this.form.roleId.split(",");
+            }
+            if(this.form.hasOwnProperty("postId")){
+              this.form.postId = this.form.postId.split(",");
+            }
+          });
         }
         done();
       },

@@ -183,12 +183,19 @@
           ids.push(ele.id);
         });
         return ids.join(",");
+      },
+      idsArray() {
+        let ids = [];
+        this.selectionList.forEach(ele => {
+          ids.push(ele.id);
+        });
+        return ids;
       }
     },
     methods: {
       submit() {
-        const menuLIst = this.$refs.tree.getCheckedKeys().join(",");
-        grant(this.ids, menuLIst).then(() => {
+        const menuLIst = this.$refs.tree.getCheckedKeys();
+        grant(this.idsArray, menuLIst).then(() => {
           this.box = false;
           this.$message({
             type: "success",

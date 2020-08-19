@@ -95,7 +95,7 @@ export default {
         if (!(date.seconds >= this.website.tokenTime) && !this.refreshLock) {
           this.refreshLock = true;
           this.$store
-            .dispatch("RefeshToken")
+            .dispatch("RefreshToken")
             .then(() => {
               this.refreshLock = false;
             })

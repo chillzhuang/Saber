@@ -22,7 +22,7 @@ export const grant = (roleIds, menuIds) => {
   return request({
     url: '/api/blade-system/role/grant',
     method: 'post',
-    params: {
+    data: {
       roleIds,
       menuIds
     }

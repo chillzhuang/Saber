@@ -11,26 +11,9 @@ import 'nprogress/nprogress.css' // progress bar style
 NProgress.configure({showSpinner: false});
 const lockPage = store.getters.website.lockPage; //锁屏页
 router.beforeEach((to, from, next) => {
-  if (to.matched.length === 0 && to.fullPath.indexOf("?sec") === -1) {
-    next(to.path + "?sec");
-    window.location.reload();
-  } else {
-    next();
-  }
-  //缓冲设置
-  if (to.meta.keepAlive === true && store.state.tags.tagList.some(ele => {
-    return ele.value === to.fullPath;
-  })) {
-    to.meta.$keepAlive = true;
-  } else {
-    NProgress.start()
-    if (to.meta.keepAlive === true && validatenull(to.meta.$keepAlive)) {
-      to.meta.$keepAlive = true;
-    } else {
-      to.meta.$keepAlive = false;
-    }
-  }
   const meta = to.meta || {};
+  const isMenu = meta.menu === undefined ? to.query.menu : meta.menu;
+  store.commit('SET_IS_MENU', isMenu === undefined);
   if (getToken()) {
     if (store.getters.isLock && to.path !== lockPage) { //如果系统激活锁屏，全部跳转到锁屏页
       next({path: lockPage})

@@ -36,5 +36,7 @@ export default {
       icon: 'source',
       children: 'children'
     }
-  }
+  },
+  // 授权地址
+  authUrl: 'http://localhost/blade-auth/oauth/render'
 }

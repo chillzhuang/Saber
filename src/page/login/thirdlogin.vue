@@ -1,20 +1,26 @@
 <template>
   <div class="social-container">
-    <div class="box"
-         @click="handleClick('wechat')">
-      <span class="container"
-            :style="{backgroundColor:'#6ba2d6'}">
-        <i icon-class="wechat"
-           class="iconfont icon-weixin"></i>
+    <div @click="handleClick('github')">
+      <span class="container" :style="{backgroundColor:'#61676D'}">
+        <i icon-class="github" class="iconfont icongithub"></i>
+      </span>
+      <p class="title">{{$t('login.github')}}</p>
+    </div>
+    <div @click="handleClick('gitee')">
+      <span class="container" :style="{backgroundColor:'#c35152'}">
+        <i icon-class="gitee" class="iconfont icongitee2"></i>
+      </span>
+      <p class="title">{{$t('login.gitee')}}</p>
+    </div>
+    <div @click="handleClick('wechat_open')">
+      <span class="container" :style="{backgroundColor:'#8dc349'}">
+        <i icon-class="wechat" class="iconfont icon-weixin"/>
       </span>
       <p class="title">{{$t('login.wechat')}}</p>
     </div>
-    <div class="box"
-         @click="handleClick('tencent')">
-      <span class="container"
-            :style="{backgroundColor:'#8dc349'}">
-        <i icon-class="qq"
-           class="iconfont icon-qq"></i>
+    <div @click="handleClick('qq')">
+      <span class="container" :style="{backgroundColor:'#6ba2d6'}">
+        <i icon-class="qq" class="iconfont icon-qq"/>
       </span>
       <p class="title">{{$t('login.qq')}}</p>
     </div>
@@ -22,33 +28,13 @@
 </template>
 
 <script>
-import { openWindow } from "@/util/util";
+import website from '@/config/website';
 
 export default {
   name: "thirdLogin",
   methods: {
-    handleClick(thirdpart) {
-      let appid, client_id, redirect_uri, url;
-      redirect_uri = encodeURIComponent(
-        window.location.origin + "/#/authredirect"
-      );
-      if (thirdpart === "wechat") {
-        appid = "xxxx";
-        url =
-          "https://open.weixin.qq.com/connect/qrconnect?appid=" +
-          appid +
-          "&redirect_uri=" +
-          redirect_uri +
-          "&state=WX&response_type=code&scope=snsapi_login#wechat_redirect";
-      } else if (thirdpart === "tencent") {
-        client_id = "xxxx";
-        url =
-          "https://graph.qq.com/oauth2.0/authorize?response_type=code&state=QQ&client_id=" +
-          client_id +
-          "&redirect_uri=" +
-          redirect_uri;
-      }
-      openWindow(url, thirdpart, 540, 540);
+    handleClick(source) {
+      window.location.href = `${website.authUrl}/${source}`;
     }
   }
 };
@@ -60,15 +46,14 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  .box {
-    cursor: pointer;
-  }
+
   .iconfont {
     color: #fff;
     font-size: 30px;
   }
   .container {
     $height: 50px;
+    cursor: pointer;
     display: inline-block;
     width: $height;
     height: $height;
