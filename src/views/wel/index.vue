@@ -128,15 +128,15 @@
             <el-collapse-item title="2.7.2发布 集成JustAuth支持第三方登录" name="19">
               <div>1.升级至 SpringCloud Hoxton.SR7</div>
               <div>2.升级至 SpringBoot 2.2.9.RELEASE</div>
-              <div>4.升级至 SpringBootAdmin 2.3.0</div>
               <div>3.升级至 Seata 1.3.0</div>
+              <div>4.升级至 SpringBootAdmin 2.3.0</div>
               <div>5.升级至 Kinfe4j 2.0.4</div>
               <div>6.升级至 FastJson 1.2.73</div>
-              <div>8.集成JustAuth支持第三方登录</div>
-              <div>9.优化请求日志打印工具</div>
-              <div>10.优化Token返回字段集合</div>
-              <div>11.修复菜单列表API报空指针的问题</div>
-              <div>12.修复角色配置数据量较大导致失败的问题</div>
+              <div>7.集成JustAuth支持第三方登录</div>
+              <div>8.优化请求日志打印工具</div>
+              <div>9.优化Token返回字段集合</div>
+              <div>10.修复菜单列表API报空指针的问题</div>
+              <div>11.修复角色配置数据量较大导致失败的问题</div>
             </el-collapse-item>
             <el-collapse-item title="2.7.1发布 增加行政区划管理，支持seata1.2" name="18">
               <div>1.升级至 SpringCloud Hoxton.SR5</div>
