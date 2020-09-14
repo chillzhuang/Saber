@@ -72,6 +72,8 @@
   import {mapGetters} from "vuex";
   import website from '@/config/website';
   import {getCaptcha} from "@/api/user";
+  import {getTopUrl} from "@/util/util";
+  import {info} from "@/api/system/tenant";
 
   export default {
     name: "userlogin",
@@ -111,6 +113,7 @@
       };
     },
     created() {
+      this.getTenant();
       this.refreshCode();
     },
     mounted() {
@@ -148,6 +151,18 @@
             });
           }
         });
+      },
+      getTenant() {
+        let domain = getTopUrl();
+        // 临时指定域名，方便测试
+        //domain = "https://bladex.vip";
+        info(domain).then(res => {
+          const data = res.data;
+          if (data.success && data.data.tenantId) {
+            this.tenantMode = false;
+            this.loginForm.tenantId = data.data.tenantId;
+          }
+        })
       }
     }
   };

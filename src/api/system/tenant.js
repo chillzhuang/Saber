@@ -36,3 +36,13 @@ export const update = (row) => {
     data: row
   })
 }
+
+export const info = (domain) => {
+  return request({
+    url: '/api/blade-system/tenant/info',
+    method: 'get',
+    params: {
+      domain
+    }
+  })
+}

@@ -102,6 +102,11 @@
               span: 24,
               minRows: 6,
               type: "textarea",
+            },
+            {
+              label: "域名地址",
+              prop: "domain",
+              span: 24,
             }
           ]
         },
