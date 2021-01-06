@@ -70,6 +70,7 @@
           index: true,
           selection: true,
           labelWidth: 120,
+          menuWidth: 250,
           viewBtn: true,
           column: [
             {
