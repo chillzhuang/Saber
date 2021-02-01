@@ -1,9 +1,10 @@
 export default {
-  column: [{
-    label: '个人信息',
-    prop: 'info',
-    option: {
-      submitText: '修改',
+  tabs: true,
+  tabsActive: 1,
+  group: [
+    {
+      label: '个人信息',
+      prop: 'info',
       column: [{
         label: '头像',
         type: 'upload',
@@ -42,12 +43,10 @@ export default {
         span: 12,
         row: true,
       }]
-    }
-  }, {
-    label: '修改密码',
-    prop: 'password',
-    option: {
-      submitText: '修改',
+    },
+    {
+      label: '修改密码',
+      prop: 'password',
       column: [{
         label: '原密码',
         span: 12,
@@ -68,5 +67,5 @@ export default {
         prop: 'newPassword1'
       }]
     }
-  }]
+  ],
 }
