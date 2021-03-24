@@ -6,6 +6,7 @@
                ref="crud"
                v-model="form"
                :permission="permissionList"
+               :search.sync="search"
                @row-del="rowDel"
                @row-update="rowUpdate"
                @row-save="rowSave"
@@ -136,6 +137,7 @@
       };
       return {
         form: {},
+        search:{},
         roleBox: false,
         excelBox: false,
         loading: true,
@@ -547,8 +549,7 @@
           cancelButtonText: "取消",
           type: "warning"
         }).then(() => {
-          const searchForm = this.$refs.crud.searchForm;
-          window.open(`/api/blade-user/export-user?blade-auth=${getToken()}&account=${searchForm.account}&realName=${searchForm.realName}`);
+          window.open(`/api/blade-user/export-user?blade-auth=${getToken()}&account=${this.search.account}&realName=${this.search.realName}`);
         });
       },
       handleTemplate() {
