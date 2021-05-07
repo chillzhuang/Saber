@@ -3,7 +3,7 @@
     <basic-container>
       <third-register></third-register>
       <p style="text-align: center;">
-        <img src="https://img.shields.io/badge/Release-V3.0.2-green.svg" alt="Downloads"/>
+        <img src="https://img.shields.io/badge/Release-V3.0.3-green.svg" alt="Downloads"/>
         <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
         <img src="https://img.shields.io/badge/Spring%20Cloud-2020-blue.svg" alt="Coverage Status"/>
         <img src="https://img.shields.io/badge/Spring%20Boot-2.4.4.RELEASE-blue.svg" alt="Downloads"/>
@@ -125,6 +125,15 @@
       <el-row>
         <basic-container>
           <el-collapse v-model="logActiveNames" @change="handleChange">
+            <el-collapse-item title="3.0.3发布 新增kuboard-k8s脚本一键部署方案" name="25">
+              <div>1.新增blade-develop的dockerfile</div>
+              <div>2.新增blade-develop推送docker配置</div>
+              <div>3.新增saber的dockerfile</div>
+              <div>4.新增kuboard k8s部署脚本</div>
+              <div>5.新增kuboard k8s部署方案</div>
+              <div>6.优化pom配置适配新版部署方案</div>
+              <div>7.优化swagger加载逻辑默认开启knife4j</div>
+            </el-collapse-item>
             <el-collapse-item title="3.0.2.发布 支持Nacos2.0长链接特性" name="24">
               <div>1.升级 SpringBoot 至 2.4.4</div>
               <div>2.升级 SpringCloud 至 2020.0.2</div>
@@ -391,7 +400,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['24']
+        logActiveNames: ['25']
       };
     },
     computed: {
