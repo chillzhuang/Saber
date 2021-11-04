@@ -50,7 +50,6 @@ export default {
   route: {
     info: '个人信息',
     website: 'bladex官网',
-    avuexwebsite: 'avuex官网',
     dashboard: '首页',
     tags: '标签',
     store: '本地存储',

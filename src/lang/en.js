@@ -50,7 +50,6 @@ export default {
   route: {
     info: 'info',
     website: 'website',
-    avuexwebsite: 'avuex',
     dashboard: 'dashboard',
     tags: 'tags',
     store: 'store',

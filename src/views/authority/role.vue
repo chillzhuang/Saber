@@ -32,14 +32,27 @@
     </avue-crud>
     <el-dialog title="角色配置"
                :visible.sync="box"
-               width="20%">
-      <el-tree :data="list"
-               show-checkbox
-               node-key="id"
-               ref="tree"
-               :default-checked-keys="defaultObj"
-               :props="props">
-      </el-tree>
+               width="345px">
+      <el-tabs type="border-card">
+        <el-tab-pane label="菜单权限">
+          <el-tree :data="menuGrantList"
+                   show-checkbox
+                   node-key="id"
+                   ref="treeMenu"
+                   :default-checked-keys="menuTreeObj"
+                   :props="props">
+          </el-tree>
+        </el-tab-pane>
+        <el-tab-pane label="数据权限">
+          <el-tree :data="dataScopeGrantList"
+                   show-checkbox
+                   node-key="id"
+                   ref="treeDataScope"
+                   :default-checked-keys="dataScopeTreeObj"
+                   :props="props">
+          </el-tree>
+        </el-tab-pane>
+      </el-tabs>
       <span slot="footer"
             class="dialog-footer">
         <el-button @click="box = false">取 消</el-button>
@@ -64,8 +77,10 @@
           label: "title",
           value: "key"
         },
-        list: [],
-        defaultObj: [],
+        menuGrantList: [],
+        dataScopeGrantList: [],
+        menuTreeObj: [],
+        dataScopeTreeObj: [],
         selectionList: [],
         query: {},
         loading: true,
@@ -194,8 +209,9 @@
     },
     methods: {
       submit() {
-        const menuLIst = this.$refs.tree.getCheckedKeys();
-        grant(this.idsArray, menuLIst).then(() => {
+        const menuList = this.$refs.treeMenu.getCheckedKeys();
+        const dataScopeList = this.$refs.treeDataScope.getCheckedKeys();
+        grant(this.idsArray, menuList, dataScopeList).then(() => {
           this.box = false;
           this.$message({
             type: "success",
@@ -203,6 +219,16 @@
           });
           this.onLoad(this.page);
         });
+
+        /*const menuLIst = this.$refs.tree.getCheckedKeys();
+        grant(this.idsArray, menuLIst).then(() => {
+          this.box = false;
+          this.$message({
+            type: "success",
+            message: "操作成功!"
+          });
+          this.onLoad(this.page);
+        });*/
       },
       rowSave(row, done, loading) {
         add(row).then(() => {
@@ -266,7 +292,21 @@
           this.$message.warning("只能选择一条数据");
           return;
         }
-        this.defaultObj = [];
+        this.menuTreeObj = [];
+        this.dataScopeTreeObj = [];
+        grantTree()
+          .then(res => {
+            this.menuGrantList = res.data.data.menu;
+            this.dataScopeGrantList = res.data.data.dataScope;
+            getRole(this.ids).then(res => {
+              this.menuTreeObj = res.data.data.menu;
+              this.dataScopeTreeObj = res.data.data.dataScope;
+              this.box = true;
+            });
+          });
+
+
+        /*this.defaultObj = [];
         grantTree()
           .then(res => {
             this.list = res.data.data;
@@ -275,7 +315,7 @@
           .then(res => {
             this.defaultObj = res.data.data;
             this.box = true;
-          });
+          });*/
       },
       handleDelete() {
         if (this.selectionList.length === 0) {

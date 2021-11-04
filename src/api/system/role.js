@@ -18,13 +18,14 @@ export const grantTree = () => {
   })
 }
 
-export const grant = (roleIds, menuIds) => {
+export const grant = (roleIds, menuIds, dataScopeIds) => {
   return request({
     url: '/api/blade-system/role/grant',
     method: 'post',
     data: {
       roleIds,
-      menuIds
+      menuIds,
+      dataScopeIds
     }
   })
 }

@@ -3,10 +3,10 @@
     <basic-container>
       <third-register></third-register>
       <p style="text-align: center;">
-        <img src="https://img.shields.io/badge/Release-V3.1.0-green.svg" alt="Downloads"/>
+        <img src="https://img.shields.io/badge/Release-V3.2.0-green.svg" alt="Downloads"/>
         <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
         <img src="https://img.shields.io/badge/Spring%20Cloud-2020-blue.svg" alt="Coverage Status"/>
-        <img src="https://img.shields.io/badge/Spring%20Boot-2.5.2.RELEASE-blue.svg" alt="Downloads"/>
+        <img src="https://img.shields.io/badge/Spring%20Boot-2.5.6.RELEASE-blue.svg" alt="Downloads"/>
         <a target="_blank" href="https://bladex.vip">
           <img src="https://img.shields.io/badge/Saber%20Author-Small%20Chill-ff69b4.svg" alt="Downloads"/>
         </a>
@@ -125,6 +125,23 @@
       <el-row>
         <basic-container>
           <el-collapse v-model="logActiveNames" @change="handleChange">
+            <el-collapse-item title="3.2.0发布 新增灵活数据权限特性" name="27">
+              <div>1.升级 SpringBoot 至 2.5.6</div>
+              <div>2.升级 SpringBootAdmin 至 2.5.3</div>
+              <div>3.升级 SpringCloud 至 2020.0.4</div>
+              <div>4.升级 Nacos 至 2.0.3</div>
+              <div>5.升级 Knife4j 至 2.0.9</div>
+              <div>6.升级 Mybatis-Plus 至 3.4.3.4</div>
+              <div>7.新增注解配置数据权限特性</div>
+              <div>8.新增Web在线配置数据权限特性</div>
+              <div>9.新增自定义Sql配置数据权限特性</div>
+              <div>10.新增懒加载表格树特性</div>
+              <div>11.新增部门管理祖级节点字段</div>
+              <div>12.新增CacheUtil工具类</div>
+              <div>13.优化部门管理新增逻辑</div>
+              <div>14.优化租户拦截器初始化逻辑</div>
+              <div>15.优化适配各新版本API变动</div>
+            </el-collapse-item>
             <el-collapse-item title="3.1.0发布 底层架构升级适配" name="26">
               <div>1.升级 SpringBoot 至 2.5.2</div>
               <div>2.升级 SpringBootAdmin 至 2.4.2</div>
@@ -411,7 +428,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['26']
+        logActiveNames: ['27']
       };
     },
     computed: {
