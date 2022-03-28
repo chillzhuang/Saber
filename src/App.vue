@@ -23,4 +23,7 @@ export default {
   height: 100%;
   overflow: hidden;
 }
+.avue--detail .el-col{
+  margin-bottom: 0;
+}
 </style>

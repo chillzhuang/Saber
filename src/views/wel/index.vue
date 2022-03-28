@@ -3,10 +3,10 @@
     <basic-container>
       <third-register></third-register>
       <p style="text-align: center;">
-        <img src="https://img.shields.io/badge/Release-V3.2.0-green.svg" alt="Downloads"/>
+        <img src="https://img.shields.io/badge/Release-V3.3.0-green.svg" alt="Downloads"/>
         <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
-        <img src="https://img.shields.io/badge/Spring%20Cloud-2020-blue.svg" alt="Coverage Status"/>
-        <img src="https://img.shields.io/badge/Spring%20Boot-2.5.6.RELEASE-blue.svg" alt="Downloads"/>
+        <img src="https://img.shields.io/badge/Spring%20Cloud-2021-blue.svg" alt="Coverage Status"/>
+        <img src="https://img.shields.io/badge/Spring%20Boot-2.6.3.RELEASE-blue.svg" alt="Downloads"/>
         <a target="_blank" href="https://bladex.vip">
           <img src="https://img.shields.io/badge/Saber%20Author-Small%20Chill-ff69b4.svg" alt="Downloads"/>
         </a>
@@ -125,6 +125,17 @@
       <el-row>
         <basic-container>
           <el-collapse v-model="logActiveNames" @change="handleChange">
+            <el-collapse-item title="3.3.0发布 升级适配 SpringCloud 2021" name="28">
+              <div>1.升级 SpringBoot 至 2.6.3</div>
+              <div>2.升级 SpringBootAdmin 至 2.6.2</div>
+              <div>3.升级 SpringCloud 至 2021.0.1</div>
+              <div>4.升级 AlibabaCloud 至 2021.0.1.0</div>
+              <div>5.升级 Nacos 至 2.0.4</div>
+              <div>6.升级 Mybatis-Plus 至 3.5.1</div>
+              <div>7.升级 Mybatis-Plus-Generator 至 3.5.1</div>
+              <div>8.重构 Xss运行逻辑</div>
+              <div>9.修复 nacos地址信息配置，支持灵活自定义</div>
+            </el-collapse-item>
             <el-collapse-item title="3.2.0发布 新增灵活数据权限特性" name="27">
               <div>1.升级 SpringBoot 至 2.5.6</div>
               <div>2.升级 SpringBootAdmin 至 2.5.3</div>
@@ -428,7 +439,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['27']
+        logActiveNames: ['28']
       };
     },
     computed: {
