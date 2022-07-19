@@ -3,10 +3,10 @@
     <basic-container>
       <third-register></third-register>
       <p style="text-align: center;">
-        <img src="https://img.shields.io/badge/Release-V3.3.1-green.svg" alt="Downloads"/>
+        <img src="https://img.shields.io/badge/Release-V3.4.0-green.svg" alt="Downloads"/>
         <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
         <img src="https://img.shields.io/badge/Spring%20Cloud-2021-blue.svg" alt="Coverage Status"/>
-        <img src="https://img.shields.io/badge/Spring%20Boot-2.6.6.RELEASE-blue.svg" alt="Downloads"/>
+        <img src="https://img.shields.io/badge/Spring%20Boot-2.7.1.RELEASE-blue.svg" alt="Downloads"/>
         <a target="_blank" href="https://bladex.vip">
           <img src="https://img.shields.io/badge/Saber%20Author-Small%20Chill-ff69b4.svg" alt="Downloads"/>
         </a>
@@ -125,6 +125,18 @@
       <el-row>
         <basic-container>
           <el-collapse v-model="logActiveNames" @change="handleChange">
+            <el-collapse-item title="3.4.0发布 新增灰度服务功能" name="30">
+              <div>1.升级 SpringCloud 至 2021.0.3</div>
+              <div>2.升级 SpringBoot 至 2.7.1</div>
+              <div>3.升级 SpringBootAdmin 至 2.7.1</div>
+              <div>4.升级 Mybatis-Plus 至 3.5.2</div>
+              <div>5.升级 Mybatis-Plus-Generator 至 3.5.3</div>
+              <div>6.升级 Nacos 至 2.1.0</div>
+              <div>7.升级 Seata 至 1.5.1.1</div>
+              <div>8.升级 FastJson 至 1.2.83</div>
+              <div>9.升级适配 SpringBoot 2.7.1 新版API</div>
+              <div>10.新增基于 LoadBalancer 的灰度服务功能</div>
+            </el-collapse-item>
             <el-collapse-item title="3.3.1发布 升级适配代码生成器API" name="29">
               <div>1.升级 SpringBoot 至 2.6.6</div>
               <div>2.升级 Mybatis-Plus-Generator 至 3.5.2</div>
@@ -444,7 +456,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['29']
+        logActiveNames: ['30']
       };
     },
     computed: {
