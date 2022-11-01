@@ -3,7 +3,7 @@
     <basic-container>
       <third-register></third-register>
       <p style="text-align: center;">
-        <img src="https://img.shields.io/badge/Release-V3.4.0-green.svg" alt="Downloads"/>
+        <img src="https://img.shields.io/badge/Release-V3.4.1-green.svg" alt="Downloads"/>
         <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
         <img src="https://img.shields.io/badge/Spring%20Cloud-2021-blue.svg" alt="Coverage Status"/>
         <img src="https://img.shields.io/badge/Spring%20Boot-2.7.1.RELEASE-blue.svg" alt="Downloads"/>
@@ -125,6 +125,9 @@
       <el-row>
         <basic-container>
           <el-collapse v-model="logActiveNames" @change="handleChange">
+            <el-collapse-item title="3.4.1发布 重构Swagger封装" name="31">
+              <div>1.重构Swagger封装，适配cloud最新版</div>
+            </el-collapse-item>
             <el-collapse-item title="3.4.0发布 新增灰度服务功能" name="30">
               <div>1.升级 SpringCloud 至 2021.0.3</div>
               <div>2.升级 SpringBoot 至 2.7.1</div>
@@ -456,7 +459,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['30']
+        logActiveNames: ['31']
       };
     },
     computed: {
