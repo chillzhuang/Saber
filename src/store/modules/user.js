@@ -1,14 +1,14 @@
-import {setToken, removeToken} from '@/util/auth'
+import { setToken, setRefreshToken, removeToken, removeRefreshToken } from '@/util/auth';
 import {setStore, getStore} from '@/util/store'
 import {isURL, validatenull} from '@/util/validate'
 import {deepClone} from '@/util/util'
-import webiste from '@/config/website'
+import website from '@/config/website'
 import {Message} from 'element-ui'
 import {loginByUsername, loginBySocial, getUserInfo, getMenu, getTopMenu, logout, refreshToken, getButtons} from '@/api/user'
 
 
 function addPath(ele, first) {
-  const menu = webiste.menu;
+  const menu = website.menu;
   const propsConfig = menu.props;
   const propsDefault = {
     label: propsConfig.label || 'name',
@@ -38,15 +38,17 @@ const user = {
     menu: getStore({name: 'menu'}) || [],
     menuAll: [],
     token: getStore({name: 'token'}) || '',
+    refreshToken: getStore({ name: 'refreshToken' }) || '',
   },
   actions: {
     //根据用户名登录
     LoginByUsername({commit}, userInfo) {
       return new Promise((resolve, reject) => {
         loginByUsername(userInfo.tenantId, userInfo.username, userInfo.password, userInfo.type, userInfo.key, userInfo.code).then(res => {
-          const data = res.data.data;
-          commit('SET_TOKEN', data.accessToken);
-          commit('SET_USER_INFO', data);
+          const data = res.data;
+          commit('SET_TOKEN', data.data.accessToken);
+          commit('SET_REFRESH_TOKEN', data.data.refreshToken);
+          commit('SET_USER_INFO', data.data);
           commit('DEL_ALL_TAG');
           commit('CLEAR_LOCK');
           resolve();
@@ -103,8 +105,10 @@ const user = {
     RefreshToken({state, commit}) {
       return new Promise((resolve, reject) => {
         refreshToken(state.refreshToken).then(res => {
-          const data = res.data.data;
-          commit('SET_TOKEN', data);
+          const data = res.data;
+          commit('SET_TOKEN', data.data.accessToken);
+          commit('SET_REFRESH_TOKEN', data.data.refreshToken);
+          commit('SET_USER_INFO', data.data);
           resolve(data);
         }).catch(error => {
           reject(error)
@@ -116,12 +120,14 @@ const user = {
       return new Promise((resolve, reject) => {
         logout().then(() => {
           commit('SET_TOKEN', '');
+          commit('SET_REFRESH_TOKEN', '');
           commit('SET_MENU', [])
           commit('SET_MENU_ALL', []);
           commit('SET_ROLES', []);
           commit('DEL_ALL_TAG');
           commit('CLEAR_LOCK');
           removeToken()
+          removeRefreshToken()
           resolve()
         }).catch(error => {
           reject(error)
@@ -132,12 +138,14 @@ const user = {
     FedLogOut({commit}) {
       return new Promise(resolve => {
         commit('SET_TOKEN', '');
+        commit('SET_REFRESH_TOKEN', '');
         commit('SET_MENU', []);
         commit('SET_MENU_ALL', []);
         commit('SET_ROLES', []);
         commit('DEL_ALL_TAG');
         commit('CLEAR_LOCK');
         removeToken()
+        removeRefreshToken()
         resolve()
       })
     },
@@ -180,6 +188,11 @@ const user = {
       setToken(token)
       state.token = token;
       setStore({name: 'token', content: state.token, type: 'session'})
+    },
+    SET_REFRESH_TOKEN: (state, refreshToken) => {
+      setRefreshToken(refreshToken);
+      state.refreshToken = refreshToken;
+      setStore({ name: 'refreshToken', content: state.refreshToken })
     },
     SET_USER_INFO: (state, userInfo) => {
       state.userInfo = userInfo;

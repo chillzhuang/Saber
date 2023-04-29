@@ -3,10 +3,10 @@
     <basic-container>
       <third-register></third-register>
       <p style="text-align: center;">
-        <img src="https://img.shields.io/badge/Release-V3.5.0-green.svg" alt="Downloads"/>
+        <img src="https://img.shields.io/badge/Release-V3.6.0-green.svg" alt="Downloads"/>
         <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
         <img src="https://img.shields.io/badge/Spring%20Cloud-2021-blue.svg" alt="Coverage Status"/>
-        <img src="https://img.shields.io/badge/Spring%20Boot-2.7.1.RELEASE-blue.svg" alt="Downloads"/>
+        <img src="https://img.shields.io/badge/Spring%20Boot-2.7.10.RELEASE-blue.svg" alt="Downloads"/>
         <a target="_blank" href="https://bladex.vip">
           <img src="https://img.shields.io/badge/Saber%20Author-Small%20Chill-ff69b4.svg" alt="Downloads"/>
         </a>
@@ -125,6 +125,24 @@
       <el-row>
         <basic-container>
           <el-collapse v-model="logActiveNames" @change="handleChange">
+            <el-collapse-item title="3.6.0发布 基于vue3的前端架构正式发布" name="33">
+              <div>1.升级 SpringCloud 至 2021.0.6</div>
+              <div>2.升级 SpringBoot 至 2.7.10</div>
+              <div>3.升级 SpringBootAdmin 至 2.7.10</div>
+              <div>4.升级 AlibabaCloud 至 2021.0.5.0</div>
+              <div>5.升级 Mybatis-Plus 至 3.5.3.1</div>
+              <div>6.升级 Mybatis-Plus-Generator 至 3.5.3.1</div>
+              <div>7.升级 Nacos 至 2.1.2</div>
+              <div>8.升级 Seata 至 1.6.1</div>
+              <div>9.升级 Knife4j 至 4.1.0</div>
+              <div>10.升级 Log4j 至 2.20.0</div>
+              <div>11.升级 Avue2 至 2.10.10</div>
+              <div>12.升级 Avue3 至 3.2.13</div>
+              <div>13.新增 基于Vue3与Element-Plus版本的Saber正式发布</div>
+              <div>14.新增 关闭Token默认签名，用户需自行设置后启动服务</div>
+              <div>15.新增 Vue3版代码生成</div>
+              <div>16.优化 pom依赖机制</div>
+            </el-collapse-item>
             <el-collapse-item title="3.5.0发布 新增报文加密 令牌签名校验提示" name="32">
               <div>1.新增 报文加密功能</div>
               <div>2.新增 日志开关功能</div>
@@ -466,7 +484,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['32']
+        logActiveNames: ['33']
       };
     },
     computed: {

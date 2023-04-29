@@ -11,7 +11,7 @@ export default {
   logo: "S",
   key: 'saber',//配置主键,目前用于存储
   lockPage: '/lock',
-  tokenTime: 6000,
+  tokenTime: 100,
   //http的status默认放行不才用统一处理的,
   statusWhiteList: [],
   //配置首页不可关闭

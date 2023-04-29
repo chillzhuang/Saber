@@ -1,5 +1,4 @@
 import request from '@/router/axios';
-import {baseUrl} from '@/config/env';
 import website from "@/config/website";
 
 export const loginByUsername = (tenantId, account, password, type, key, code) => request({
@@ -40,13 +39,18 @@ export const getButtons = () => request({
 });
 
 export const getUserInfo = () => request({
-  url: baseUrl + '/user/getUserInfo',
+  url: '/user/getUserInfo',
   method: 'get'
 });
 
-export const refreshToken = () => request({
-  url: baseUrl + '/user/refesh',
-  method: 'post'
+export const refreshToken = (refreshToken) => request({
+  url: '/api/blade-auth/token',
+  method: 'post',
+  params: {
+    refreshToken,
+    grantType: "refresh_token",
+    scope: "all",
+  }
 })
 
 export const registerGuest = (form, oauthId) => request({
@@ -72,17 +76,17 @@ export const getCaptcha = () => request({
 });
 
 export const getTopMenu = () => request({
-  url: baseUrl + '/user/getTopMenu',
+  url: '/user/getTopMenu',
   method: 'get'
 });
 
 export const sendLogs = (list) => request({
-  url: baseUrl + '/user/logout',
+  url: '/user/send-logs',
   method: 'post',
   data: list
 })
 
 export const logout = () => request({
-  url: baseUrl + '/user/logout',
-  method: 'get'
+  url: '/blade-auth/logout',
+  method: 'post'
 })

@@ -43,9 +43,9 @@ import tags from "./tags";
 import top from "./top/";
 import sidebar from "./sidebar/";
 import admin from "@/util/admin";
-// import { validatenull } from "@/util/validate";
-// import { calcDate } from "@/util/date.js";
-// import { getStore } from "@/util/store.js";
+import {validatenull} from "@/util/validate";
+import {calcDate} from "@/util/date.js";
+import {getStore} from "@/util/store.js";
 export default {
   components: {
     top,
@@ -83,16 +83,16 @@ export default {
         }, 0);
       };
     },
-    // 10分钟检测一次token
+    // 定时检测一次token
     refreshToken() {
-      /*this.refreshTime = setInterval(() => {
+      this.refreshTime = setInterval(() => {
         const token = getStore({
           name: "token",
           debug: true
-        });
+        }) || {};
         const date = calcDate(token.datetime, new Date().getTime());
         if (validatenull(date)) return;
-        if (!(date.seconds >= this.website.tokenTime) && !this.refreshLock) {
+        if (date.seconds >= this.website.tokenTime && !this.refreshLock) {
           this.refreshLock = true;
           this.$store
             .dispatch("RefreshToken")
@@ -103,7 +103,7 @@ export default {
               this.refreshLock = false;
             });
         }
-      }, 10000);*/
+      }, 1000);
     }
   }
 };
