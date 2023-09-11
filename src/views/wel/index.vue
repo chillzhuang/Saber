@@ -3,14 +3,14 @@
     <basic-container>
       <third-register></third-register>
       <p style="text-align: center;">
-        <img src="https://img.shields.io/badge/Release-V3.6.0-green.svg" alt="Downloads"/>
+        <img src="https://img.shields.io/badge/Release-V3.7.0-green.svg" alt="Downloads"/>
         <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
         <img src="https://img.shields.io/badge/Spring%20Cloud-2021-blue.svg" alt="Coverage Status"/>
-        <img src="https://img.shields.io/badge/Spring%20Boot-2.7.10.RELEASE-blue.svg" alt="Downloads"/>
-        <a target="_blank" href="https://bladex.vip">
+        <img src="https://img.shields.io/badge/Spring%20Boot-2.7.15-blue.svg" alt="Downloads"/>
+        <a target="_blank" href="https://bladex.cn">
           <img src="https://img.shields.io/badge/Saber%20Author-Small%20Chill-ff69b4.svg" alt="Downloads"/>
         </a>
-        <a target="_blank" href="https://bladex.vip">
+        <a target="_blank" href="https://bladex.cn">
           <img src="https://img.shields.io/badge/Copyright%20-@BladeX-%23ff3f59.svg" alt="Downloads"/>
         </a>
       </p>
@@ -31,7 +31,7 @@
             <div>3.基于稳定生产的商业项目升级优化而来，更加贴近企业级的需求</div>
             <div>4.追求企业开发更加高效，部署更加方便，生产更加稳定</div>
             <div>5.GVP-码云最有价值开源项目</div>
-            <div>6.BladeX授权地址:<a target="_blank" href="https://bladex.vip/#/vip">点击授权</a></div>
+            <div>6.BladeX授权地址:<a target="_blank" href="https://bladex.cn/#/vip">点击授权</a></div>
           </el-collapse-item>
           <el-collapse-item title="为何需要BladeX" name="3">
             <div>1.经历过较长的线上生产，积累了很多企业痛点的解决方案</div>
@@ -92,19 +92,19 @@
             <el-divider content-position="right"><i class="el-icon-star-off"/></el-divider>
             <span>官网地址</span>
             <el-divider direction="vertical"/>
-            <span><el-link href="https://bladex.vip" target="_blank"
-                           type="primary">https://bladex.vip</el-link></span>
+            <span><el-link href="https://bladex.cn" target="_blank"
+                           type="primary">https://bladex.cn</el-link></span>
             <el-divider content-position="right"><i class="el-icon-star-off"/></el-divider>
             <span>社区地址</span>
             <el-divider direction="vertical"/>
-            <span><el-link href="https://sns.bladex.vip" target="_blank"
-                           type="primary">https://sns.bladex.vip</el-link></span>
+            <span><el-link href="https://sns.bladex.cn" target="_blank"
+                           type="primary">https://sns.bladex.cn</el-link></span>
             <el-divider content-position="right"><i class="el-icon-star-off"/></el-divider>
             <span>获取文档</span>
             <el-divider direction="vertical"/>
             <span class="tag-group">
                 <el-tag type="success" style="cursor: pointer"
-                        onclick="window.open('https://sns.bladex.vip/note/view/1.html')">免费版</el-tag>
+                        onclick="window.open('https://sns.bladex.cn/note/view/1.html')">免费版</el-tag>
                 <el-divider direction="vertical"/>
                 <el-tag type="danger" style="cursor: pointer"
                         onclick="window.open('https://www.kancloud.cn/@smallchill')">收费版</el-tag>
@@ -117,7 +117,7 @@
                         onclick="window.open('https://gitee.com/smallc/SpringBlade')">开源版</el-tag>
                 <el-divider direction="vertical"/>
                 <el-tag type="danger" effect="dark" style="cursor: pointer"
-                        onclick="window.open('https://bladex.vip/#/vip')">商业版</el-tag>
+                        onclick="window.open('https://bladex.cn/#/vip')">商业版</el-tag>
               </span>
           </div>
         </basic-container>
@@ -125,6 +125,19 @@
       <el-row>
         <basic-container>
           <el-collapse v-model="logActiveNames" @change="handleChange">
+            <el-collapse-item title="3.7.0发布 新增Token加密传输功能" name="34">
+              <div>1.升级 SpringCloud 至 2021.0.8</div>
+              <div>2.升级 SpringBoot 至 2.7.15</div>
+              <div>3.升级 Mybatis-Plus 至 3.5.3.2</div>
+              <div>4.升级 Mybatis-Plus-Generator 至 3.5.3.2</div>
+              <div>5.升级 Druid 至 1.2.19</div>
+              <div>6.升级 Avue2 至 2.10.16</div>
+              <div>7.升级 Avue3 至 3.2.19</div>
+              <div>8.新增 Token加密传输功能，提升系统安全性</div>
+              <div>9.新增 后端对Token加密增加强制校验的功能</div>
+              <div>10.优化 INode树形节点封装，增加泛型支持</div>
+              <div>11.优化 Sql防注入的功能</div>
+            </el-collapse-item>
             <el-collapse-item title="3.6.0发布 基于vue3的前端架构正式发布" name="33">
               <div>1.升级 SpringCloud 至 2021.0.6</div>
               <div>2.升级 SpringBoot 至 2.7.10</div>
@@ -484,7 +497,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['33']
+        logActiveNames: ['34']
       };
     },
     computed: {

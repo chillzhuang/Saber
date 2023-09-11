@@ -155,7 +155,7 @@
       getTenant() {
         let domain = getTopUrl();
         // 临时指定域名，方便测试
-        //domain = "https://bladex.vip";
+        //domain = "https://bladex.cn";
         info(domain).then(res => {
           const data = res.data;
           if (data.success && data.data.tenantId) {
