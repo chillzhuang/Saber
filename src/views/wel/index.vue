@@ -3,10 +3,10 @@
     <basic-container>
       <third-register></third-register>
       <p style="text-align: center;">
-        <img src="https://img.shields.io/badge/Release-V3.7.0-green.svg" alt="Downloads"/>
+        <img src="https://img.shields.io/badge/Release-V3.7.1-green.svg" alt="Downloads"/>
         <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
         <img src="https://img.shields.io/badge/Spring%20Cloud-2021-blue.svg" alt="Coverage Status"/>
-        <img src="https://img.shields.io/badge/Spring%20Boot-2.7.15-blue.svg" alt="Downloads"/>
+        <img src="https://img.shields.io/badge/Spring%20Boot-2.7.18-blue.svg" alt="Downloads"/>
         <a target="_blank" href="https://bladex.cn">
           <img src="https://img.shields.io/badge/Saber%20Author-Small%20Chill-ff69b4.svg" alt="Downloads"/>
         </a>
@@ -125,6 +125,16 @@
       <el-row>
         <basic-container>
           <el-collapse v-model="logActiveNames" @change="handleChange">
+            <el-collapse-item title="3.7.1发布 升级系统安全性能" name="35">
+              <div>1.升级 SpringBoot 至 2.7.18</div>
+              <div>2.升级 SpringBootAdmin 至 2.7.14</div>
+              <div>3.升级 Mybatis-Plus 至 3.5.4.1</div>
+              <div>4.升级 Mybatis-Plus-Generator 至 3.5.4.1</div>
+              <div>5.升级 Knife4j 至 4.3.0</div>
+              <div>6.优化 防SQL注入逻辑避免双写等情况出现</div>
+              <div>7.调整 重要API调用等级防止被恶意调用</div>
+              <div>8.调整 默认关闭通知公告模块的Token加密功能</div>
+            </el-collapse-item>
             <el-collapse-item title="3.7.0发布 新增Token加密传输功能" name="34">
               <div>1.升级 SpringCloud 至 2021.0.8</div>
               <div>2.升级 SpringBoot 至 2.7.15</div>
@@ -497,7 +507,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['34']
+        logActiveNames: ['35']
       };
     },
     computed: {

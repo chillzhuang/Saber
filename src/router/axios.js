@@ -15,6 +15,7 @@ import website from '@/config/website';
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import {Base64} from 'js-base64';
+import crypto from "@/util/crypto";
 
 axios.defaults.timeout = 10000;
 //返回其他状态吗
