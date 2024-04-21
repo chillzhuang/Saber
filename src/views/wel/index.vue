@@ -3,10 +3,10 @@
     <basic-container>
       <third-register></third-register>
       <p style="text-align: center;">
-        <img src="https://img.shields.io/badge/Release-V3.7.1-green.svg" alt="Downloads"/>
-        <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
-        <img src="https://img.shields.io/badge/Spring%20Cloud-2021-blue.svg" alt="Coverage Status"/>
-        <img src="https://img.shields.io/badge/Spring%20Boot-2.7.18-blue.svg" alt="Downloads"/>
+        <img src="https://img.shields.io/badge/Release-V4.0.0-green.svg" alt="Downloads"/>
+        <img src="https://img.shields.io/badge/JDK-14+-green.svg" alt="Build Status"/>
+        <img src="https://img.shields.io/badge/Spring%20Cloud-2023-blue.svg" alt="Coverage Status"/>
+        <img src="https://img.shields.io/badge/Spring%20Boot-3.2-blue.svg" alt="Downloads"/>
         <a target="_blank" href="https://bladex.cn">
           <img src="https://img.shields.io/badge/Saber%20Author-Small%20Chill-ff69b4.svg" alt="Downloads"/>
         </a>
@@ -125,6 +125,29 @@
       <el-row>
         <basic-container>
           <el-collapse v-model="logActiveNames" @change="handleChange">
+            <el-collapse-item title="4.0.0发布 升级 SpringBoot3 SpringCloud2023 JDK17" name="36">
+              <div>1.[升级]JDK 至 Java17</div>
+              <div>2.[升级]SpringBoot 至 3.2.4</div>
+              <div>3.[升级]SpringBootAdmin 至 3.2.3</div>
+              <div>4.[升级]SpringCloud 至 2023.0.1</div>
+              <div>5.[升级]AlibabaCloud 至 2022.0.0</div>
+              <div>6.[升级]Knife4j 至 4.5.0</div>
+              <div>7.[升级]Mybatis-Plus 至 3.5.6</div>
+              <div>8.[升级]MybatisSpring 至 3.0.3</div>
+              <div>9.[升级]Druid 至 1.2.22</div>
+              <div>10.[升级]Nacos 至 2.3.1</div>
+              <div>11.[升级]EasyExcel 至 3.3.4</div>
+              <div>12.[替换]原Swagger2改为OpenAPI3</div>
+              <div>13.[替换]原独立blade-swagger服务改为blade-gateway聚合文档</div>
+              <div>14.[新增]Sentinel新版API适配</div>
+              <div>15.[新增]生产环境屏蔽详细的异常信息返回</div>
+              <div>16.[新增]SpringDoc-OpenAI3集成支持</div>
+              <div>17.[优化]更新代码生成脚本适配最新版API</div>
+              <div>18.[优化]问号挂参的路由不再开启新tab</div>
+              <div>19.[优化]vue3支持base路径的配置和部署</div>
+              <div>20.[优化]默认错误提示</div>
+              <div>21.[修复]vue3用户个人信息切换后提交报错的问题</div>
+            </el-collapse-item>
             <el-collapse-item title="3.7.1发布 升级系统安全性能" name="35">
               <div>1.升级 SpringBoot 至 2.7.18</div>
               <div>2.升级 SpringBootAdmin 至 2.7.14</div>
@@ -507,7 +530,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['35']
+        logActiveNames: ['36']
       };
     },
     computed: {

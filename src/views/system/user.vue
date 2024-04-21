@@ -116,6 +116,7 @@
   import {mapGetters} from "vuex";
   import website from '@/config/website';
   import {getToken} from '@/util/auth';
+  import func from "@/util/func";
 
   export default {
     data() {
@@ -416,9 +417,9 @@
         });
       },
       rowSave(row, done, loading) {
-        row.deptId = row.deptId.join(",");
-        row.roleId = row.roleId.join(",");
-        row.postId = row.postId.join(",");
+        row.deptId = func.join(row.deptId);
+        row.roleId = func.join(row.roleId);
+        row.postId = func.join(row.postId);
         add(row).then(() => {
           done();
           this.onLoad(this.page);
@@ -432,9 +433,9 @@
         });
       },
       rowUpdate(row, index, done, loading) {
-        row.deptId = row.deptId.join(",");
-        row.roleId = row.roleId.join(",");
-        row.postId = row.postId.join(",");
+        row.deptId = func.join(row.deptId);
+        row.roleId = func.join(row.roleId);
+        row.postId = func.join(row.postId);
         update(row).then(() => {
           done();
           this.onLoad(this.page);
