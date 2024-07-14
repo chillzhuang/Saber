@@ -5,6 +5,7 @@ import {deepClone} from '@/util/util'
 import website from '@/config/website'
 import {Message} from 'element-ui'
 import {loginByUsername, loginBySocial, getUserInfo, getMenu, getTopMenu, logout, refreshToken, getButtons} from '@/api/user'
+import { encrypt } from '@/util/sm2'
 
 
 function addPath(ele, first) {
@@ -44,7 +45,7 @@ const user = {
     //根据用户名登录
     LoginByUsername({commit}, userInfo) {
       return new Promise((resolve, reject) => {
-        loginByUsername(userInfo.tenantId, userInfo.username, userInfo.password, userInfo.type, userInfo.key, userInfo.code).then(res => {
+        loginByUsername(userInfo.tenantId, userInfo.username, encrypt(userInfo.password), userInfo.type, userInfo.key, userInfo.code).then(res => {
           const data = res.data;
           commit('SET_TOKEN', data.data.accessToken);
           commit('SET_REFRESH_TOKEN', data.data.refreshToken);
