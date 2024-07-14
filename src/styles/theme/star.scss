@@ -1,12 +1,15 @@
 .theme-star {
+  .avue-main{
+    background: transparent;
+  }
     .avue-contail {
-        background-image: url("/img/bg/star-squashed.jpg");
+        background-image: url("/img/star-squashed.jpg");
         background-size: 100% 100%;
     }
     .avue-logo{
         color: #fff;
     }
-    .avue-header,
+    .avue-top,
     .avue-logo,
     .tags-container {
         background-color: transparent;
@@ -40,7 +43,7 @@
     .avue-sidebar{
         box-shadow: 2px 0 6px rgba(0, 21, 41, 0.15);
         background-color:transparent;
-        .el-menu-item,.el-submenu__title{
+        .el-menu-item,.el-sub-menu__title{
         i,span{
             color:#fff
         }

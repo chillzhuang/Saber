@@ -5,7 +5,7 @@
                :data="data"
                ref="crud"
                v-model="form"
-               :page.sync="page"
+               v-model:page="page"
                :permission="permissionList"
                @row-del="rowDel"
                @search-change="searchChange"
@@ -15,44 +15,40 @@
                @size-change="sizeChange"
                @refresh-change="refreshChange"
                @on-load="onLoad">
-      <template slot="menuLeft">
+      <template #menu-left>
         <el-button type="danger"
-                   size="small"
                    icon="el-icon-delete"
                    plain
                    @click="handleDelete">删 除
         </el-button>
       </template>
-      <template slot-scope="scope" slot="menu">
-        <el-button
-          type="text"
-          icon="el-icon-edit-outline"
-          size="small"
-          @click.stop="handleDesign(scope.row.name)"
-        >设计
+      <template #menu="scope">
+        <el-button text
+                   type="primary"
+                   icon="el-icon-edit-outline"
+                   @click.stop="handleDesign(scope.row.name)">设计
         </el-button>
-        <el-button
-          type="text"
-          icon="el-icon-view"
-          size="small"
-          @click.stop="handlePreview(scope.row.name)"
-        >预览
+        <el-button text
+                   type="primary"
+                   icon="el-icon-view"
+                   @click.stop="handlePreview(scope.row.name)">预览
         </el-button>
       </template>
-      <template slot-scope="{row}" slot="name">
-        <el-tag style="cursor:pointer" @click="handlePreview(row.name)">{{ row.name }}</el-tag>
+      <template #name="{row}">
+        <el-tag style="cursor:pointer"
+                @click="handlePreview(row.name)">{{ row.name }}</el-tag>
       </template>
     </avue-crud>
   </basic-container>
 </template>
 
 <script>
-import {getList, remove} from "@/api/report/report";
-import {mapGetters} from "vuex";
+import { getList, remove } from "@/api/report/report";
+import { mapGetters } from "vuex";
 import website from '@/config/website';
 
 export default {
-  data() {
+  data () {
     return {
       form: {},
       selectionList: [],
@@ -96,7 +92,7 @@ export default {
   },
   computed: {
     ...mapGetters(["userInfo", "permission"]),
-    permissionList() {
+    permissionList () {
       return {
         addBtn: false,
         viewBtn: false,
@@ -104,7 +100,7 @@ export default {
         editBtn: false
       };
     },
-    ids() {
+    ids () {
       let ids = [];
       this.selectionList.forEach(ele => {
         ids.push(ele.id);
@@ -113,13 +109,13 @@ export default {
     }
   },
   methods: {
-    handlePreview(name) {
-      this.$router.push({path: `/myiframe/urlPath?name=preview-${name}&src=${website.reportUrl}/preview?_u=blade-${name}`});
+    handlePreview (name) {
+      this.$router.push({ path: `/myiframe/urlPath?name=preview-${name}&src=${website.reportUrl}/preview?_u=blade-${name}` });
     },
-    handleDesign(name) {
-      this.$router.push({path: `/myiframe/urlPath?name=designer-${name}&src=${website.reportUrl}/designer?_u=blade-${name}`});
+    handleDesign (name) {
+      this.$router.push({ path: `/myiframe/urlPath?name=designer-${name}&src=${website.reportUrl}/designer?_u=blade-${name}` });
     },
-    rowDel(row) {
+    rowDel (row) {
       this.$confirm("确定将选择数据删除?", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -136,24 +132,24 @@ export default {
           });
         });
     },
-    searchReset() {
+    searchReset () {
       this.query = {};
       this.onLoad(this.page);
     },
-    searchChange(params, done) {
+    searchChange (params, done) {
       this.query = params;
       this.page.currentPage = 1;
       this.onLoad(this.page, params);
       done();
     },
-    selectionChange(list) {
+    selectionChange (list) {
       this.selectionList = list;
     },
-    selectionClear() {
+    selectionClear () {
       this.selectionList = [];
       this.$refs.crud.toggleSelection();
     },
-    handleDelete() {
+    handleDelete () {
       if (this.selectionList.length === 0) {
         this.$message.warning("请选择至少一条数据");
         return;
@@ -175,16 +171,16 @@ export default {
           this.$refs.crud.toggleSelection();
         });
     },
-    currentChange(currentPage) {
+    currentChange (currentPage) {
       this.page.currentPage = currentPage;
     },
-    sizeChange(pageSize) {
+    sizeChange (pageSize) {
       this.page.pageSize = pageSize;
     },
-    refreshChange() {
+    refreshChange () {
       this.onLoad(this.page, this.query);
     },
-    onLoad(page, params = {}) {
+    onLoad (page, params = {}) {
       this.loading = true;
       getList(page.currentPage, page.pageSize, Object.assign(params, this.query)).then(res => {
         const data = res.data.data;

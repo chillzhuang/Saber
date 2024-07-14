@@ -1,8 +1,8 @@
-import request from '@/router/axios';
+import request from '@/axios';
 
 export const getList = (current, size, params) => {
   return request({
-    url: '/api/blade-system/tenant/list',
+    url: '/blade-system/tenant/list',
     method: 'get',
     params: {
       ...params,
@@ -13,7 +13,7 @@ export const getList = (current, size, params) => {
 }
 export const remove = (ids) => {
   return request({
-    url: '/api/blade-system/tenant/remove',
+    url: '/blade-system/tenant/remove',
     method: 'post',
     params: {
       ids,
@@ -23,7 +23,7 @@ export const remove = (ids) => {
 
 export const add = (row) => {
   return request({
-    url: '/api/blade-system/tenant/submit',
+    url: '/blade-system/tenant/submit',
     method: 'post',
     data: row
   })
@@ -31,7 +31,7 @@ export const add = (row) => {
 
 export const update = (row) => {
   return request({
-    url: '/api/blade-system/tenant/submit',
+    url: '/blade-system/tenant/submit',
     method: 'post',
     data: row
   })
@@ -39,7 +39,7 @@ export const update = (row) => {
 
 export const info = (domain) => {
   return request({
-    url: '/api/blade-system/tenant/info',
+    url: '/blade-system/tenant/info',
     method: 'get',
     params: {
       domain

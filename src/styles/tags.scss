@@ -6,7 +6,6 @@
     padding: 0 10px;
     margin-bottom: 10px;
     box-sizing: border-box;
-    overflow: hidden;
     border-top: 1px solid #f6f6f6;
     background-color: #fff;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);
@@ -36,8 +35,8 @@
     .el-tabs__nav-prev,
     .el-tabs__nav-next {
         width: 20px;
-        line-height: 34px;
-        font-size: 18x;
+        line-height: 40px;
+        font-size: 18px;
         text-align: center;
     }
     &__box {
@@ -45,16 +44,13 @@
         box-sizing: border-box;
         padding-right: 106px;
         width: 100%;
-        &--close {
-            .el-tabs__item {
-                &:first-child {
-                    padding: 0 20px !important;
-                    .el-icon-close {
-                        display: none;
-                    }
-                }
-            }
-        }
+        .el-tabs__item {
+          &:first-child {
+              .is-icon-close {
+                  display: none;
+              }
+          }
+      }
     }
     &__contentmenu{
         position: fixed;

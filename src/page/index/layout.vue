@@ -1,3 +1,7 @@
 <template>
-  <router-view></router-view>
+  <router-view #="{ Component }">
+    <keep-alive :include="$store.getters.tagsKeep">
+      <component :is="Component" />
+    </keep-alive>
+  </router-view>
 </template>

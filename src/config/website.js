@@ -3,39 +3,44 @@
  */
 export default {
   title: "saber",
+  logo: "A",
+  key: 'saber',//配置主键,目前用于存储
   indexTitle: 'Saber Admin',
   clientId: 'saber', // 客户端id
   clientSecret: 'saber_secret', // 客户端密钥
   tenantMode: true, // 是否开启租户模式
   captchaMode: true, // 是否开启验证码模式
-  logo: "S",
-  key: 'saber',//配置主键,目前用于存储
-  lockPage: '/lock',
-  tokenTime: 100,
+  tokenTime: 3000,//token过期时间
+  Authorization: 'Blade-Auth',
   //http的status默认放行不才用统一处理的,
   statusWhiteList: [],
   //配置首页不可关闭
-  isFirstPage: false,
+  setting: {
+    sidebar: 'vertical',
+    tag: true,
+    debug: true,
+    collapse: true,
+    search: true,
+    lock: true,
+    screenshot: true,
+    fullscren: true,
+    theme: true,
+    menu: true
+  },
   fistPage: {
-    label: "首页",
-    value: "/wel/index",
-    params: {},
-    query: {},
-    meta: {
-      i18n: 'dashboard'
-    },
-    group: [],
-    close: false
+    name: "首页",
+    path: "/wel/index"
   },
   //配置菜单的属性
   menu: {
-    iconDefault: 'iconfont icon-caidan',
-    props: {
-      label: 'name',
-      path: 'path',
-      icon: 'source',
-      children: 'children'
-    }
+    iconDefault: 'icon-caidan',
+    label: 'name',
+    path: 'path',
+    icon: 'source',
+    children: 'children',
+    query: 'query',
+    href: 'path',
+    meta: 'meta'
   },
   //auth配置
   auth: {

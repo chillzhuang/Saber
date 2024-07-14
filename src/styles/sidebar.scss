@@ -1,47 +1,21 @@
 
-
-.el-menu--popup{
-    .el-menu-item{
-        background-color: #20222a;
-        i{
-            margin-right: 5px;
-        }
-        i,span{
-            color:hsla(0,0%,100%,.7);
-        }
-        &:hover{
-            i,span{
-                color:#fff;
-            }
-        }
-        &.is-active {
-            background-color: rgba(0,0,0,.8);
-            &:before {
-                content: '';
-                top: 0;
-                left: 0;
-                bottom: 0;
-                width: 4px;
-                background: #409eff;
-                position: absolute;
-            }
-            i,span{
-                color:#fff;
-            }
-        }
-    }
-    
-}
 .avue-sidebar {
+    width: $sidebar_width;
+    height: 100%;
     user-select: none; 
     position: relative;
-    padding-top: 60px;
     height: 100%;
     position: relative;
-    background-color: #20222a;
+    background-color: #031527;
     transition: width .2s;
     box-sizing: border-box;
     box-shadow: 2px 0 6px rgba(0,21,41,.35);
+    .el-scrollbar__wrap {
+        overflow-x: hidden;
+    }
+    .avue-menu{
+      height: calc(100% - #{$top_height});
+    }
     &--tip{
         width:90%;
         height: 140px;
@@ -58,12 +32,12 @@
         font-size: 14px;
         background-color: rgba(0,0,0,.4);
     }
-    .el-menu-item,.el-submenu__title{
+    .el-menu-item,.el-sub-menu__title{
         i{
-            margin-right: 5px;
+          margin-right: 5px;
         }
         i,span{
-            color:hsla(0,0%,100%,.7);
+           color:hsla(0,0%,100%,.7);
         }
         &:hover{
             background: transparent;
@@ -87,4 +61,5 @@
             }
         }
     }
+    
 }

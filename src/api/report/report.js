@@ -1,8 +1,8 @@
-import request from '@/router/axios';
+import request from '@/axios';
 
 export const getList = (current, size, params) => {
   return request({
-    url: '/api/blade-report/report/rest/list',
+    url: '/blade-report/report/rest/list',
     method: 'get',
     params: {
       ...params,
@@ -13,7 +13,7 @@ export const getList = (current, size, params) => {
 }
 export const remove = (ids) => {
   return request({
-    url: '/api/blade-report/report/rest/remove',
+    url: '/blade-report/report/rest/remove',
     method: 'post',
     params: {
       ids,

@@ -6,7 +6,7 @@
                    :placeholder="$t('search')"
                    @select="handleSelect">
 
-    <template slot-scope="{ item }">
+    <template #="{ item }">
       <i :class="[item[iconKey],'icon']"></i>
       <div class="name">{{ item[labelKey] }}</div>
       <div class="addr">{{ item[pathKey] }}</div>
@@ -15,44 +15,42 @@
 </template>
 
 <script>
-import config from "../sidebar/config.js";
 import { mapGetters } from "vuex";
 export default {
-  data() {
+  data () {
     return {
-      config: config,
       value: "",
       menuList: []
     };
   },
-  created() {
+  created () {
     this.getMenuList();
   },
 
   watch: {
-    menu() {
+    menu () {
       this.getMenuList();
     }
   },
   computed: {
-    labelKey() {
-      return this.website.menu.props.label || this.config.propsDefault.label;
+    labelKey () {
+      return this.website.menu.label
     },
-    pathKey() {
-      return this.website.menu.props.path || this.config.propsDefault.path;
+    pathKey () {
+      return this.website.menu.path
     },
-    iconKey() {
-      return this.website.menu.props.icon || this.config.propsDefault.icon;
+    iconKey () {
+      return this.website.menu.icon
     },
-    childrenKey() {
+    childrenKey () {
       return (
-        this.website.menu.props.children || this.config.propsDefault.children
+        this.website.menu.children
       );
     },
-    ...mapGetters(["menu", "website"])
+    ...mapGetters(["menu"])
   },
   methods: {
-    getMenuList() {
+    getMenuList () {
       const findMenu = list => {
         for (let i = 0; i < list.length; i++) {
           const ele = Object.assign({}, list[i]);
@@ -66,7 +64,7 @@ export default {
       this.menuList = [];
       findMenu(this.menu);
     },
-    querySearch(queryString, cb) {
+    querySearch (queryString, cb) {
       var restaurants = this.menuList;
       var results = queryString
         ? restaurants.filter(this.createFilter(queryString))
@@ -74,22 +72,18 @@ export default {
       // 调用 callback 返回建议列表的数据
       cb(results);
     },
-    createFilter(queryString) {
+    createFilter (queryString) {
       return restaurant => {
         return (
-          restaurant.label.toLowerCase().indexOf(queryString.toLowerCase()) ===
+          restaurant[this.labelKey].toLowerCase().indexOf(queryString.toLowerCase()) ===
           0
         );
       };
     },
-    handleSelect(item) {
+    handleSelect (item) {
       this.value = "";
       this.$router.push({
-        path: this.$router.$avueRouter.getPath({
-          name: item[this.labelKey],
-          src: item[this.pathKey],
-          i18n: (item.meta || {}).i18n
-        }),
+        path: item[this.pathKey],
         query: item.query
       });
     }
@@ -100,8 +94,8 @@ export default {
 <style lang="scss">
 .my-autocomplete {
   li {
-    line-height: normal;
-    padding: 7px;
+    line-height: normal !important;
+    padding: 7px !important;
     .icon {
       margin-right: 5px;
       display: inline-block;

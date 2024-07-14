@@ -1,6 +1,7 @@
 <template>
   <div class="avue-tags"
-       v-if="showTag">
+       v-if="setting.tag"
+       @click="contextmenuFlag=false">
     <!-- tag盒子 -->
     <div v-if="contextmenuFlag"
          class="avue-tags__contentmenu"
@@ -10,85 +11,107 @@
       <div class="item"
            @click="closeAllTags">{{$t('tagsView.closeAll')}}</div>
     </div>
-    <div class="avue-tags__box"
-         :class="{'avue-tags__box--close':!website.isFirstPage}">
+    <div class="avue-tags__box">
       <el-tabs v-model="active"
                type="card"
-               @contextmenu.native="handleContextmenu"
+               @contextmenu="handleContextmenu"
                :closable="tagLen!==1"
                @tab-click="openTag"
                @edit="menuTag">
-        <el-tab-pane :key="item.value"
-                     v-for="item in tagList"
+        <el-tab-pane v-for="(item,index) in tagList"
+                     :key="index"
                      :label="generateTitle(item)"
-                     :name="item.value">
+                     :name="item.fullPath">
+          <template #label>
+            <span>
+              {{generateTitle(item)}}
+              <i class="el-icon-refresh"
+                 :class="{'turn':refresh}"
+                 @click="handleRefresh"
+                 v-if="active==item.fullPath"></i>
+            </span>
+          </template>
+
         </el-tab-pane>
 
       </el-tabs>
       <el-dropdown class="avue-tags__menu">
-        <el-button type="primary"
-                   size="mini">
+        <el-button type="primary">
           {{$t('tagsView.menu')}}
           <i class="el-icon-arrow-down el-icon--right"></i>
         </el-button>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item @click.native="closeOthersTags">{{$t('tagsView.closeOthers')}}</el-dropdown-item>
-          <el-dropdown-item @click.native="closeAllTags">{{$t('tagsView.closeAll')}}</el-dropdown-item>
-        </el-dropdown-menu>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item @click="openSearch">{{$t('tagsView.search')}}</el-dropdown-item>
+            <el-dropdown-item @click="closeOthersTags">{{$t('tagsView.closeOthers')}}</el-dropdown-item>
+            <el-dropdown-item @click="closeAllTags">{{$t('tagsView.closeAll')}}</el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
       </el-dropdown>
     </div>
 
   </div>
 </template>
 <script>
-import { mapGetters, mapState } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   name: "tags",
-  data() {
+  data () {
     return {
+      refresh: false,
       active: "",
       contentmenuX: "",
       contentmenuY: "",
       contextmenuFlag: false
     };
   },
-  created() {},
-  mounted() {
-    this.setActive();
-  },
   watch: {
-    tag() {
-      this.setActive();
+    tag: {
+      handler (val) {
+        this.active = val.fullPath;
+      },
+      immediate: true,
     },
-    contextmenuFlag() {
+    contextmenuFlag () {
       window.addEventListener("mousedown", this.watchContextmenu);
     }
   },
   computed: {
-    ...mapGetters(["tagWel", "tagList", "tag", "website"]),
-    ...mapState({
-      showTag: state => state.common.showTag
-    }),
-    tagLen() {
+    ...mapGetters(["tagWel", "tagList", "tag", "setting"]),
+    tagLen () {
       return this.tagList.length || 0;
     }
   },
   methods: {
-    generateTitle(item) {
-      return this.$router.$avueRouter.generateTitle(
-        item.label,
-        (item.meta || {}).i18n
-      );
+    openSearch () {
+      this.$store.commit('SET_IS_SEARCH', true)
     },
-    watchContextmenu(event) {
+    handleRefresh () {
+      this.refresh = true;
+      this.$store.commit('SET_IS_REFRESH', false);
+      setTimeout(() => {
+        this.$store.commit('SET_IS_REFRESH', true);
+      }, 100)
+      setTimeout(() => {
+        this.refresh = false;
+      }, 500)
+    },
+    generateTitle (item) {
+      return this.$router.$avueRouter.generateTitle({
+        ...item,
+        ...{
+          label: item.name
+        }
+      });
+    },
+    watchContextmenu (event) {
       if (!this.$el.contains(event.target) || event.button !== 0) {
         this.contextmenuFlag = false;
       }
       window.removeEventListener("mousedown", this.watchContextmenu);
     },
-    handleContextmenu(event) {
+    handleContextmenu (event) {
       let target = event.target;
-      // 解决 https://github.com/d2-projects/d2-admin/issues/54
       let flag = false;
       if (target.className.indexOf("el-tabs__item") > -1) flag = true;
       else if (target.parentNode.className.indexOf("el-tabs__item") > -1) {
@@ -104,59 +127,40 @@ export default {
         this.contextmenuFlag = true;
       }
     },
-    //激活当前选项
-    setActive() {
-      this.active = this.tag.value;
-    },
-    menuTag(value, action) {
+    menuTag (value, action) {
       if (action === "remove") {
         let { tag, key } = this.findTag(value);
         this.$store.commit("DEL_TAG", tag);
-        if (tag.value === this.tag.value) {
-          tag = this.tagList[key === 0 ? key : key - 1]; //如果关闭本标签让前推一个
-          this.openTag(tag);
+        if (tag.fullPath === this.tag.fullPath) {
+          tag = this.tagList[key - 1]
+          this.$router.push({
+            path: tag.path,
+            query: tag.query
+          })
         }
       }
     },
-    openTag(item) {
-      let tag;
-      if (item.name) {
-        tag = this.findTag(item.name).tag;
-      } else {
-        tag = item;
-      }
+    openTag (item) {
+      let value = item.props.name
+      let { tag } = this.findTag(value)
       this.$router.push({
-        path: this.$router.$avueRouter.getPath({
-          name: tag.label,
-          src: tag.value,
-          i18n: tag.meta.i18n
-        }),
+        path: tag.path,
         query: tag.query
-      });
+      })
     },
-    closeOthersTags() {
+    findTag (fullPath) {
+      let tag = this.tagList.find(item => item.fullPath === fullPath);
+      let key = this.tagList.findIndex(item => item.fullPath === fullPath);
+      return { tag, key }
+    },
+    closeOthersTags () {
       this.contextmenuFlag = false;
-      this.$store.commit("DEL_TAG_OTHER");
+      this.$store.commit('DEL_TAG_OTHER')
     },
-    findTag(value) {
-      let tag, key;
-      this.tagList.map((item, index) => {
-        if (item.value === value) {
-          tag = item;
-          key = index;
-        }
-      });
-      return { tag: tag, key: key };
-    },
-    closeAllTags() {
+    closeAllTags () {
       this.contextmenuFlag = false;
-      this.$store.commit("DEL_ALL_TAG");
-      this.$router.push({
-        path: this.$router.$avueRouter.getPath({
-          src: this.tagWel.value
-        }),
-        query: this.tagWel.query
-      });
+      this.$store.commit('DEL_ALL_TAG')
+      this.$router.push(this.tagWel);
     }
   }
 };

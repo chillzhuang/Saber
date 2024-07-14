@@ -1,8 +1,8 @@
-import request from '@/router/axios';
+import request from '@/axios';
 
 export const getList = (current, size, params) => {
   return request({
-    url: '/api/blade-user/list',
+    url: '/blade-user/list',
     method: 'get',
     params: {
       ...params,
@@ -13,7 +13,7 @@ export const getList = (current, size, params) => {
 }
 export const remove = (ids) => {
   return request({
-    url: '/api/blade-user/remove',
+    url: '/blade-user/remove',
     method: 'post',
     params: {
       ids,
@@ -23,7 +23,7 @@ export const remove = (ids) => {
 
 export const add = (row) => {
   return request({
-    url: '/api/blade-user/submit',
+    url: '/blade-user/submit',
     method: 'post',
     data: row
   })
@@ -31,7 +31,7 @@ export const add = (row) => {
 
 export const update = (row) => {
   return request({
-    url: '/api/blade-user/update',
+    url: '/blade-user/update',
     method: 'post',
     data: row
   })
@@ -39,7 +39,7 @@ export const update = (row) => {
 
 export const grant = (userIds, roleIds) => {
   return request({
-    url: '/api/blade-user/grant',
+    url: '/blade-user/grant',
     method: 'post',
     params: {
       userIds,
@@ -50,7 +50,7 @@ export const grant = (userIds, roleIds) => {
 
 export const getUser = (id) => {
   return request({
-    url: '/api/blade-user/detail',
+    url: '/blade-user/detail',
     method: 'get',
     params: {
       id,
@@ -60,14 +60,14 @@ export const getUser = (id) => {
 
 export const getUserInfo = () => {
   return request({
-    url: '/api/blade-user/info',
+    url: '/blade-user/info',
     method: 'get',
   })
 }
 
 export const resetPassword = (userIds) => {
   return request({
-    url: '/api/blade-user/reset-password',
+    url: '/blade-user/reset-password',
     method: 'post',
     params: {
       userIds,
@@ -77,7 +77,7 @@ export const resetPassword = (userIds) => {
 
 export const updatePassword = (oldPassword, newPassword, newPassword1) => {
   return request({
-    url: '/api/blade-user/update-password',
+    url: '/blade-user/update-password',
     method: 'post',
     params: {
       oldPassword,

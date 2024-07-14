@@ -1,52 +1,41 @@
 {
   "name": "saber-admin",
   "version": "4.1.0",
-  "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "analyz": "npm_config_report=true npm run build",
-    "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "vue-cli-service test:e2e"
+    "dev": "vite --host",
+    "prod": "vite --mode production",
+    "build": "vite build",
+    "build:prod": "vite build --mode production",
+    "serve": "vite preview --host"
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "babel-polyfill": "^6.26.0",
-    "classlist-polyfill": "^1.2.0",
-    "element-ui": "^2.15.6",
-    "js-base64": "^2.5.1",
-    "js-cookie": "^2.2.0",
-    "crypto-js": "^4.0.0",
+    "@element-plus/icons-vue": "^2.3.1",
+    "@smallwei/avue": "^3.4.4",
+    "animate.css": "^4.1.1",
+    "avue-plugin-ueditor": "^1.0.3",
+    "axios": "^0.21.1",
+    "crypto-js": "^4.1.1",
     "sm-crypto": "^0.3.13",
-    "mockjs": "^1.0.1-beta3",
-    "node-gyp": "^5.0.6",
+    "dayjs": "^1.10.6",
+    "element-plus": "^2.7.3",
+    "js-base64": "^3.7.4",
+    "js-cookie": "^3.0.0",
+    "mockjs": "^1.1.0",
     "nprogress": "^0.2.0",
-    "script-loader": "^0.7.2",
-    "vue": "^2.6.10",
-    "vue-axios": "^2.1.2",
-    "vue-i18n": "^8.7.0",
-    "vue-router": "^3.0.1",
-    "vuex": "^3.1.1"
+    "vite-plugin-mock": "^2.9.4",
+    "vue": "^3.4.27",
+    "vue-i18n": "^9.1.9",
+    "vue-router": "^4.3.2",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.1.1",
-    "@vue/cli-plugin-eslint": "^3.1.5",
-    "@vue/cli-service": "^3.1.4",
-    "chai": "^4.1.2",
-    "sass": "^1.77.6",
-    "sass-loader": "^10.0.5",
-    "vue-template-compiler": "^2.5.17",
-    "webpack-bundle-analyzer": "^3.0.3"
-  },
-  "lint-staged": {
-    "*.js": [
-      "vue-cli-service lint",
-      "git add"
-    ],
-    "*.vue": [
-      "vue-cli-service lint",
-      "git add"
-    ]
+    "@vitejs/plugin-vue": "^5.0.4",
+    "@vue/compiler-sfc": "^3.4.27",
+    "prettier": "^2.8.7",
+    "sass": "^1.77.2",
+    "unplugin-auto-import": "^0.11.2",
+    "vite": "^5.2.12",
+    "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-vue-setup-extend": "^0.4.0"
   }
 }

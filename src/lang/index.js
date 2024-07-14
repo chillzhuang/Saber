@@ -1,28 +1,31 @@
-import Vue from 'vue'
-import VueI18n from 'vue-i18n'
-import elementEnLocale from 'element-ui/lib/locale/lang/en' // element-ui lang
-import elementZhLocale from 'element-ui/lib/locale/lang/zh-CN'// element-ui lang
+import { createI18n } from 'vue-i18n'
+import Store from '@/store'
+import elementEnLocale from 'element-plus/es/locale/lang/en'
+import elementZhLocale from 'element-plus/es/locale/lang/zh-cn'
+import elementJaLocale from 'element-plus/es/locale/lang/ja'
 import enLocale from './en'
 import zhLocale from './zh'
-import { getStore } from '@/util/store'
-Vue.use(VueI18n)
-const Avue = window.AVUE;
-const messages = {
+import jaLocale from './ja'
+import AvueEnLocale from '@smallwei/avue/lib/locale/lang/en'
+import AvueZhLocale from '@smallwei/avue/lib/locale/lang/zh'
+export const messages = {
   en: {
     ...enLocale,
-    ...elementEnLocale,
-    ...Avue.locale.en,
+    ...AvueEnLocale,
+    ...elementEnLocale
   },
-  zh: {
+  'zh-cn': {
     ...zhLocale,
+    ...AvueZhLocale,
     ...elementZhLocale,
-    ...Avue.locale.zh,
+  },
+  ja: {
+    ...jaLocale,
+    ...elementJaLocale
   }
 }
-
-const i18n = new VueI18n({
-  locale: getStore({ name: 'language' }) || 'zh',
-  messages
-})
-
-export default i18n
+export const language = Store.getters.language
+export default createI18n({
+  locale: language,
+  messages,
+});

@@ -1,8 +1,8 @@
-import Layout from '@/page/index/'
-
+import Layout from '@/page/index/index.vue'
+import Store from '@/store/'
 export default [{
   path: '/wel',
-  component: Layout,
+  component: () => Store.getters.isMacOs ? import('@/mac/index.vue') : import('@/page/index/index.vue'),
   redirect: '/wel/index',
   children: [{
     path: 'index',
@@ -11,29 +11,26 @@ export default [{
       i18n: 'dashboard'
     },
     component: () =>
-      import( /* webpackChunkName: "views" */ '@/views/wel/index')
+      import( /* webpackChunkName: "views" */ '@/views/wel/index.vue')
   }, {
-    path: 'dashboard',
+    path: 'more',
     name: '控制台',
     meta: {
-      i18n: 'dashboard',
+      i18n: 'more',
       menu: false,
     },
     component: () =>
-      import( /* webpackChunkName: "views" */ '@/views/wel/dashboard')
+      import( /* webpackChunkName: "views" */ '@/views/wel/dashboard.vue')
   }]
 }, {
-  path: '/test',
+  path: '/iframe',
   component: Layout,
-  redirect: '/test/index',
+  redirect: '/iframe',
   children: [{
-    path: 'index',
-    name: '测试页',
-    meta: {
-      i18n: 'test'
-    },
+    path: '',
+    name: '',
     component: () =>
-      import( /* webpackChunkName: "views" */ '@/views/util/test')
+      import( /* webpackChunkName: "views" */ '@/components/iframe/main.vue')
   }]
 }, {
   path: '/info',
@@ -46,6 +43,6 @@ export default [{
       i18n: 'info'
     },
     component: () =>
-      import( /* webpackChunkName: "views" */ '@/views/user/info')
+      import( /* webpackChunkName: "views" */ '@/views/user/info.vue')
   }]
 }]

@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-dialog title="选择"
-               :visible.sync="box"
+               v-model="box"
                width="50%">
       <el-radio-group v-model="text"
                       class="list">
@@ -25,10 +25,10 @@
 </template>
 
 <script>
-import { setTheme } from "@/util/util";
+import { setTheme } from "utils/util";
 import { mapGetters } from "vuex";
 export default {
-  data() {
+  data () {
     return {
       box: false,
       text: "",
@@ -42,41 +42,71 @@ export default {
           value: "theme-white"
         },
         {
+          name: "黑色主题",
+          value: "theme-dark"
+        },
+        {
+          name: "hey主题",
+          value: "theme-hey"
+        },
+        {
           name: "炫彩主题",
           value: "theme-star"
+        },
+        {
+          name: "vip尊贵主题",
+          value: "theme-vip"
+        },
+        {
+          name: "智能工厂主题",
+          value: "theme-bule"
         },
         {
           name: "iview主题",
           value: "theme-iview"
         },
         {
+          name: "cool主题",
+          value: "theme-cool"
+        },
+        {
           name: "d2主题",
           value: "theme-d2"
         },
         {
-          name: "hey主题",
-          value: "theme-hey"
+          name: "renren主题",
+          value: "theme-renren"
+        }, {
+          name: "beautiful主题",
+          value: "theme-beautiful"
+        }, {
+          name: "Mac OS主题",
+          value: "mac-os"
         }
       ]
     };
   },
   watch: {
-    text: function(val) {
+    text: function (val) {
       this.$store.commit("SET_THEME_NAME", val);
       setTheme(val);
+      if (this.$store.getters.isMacOs) {
+        this.$router.push(this.tagWel)
+        setTimeout(() => location.reload())
+      }
     }
   },
   computed: {
-    ...mapGetters(["themeName"])
+    ...mapGetters(["themeName", "tagWel"])
   },
-  mounted() {
+  mounted () {
     this.text = this.themeName;
     if (!this.text) {
       this.text = "";
     }
   },
   methods: {
-    open() {
+    open () {
       this.box = true;
     }
   }

@@ -1,8 +1,8 @@
-import request from '@/router/axios';
+import request from '@/axios';
 import website from "@/config/website";
 
 export const loginByUsername = (tenantId, account, password, type, key, code) => request({
-  url: '/api/blade-auth/token',
+  url: '/blade-auth/token',
   method: 'post',
   headers: {
     'Captcha-Key': key,
@@ -18,7 +18,7 @@ export const loginByUsername = (tenantId, account, password, type, key, code) =>
 });
 
 export const loginBySocial = (tenantId, source, code, state) => request({
-  url: '/api/blade-auth/token',
+  url: '/blade-auth/token',
   method: 'post',
   headers: {
     'Tenant-Id': tenantId
@@ -34,7 +34,7 @@ export const loginBySocial = (tenantId, source, code, state) => request({
 });
 
 export const getButtons = () => request({
-  url: '/api/blade-system/menu/buttons',
+  url: '/blade-system/menu/buttons',
   method: 'get'
 });
 
@@ -44,7 +44,7 @@ export const getUserInfo = () => request({
 });
 
 export const refreshToken = (refreshToken) => request({
-  url: '/api/blade-auth/token',
+  url: '/blade-auth/token',
   method: 'post',
   params: {
     refreshToken,
@@ -54,7 +54,7 @@ export const refreshToken = (refreshToken) => request({
 })
 
 export const registerGuest = (form, oauthId) => request({
-  url: '/api/blade-user/register-guest',
+  url: '/blade-user/register-guest',
   method: 'post',
   params: {
     tenantId: form.tenantId,
@@ -66,12 +66,12 @@ export const registerGuest = (form, oauthId) => request({
 });
 
 export const getMenu = () => request({
-  url: '/api/blade-system/menu/routes',
+  url: '/blade-system/menu/routes',
   method: 'get'
 });
 
 export const getCaptcha = () => request({
-  url: '/api/blade-auth/captcha',
+  url: '/blade-auth/captcha',
   method: 'get'
 });
 
