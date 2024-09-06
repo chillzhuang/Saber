@@ -3,7 +3,7 @@
     <basic-container>
       <third-register></third-register>
       <p style="text-align: center;">
-        <img src="https://img.shields.io/badge/Release-V4.1.0-green.svg" alt="Downloads"/>
+        <img src="https://img.shields.io/badge/Release-V4.2.0-green.svg" alt="Downloads"/>
         <img src="https://img.shields.io/badge/JDK-14+-green.svg" alt="Build Status"/>
         <img src="https://img.shields.io/badge/Spring%20Cloud-2023-blue.svg" alt="Coverage Status"/>
         <img src="https://img.shields.io/badge/Spring%20Boot-3.2-blue.svg" alt="Downloads"/>
@@ -125,6 +125,16 @@
       <el-row>
         <basic-container>
           <el-collapse v-model="logActiveNames" @change="handleChange">
+            <el-collapse-item title="4.2.0发布 底层架构升级，分类core模块与starter模块" name="38">
+              <div>1.[升级]SpringBoot 至 3.2.9</div>
+              <div>2.[升级]SpringCloud 至 2023.0.3</div>
+              <div>3.[升级]底层架构升级，分类core模块与starter模块</div>
+              <div>4.[新增]Geo坐标工具</div>
+              <div>5.[新增]JsonUtil新增readListMap方法</div>
+              <div>6.[优化]将user模块合并至system模块，统一api入口</div>
+              <div>7.[修复]vue3版本报表列表跳转路径出错的问题</div>
+              <div>8.[修复]excel导出工具类版本冲突的问题</div>
+            </el-collapse-item>
             <el-collapse-item title="4.1.0发布 登录认证升级为国密算法，数据库password字段内容无需变动" name="37">
               <div>1.[升级]SpringBoot 至 3.2.7</div>
               <div>2.[升级]SpringCloud 至 2023.0.2</div>
@@ -543,7 +553,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['37']
+        logActiveNames: ['38']
       };
     },
     computed: {

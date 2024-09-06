@@ -356,7 +356,7 @@
                 res: 'data'
               },
               tip: '请上传 .xls,.xlsx 标准格式文件',
-              action: "/api/blade-user/import-user"
+              action: "/api/blade-system/user/import-user"
             },
             {
               label: '模板下载',
@@ -550,11 +550,11 @@
           cancelButtonText: "取消",
           type: "warning"
         }).then(() => {
-          window.open(`/api/blade-user/export-user?blade-auth=${getToken()}&account=${this.search.account}&realName=${this.search.realName}`);
+          window.open(`/api/blade-system/user/export-user?blade-auth=bearer ${getToken()}&account=${this.search.account}&realName=${this.search.realName}`);
         });
       },
       handleTemplate() {
-        window.open(`/api/blade-user/export-template?blade-auth=${getToken()}`);
+        window.open(`/api/blade-system/user/export-template?blade-auth=bearer ${getToken()}`);
       },
       beforeOpen(done, type) {
         if (["edit", "view"].includes(type)) {
