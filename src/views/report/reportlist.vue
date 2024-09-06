@@ -25,7 +25,7 @@
       <template #menu="scope">
         <el-button text
                    type="primary"
-                   icon="el-icon-edit-outline"
+                   icon="el-icon-edit"
                    @click.stop="handleDesign(scope.row.name)">设计
         </el-button>
         <el-button text
@@ -109,11 +109,11 @@ export default {
     }
   },
   methods: {
-    handlePreview (name) {
-      this.$router.push({ path: `/myiframe/urlPath?name=preview-${name}&src=${website.reportUrl}/preview?_u=blade-${name}` });
+    handlePreview(name) {
+      window.open(`${this.website.reportUrl}/preview?_u=blade-${name}`);
     },
-    handleDesign (name) {
-      this.$router.push({ path: `/myiframe/urlPath?name=designer-${name}&src=${website.reportUrl}/designer?_u=blade-${name}` });
+    handleDesign(name) {
+      window.open(`${this.website.reportUrl}/designer?_u=blade-${name}`);
     },
     rowDel (row) {
       this.$confirm("确定将选择数据删除?", {

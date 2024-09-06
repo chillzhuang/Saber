@@ -41,7 +41,7 @@
         <el-button type="success"
                    plain
                    v-if="userInfo.authority.includes('admin')"
-                   icon="el-icon-upload2"
+                   icon="el-icon-upload"
                    @click="handleImport">导入
         </el-button>
         <el-button type="warning"
@@ -353,7 +353,7 @@ export default {
               res: 'data'
             },
             tip: '请上传 .xls,.xlsx 标准格式文件',
-            action: baseUrl + "/blade-user/import-user"
+            action: baseUrl + "/blade-system/user/import-user"
           },
           {
             label: '模板下载',
@@ -547,11 +547,11 @@ export default {
         cancelButtonText: "取消",
         type: "warning"
       }).then(() => {
-        window.open(`${baseUrl}/blade-user/export-user?blade-auth=${getToken()}&account=${this.search.account}&realName=${this.search.realName}`);
+        window.open(`${baseUrl}/blade-system/user/export-user?blade-auth=bearer ${getToken()}&account=${this.search.account}&realName=${this.search.realName}`);
       });
     },
     handleTemplate () {
-      window.open(`${baseUrl}/blade-user/export-template?blade-auth=${getToken()}`);
+      window.open(`${baseUrl}/blade-system/user/export-template?blade-auth=bearer ${getToken()}`);
     },
     beforeOpen (done, type) {
       if (["edit", "view"].includes(type)) {
