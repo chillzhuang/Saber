@@ -78,7 +78,7 @@ export default {
   },
   login: {
     title: '登录 ',
-    info: 'BladeX 企业级开发平台',
+    info: 'SpringBlade企业管理平台',
     tenantId: '请输入租户ID',
     username: '请输入账号',
     password: '请输入密码',
