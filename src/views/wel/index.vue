@@ -3,7 +3,7 @@
     <basic-container>
       <third-register></third-register>
       <p style="text-align: center;">
-        <img src="https://img.shields.io/badge/Release-V4.3.0-green.svg" alt="Downloads"/>
+        <img src="https://img.shields.io/badge/Release-V4.4.0-green.svg" alt="Downloads"/>
         <img src="https://img.shields.io/badge/JDK-14+-green.svg" alt="Build Status"/>
         <img src="https://img.shields.io/badge/Spring%20Cloud-2023-blue.svg" alt="Coverage Status"/>
         <img src="https://img.shields.io/badge/Spring%20Boot-3.2-blue.svg" alt="Downloads"/>
@@ -125,6 +125,20 @@
       <el-row>
         <basic-container>
           <el-collapse v-model="logActiveNames" @change="handleChange">
+            <el-collapse-item title="4.4.0发布 新增黑白名单、脱敏工具、BladeRedis新版工具" name="40">
+              <div>1.[升级]Spring 至 6.1.15</div>
+              <div>2.[升级]SpringBoot 至 3.2.12</div>
+              <div>3.[新增]黑名单与白名单IP配置功能</div>
+              <div>4.[新增]自定义URL拦截功能，默认屏蔽外部访问actuator接口</div>
+              <div>5.[新增]脱敏工具类</div>
+              <div>6.[新增]BladeRedis工具类代替RedisUtil工具类</div>
+              <div>7.[新增]基于Redisson，支持redis pub/sub 发布</div>
+              <div>8.[新增]@TenantIgnore注解用于接口排除租户逻辑</div>
+              <div>9.[优化]jackson序列化时支持空字符串转换为null对象</div>
+              <div>10.[优化]调整 sql 日志打印实现逻辑</div>
+              <div>11.[优化]关闭 mybatis 默认的日志</div>
+              <div>12.[优化]默认放行feign接口，特定前缀的feign接口不再二次鉴权</div>
+            </el-collapse-item>
             <el-collapse-item title="4.3.0发布 多租户支持线程模式指定租户ID与忽略租户" name="39">
               <div>1.[升级]SpringBoot 至 6.1.14</div>
               <div>2.[升级]SpringBoot 至 3.2.10</div>
@@ -570,7 +584,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['39']
+        logActiveNames: ['40']
       };
     },
     computed: {
