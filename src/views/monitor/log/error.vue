@@ -128,7 +128,7 @@ export default {
     },
     beforeOpen (done, type) {
       if (["edit", "view"].includes(type)) {
-        getErrorLogs(this.form.strId).then(res => {
+        getErrorLogs(this.form.id).then(res => {
           this.form = res.data.data;
         });
       }

@@ -3,14 +3,11 @@
   <div class="desktop">
     <div class="top">
       <el-dropdown trigger="click">
-        <div class="logo"><i class="iconfont icon-pingguo"></i></div>
+        <div class="logo"><i class="iconfont iconicon_setting"></i></div>
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item>
               <div>{{userInfo.username}}</div>
-            </el-dropdown-item>
-            <el-dropdown-item>
-              <top-lock text="锁定屏幕"></top-lock>
             </el-dropdown-item>
             <el-dropdown-item>
               <div @click="switchTheme">退出主题</div>
