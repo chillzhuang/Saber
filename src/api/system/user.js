@@ -87,3 +87,12 @@ export const updatePassword = (oldPassword, newPassword, newPassword1) => {
   })
 }
 
+export const unlock = userIds => {
+  return request({
+    url: '/blade-system/user/unlock',
+    method: 'post',
+    params: {
+      userIds,
+    },
+  });
+};

@@ -135,9 +135,17 @@ export default {
     handleLogin () {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
+          const loading = this.$loading({
+            lock: true,
+            text: '登录中,请稍后',
+            background: 'rgba(0, 0, 0, 0.7)',
+          });
           this.$store.dispatch("LoginByUsername", this.loginForm).then(() => {
+            loading.close();
             this.$router.push(this.tagWel);
           }).catch(() => {
+            loading.close();
+            this.refreshCode();
           });
         }
       });
