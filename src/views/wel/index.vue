@@ -3,7 +3,7 @@
     <basic-container>
       <third-register></third-register>
       <p style="text-align: center;">
-        <img src="https://img.shields.io/badge/Release-V4.4.0-green.svg" alt="Downloads"/>
+        <img src="https://img.shields.io/badge/Release-V4.5.0-green.svg" alt="Downloads"/>
         <img src="https://img.shields.io/badge/JDK-14+-green.svg" alt="Build Status"/>
         <img src="https://img.shields.io/badge/Spring%20Cloud-2023-blue.svg" alt="Coverage Status"/>
         <img src="https://img.shields.io/badge/Spring%20Boot-3.2-blue.svg" alt="Downloads"/>
@@ -73,7 +73,7 @@
           <el-collapse-item title="软件定制开发合作" name="5">
             <div>1.接BladeX系列架构的定制服务</div>
             <div>2.接3个月以内工期的react、vue、springboot、springcloud、app、小程序等软件定制服务</div>
-            <div>3.有意向请联系唯一指定QQ:1272154962</div>
+            <div>3.有意向请联系官方商务微信：<a target="_blank" href="https://bladex.cn/#/contract">点击查看</a></div>
           </el-collapse-item>
         </el-collapse>
       </basic-container>
@@ -125,6 +125,20 @@
       <el-row>
         <basic-container>
           <el-collapse v-model="logActiveNames" @change="handleChange">
+            <el-collapse-item title="4.5.0发布 新增账号锁定与解锁功能，新增腾讯云对象存储支持" name="41">
+              <div>1.[新增]账号锁定与解锁功能</div>
+              <div>2.[新增]腾讯云对象存储支持</div>
+              <div>3.[新增]blade-starter-redis 发布订阅支持延迟加载</div>
+              <div>4.[新增]国密key、令牌key支持从环境变量读取与设置</div>
+              <div>5.[优化]增强kv的创建功能</div>
+              <div>6.[优化]脱敏工具类增加ip与mac地址类型</div>
+              <div>7.[优化]oss config bean 构造，减少 bean 冲突</div>
+              <div>8.[优化]BeanUtil toMap toBean 改为 jackson 工具类实现</div>
+              <div>9.[优化]BladeRedis部分方法</div>
+              <div>10.[优化]部分工具类方法</div>
+              <div>11.[修复]调整关闭 mybatis 默认的日志，避免 NoClassDefFoundError</div>
+              <div>12.[修复]github #16 JWT无法设置过长失效时间</div>
+            </el-collapse-item>
             <el-collapse-item title="4.4.0发布 新增黑白名单、脱敏工具、BladeRedis新版工具" name="40">
               <div>1.[升级]Spring 至 6.1.15</div>
               <div>2.[升级]SpringBoot 至 3.2.12</div>
@@ -584,7 +598,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['40']
+        logActiveNames: ['41']
       };
     },
     computed: {

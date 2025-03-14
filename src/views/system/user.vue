@@ -41,6 +41,13 @@
                    icon="el-icon-refresh"
                    @click="handleReset">密码重置
         </el-button>
+        <el-button type="info"
+                   size="small"
+                   plain
+                   v-if="userInfo.authority.includes('admin')"
+                   icon="el-icon-coordinate"
+                   @click="handleLock">账号解封
+        </el-button>
         <el-button type="success"
                    size="small"
                    plain
@@ -108,6 +115,7 @@
     update,
     add,
     grant,
+    unlock,
     resetPassword
   } from "@/api/system/user";
   import {getDeptTree} from "@/api/system/dept";
@@ -534,6 +542,26 @@
           this.roleGrantList = res.data.data;
           this.roleBox = true;
         });
+      },
+      handleLock() {
+        if (this.selectionList.length === 0) {
+          this.$message.warning("请选择至少一条数据");
+          return;
+        }
+        this.$confirm("确定将选择账号解封？", {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning"
+        })
+          .then(() => {
+            return unlock(this.ids);
+          })
+          .then(() => {
+            this.$message({
+              type: "success",
+              message: "操作成功!"
+            });
+          });
       },
       handleImport() {
         this.excelBox = true;

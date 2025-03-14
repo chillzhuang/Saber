@@ -147,6 +147,7 @@
               this.$router.push({path: this.tagWel.value});
               loading.close();
             }).catch(() => {
+              this.refreshCode();
               loading.close()
             });
           }
