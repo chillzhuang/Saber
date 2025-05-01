@@ -22,19 +22,19 @@
     "js-cookie": "^3.0.0",
     "mockjs": "^1.1.0",
     "nprogress": "^0.2.0",
-    "vite-plugin-mock": "^2.9.4",
+    "vite-plugin-mock": "^3.0.2",
     "vue": "^3.4.27",
     "vue-i18n": "^9.1.9",
     "vue-router": "^4.3.2",
     "vuex": "^4.1.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.0.4",
+    "@vitejs/plugin-vue": "^5.2.1",
     "@vue/compiler-sfc": "^3.4.27",
     "prettier": "^2.8.7",
     "sass": "^1.77.2",
     "unplugin-auto-import": "^0.11.2",
-    "vite": "^5.2.12",
+    "vite": "^6.2.1",
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-vue-setup-extend": "^0.4.0"
   }
