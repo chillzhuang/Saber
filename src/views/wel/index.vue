@@ -3,10 +3,10 @@
     <basic-container>
       <third-register></third-register>
       <p style="text-align: center;">
-        <img src="https://img.shields.io/badge/Release-V4.5.0-green.svg" alt="Downloads"/>
+        <img src="https://img.shields.io/badge/Release-V4.6.0-green.svg" alt="Downloads"/>
         <img src="https://img.shields.io/badge/JDK-14+-green.svg" alt="Build Status"/>
-        <img src="https://img.shields.io/badge/Spring%20Cloud-2023-blue.svg" alt="Coverage Status"/>
-        <img src="https://img.shields.io/badge/Spring%20Boot-3.2-blue.svg" alt="Downloads"/>
+        <img src="https://img.shields.io/badge/Spring%20Cloud-2025-blue.svg" alt="Coverage Status"/>
+        <img src="https://img.shields.io/badge/Spring%20Boot-3.5-blue.svg" alt="Downloads"/>
         <a target="_blank" href="https://bladex.cn">
           <img src="https://img.shields.io/badge/Saber%20Author-Small%20Chill-ff69b4.svg" alt="Downloads"/>
         </a>
@@ -125,6 +125,18 @@
       <el-row>
         <basic-container>
           <el-collapse v-model="logActiveNames" @change="handleChange">
+            <el-collapse-item title="4.6.0发布 升级适配 SpringCloud2025 SpringBoot3.5" name="42">
+              <div>1.[升级]Spring 至 6.2.8</div>
+              <div>2.[升级]SpringBoot 至 3.5.3</div>
+              <div>3.[升级]SpringCloud 至 2025.0.0</div>
+              <div>4.[升级]SpringCloud Alibaba 至 2023.0.3.3</div>
+              <div>5.[升级]Nacos 至 3.0.2</div>
+              <div>6.[升级]MybatisPlus 至 3.5.12</div>
+              <div>7.[新增]Ureport报表Token鉴权逻辑</div>
+              <div>8.[新增]登录认证IP锁定逻辑</div>
+              <div>9.[新增]excel封装，将easyexcel切换为fastexcel</div>
+              <div>10.[优化]适配优化knife4j与springboot3.5版本的兼容性</div>
+            </el-collapse-item>
             <el-collapse-item title="4.5.0发布 新增账号锁定与解锁功能，新增腾讯云对象存储支持" name="41">
               <div>1.[新增]账号锁定与解锁功能</div>
               <div>2.[新增]腾讯云对象存储支持</div>
@@ -598,7 +610,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['41']
+        logActiveNames: ['42']
       };
     },
     computed: {
