@@ -511,7 +511,7 @@ export default {
         this.$message.warning("请选择至少一条数据");
         return;
       }
-      this.$confirm("确定将选择账号密码重置为123456?", {
+      this.$confirm("确定将选择账号密码重置为初始密码?", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"

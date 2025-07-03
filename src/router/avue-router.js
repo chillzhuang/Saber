@@ -1,4 +1,5 @@
 import website from '@/config/website'
+import { getToken } from '@/utils/auth';
 
 const modules = import.meta.glob('../**/**/*.vue')
 function isURL (s) {
@@ -46,6 +47,7 @@ RouterPlugin.install = function (option = {}) {
       for (let i = 0; i < aMenu.length; i++) {
         const oMenu = aMenu[i];
         let path = oMenu[propsDefault.path],
+          isComponent = true,
           component = oMenu.component,
           name = oMenu[propsDefault.label] + ',' + oMenu.id,
           icon = oMenu[propsDefault.icon],
@@ -67,10 +69,11 @@ RouterPlugin.install = function (option = {}) {
               return modules['../page/index/layout.vue']
               // 判断是否为最终的页面视图
             } else {
-              let result = modules[`../${component}.vue`]
-              if (result) result().then(mod => mod.default.name = path)
-              else { console.log(component + '不存在') }
-              return result
+              let result = modules[`../${component}.vue`];
+              if (!result){
+                isComponent = false;
+              }
+              return result;
             }
           })(),
           name,
@@ -120,7 +123,15 @@ export const formatPath = (ele, first) => {
   ele.meta = ele.meta || {}
   const iframeComponent = 'components/iframe/main';
   const iframeSrc = (href) => {
-    return href.replace(/&/g, "#")
+    // 替换&为#
+    let processedHref = href.replace(/&/g, '#');
+
+    // 检查URL中是否包含${token}，如果有则使用getToken()替换
+    if (processedHref.includes('${token}')) {
+      const token = getToken();
+      processedHref = processedHref.replace(/\${token}/g, token);
+    }
+    return processedHref;
   }
   const isChild = !!(ele[propsDefault.children] && ele[propsDefault.children].length !== 0);
   if (!isChild && first) {
