@@ -13,7 +13,7 @@
     "@smallwei/avue": "^3.4.4",
     "animate.css": "^4.1.1",
     "avue-plugin-ueditor": "^1.0.3",
-    "axios": "^0.21.1",
+    "axios": "^0.30.0",
     "crypto-js": "^4.1.1",
     "sm-crypto": "^0.3.13",
     "dayjs": "^1.10.6",
