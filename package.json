@@ -17,7 +17,7 @@
     "crypto-js": "^4.1.1",
     "sm-crypto": "^0.3.13",
     "dayjs": "^1.10.6",
-    "element-plus": "^2.7.3",
+    "element-plus": "^2.11.2",
     "js-base64": "^3.7.4",
     "js-cookie": "^3.0.0",
     "mockjs": "^1.1.0",
