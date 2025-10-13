@@ -65,18 +65,8 @@ export const registerGuest = (form, oauthId) => request({
   }
 });
 
-export const getMenu = () => request({
-  url: '/blade-system/menu/routes',
-  method: 'get'
-});
-
 export const getCaptcha = () => request({
   url: '/blade-auth/captcha',
-  method: 'get'
-});
-
-export const getTopMenu = () => request({
-  url: '/user/getTopMenu',
   method: 'get'
 });
 

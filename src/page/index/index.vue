@@ -61,37 +61,22 @@ export default {
   computed: {
     ...mapGetters(["isHorizontal", "isRefresh", "isLock", "isCollapse", "isSearch", "menu", "setting",]),
     validSidebar () {
-      return !((this.$route.meta || {}).menu == false || (this.$route.query || {}).menu == 'false')
+      return !(
+        (this.$route.meta || {}).menu === false || (this.$route.query || {}).menu === 'false'
+      );
     }
   },
   props: [],
   methods: {
     //打开菜单
     openMenu (item = {}) {
-      this.$store.dispatch("GetMenu", item.parentId).then(data => {
+      this.$store.dispatch("GetMenu", item.id).then(data => {
         if (data.length !== 0) {
           this.$router.$avueRouter.formatRoutes(data, true);
-        }
-        //当点击顶部菜单做的事件
-        if (!validatenull(item)) {
-          let itemActive = {},
-            childItemActive = 0;
-          //vue-router路由
-          if (item.path) {
-            itemActive = item;
-          } else {
-            if (this.menu[childItemActive].length == 0) {
-              itemActive = this.menu[childItemActive];
-            } else {
-              itemActive = this.menu[childItemActive].children[childItemActive];
-            }
+          if (!validatenull(item.path)) {
+            this.$router.push({ path: item.path });
           }
-          this.$store.commit('SET_MENU_ID', item);
-          this.$router.push({
-            path: itemActive.path
-          });
         }
-
       });
     },
   }

@@ -1,7 +1,8 @@
 import { setToken, setRefreshToken, removeToken, removeRefreshToken } from '@/utils/auth';
 import { setStore, getStore } from '@/utils/store'
 import { deepClone } from '@/utils/util'
-import { loginByUsername, loginBySocial, getUserInfo, getMenu, getTopMenu, logout, refreshToken, getButtons } from '@/api/user'
+import { loginByUsername, loginBySocial, getUserInfo, logout, refreshToken, getButtons } from '@/api/user'
+import { getRoutes, getTopMenu } from '@/api/system/menu'
 import { formatPath } from '@/router/avue-router'
 import { ElMessage } from 'element-plus'
 import { encrypt } from '@/utils/sm2'
@@ -141,9 +142,9 @@ const user = {
         })
       })
     },
-    GetMenu ({ commit, dispatch }, parentId) {
+    GetMenu ({ commit, dispatch }, topMenuId) {
       return new Promise(resolve => {
-        getMenu(parentId).then((res) => {
+        getRoutes(topMenuId).then((res) => {
           const data = res.data.data
           let menu = deepClone(data);
           menu.forEach(ele => formatPath(ele, true));
