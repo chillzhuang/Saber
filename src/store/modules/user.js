@@ -4,7 +4,8 @@ import {isURL, validatenull} from '@/util/validate'
 import {deepClone} from '@/util/util'
 import website from '@/config/website'
 import {Message} from 'element-ui'
-import {loginByUsername, loginBySocial, getUserInfo, getMenu, getTopMenu, logout, refreshToken, getButtons} from '@/api/user'
+import {loginByUsername, loginBySocial, getUserInfo, logout, refreshToken, getButtons} from '@/api/user'
+import { getRoutes, getTopMenu } from '@/api/system/menu'
 import { encrypt } from '@/util/sm2'
 
 
@@ -159,9 +160,9 @@ const user = {
       })
     },
     //获取系统菜单
-    GetMenu({commit, dispatch}, parentId) {
+    GetMenu({commit, dispatch}, topMenuId) {
       return new Promise(resolve => {
-        getMenu(parentId).then((res) => {
+        getRoutes(topMenuId).then((res) => {
           const data = res.data.data
           let menu = deepClone(data);
           menu.forEach(ele => {

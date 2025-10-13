@@ -3,12 +3,18 @@
     <el-menu :default-active="activeIndex"
              mode="horizontal"
              text-color="#333">
+      <el-menu-item index="0" @click.native="openHome(itemHome)" key="0">
+        <template slot="title">
+          <i :class="itemHome.source"></i>
+          <span>{{generateTitle(itemHome)}}</span>
+        </template>
+      </el-menu-item>
       <template v-for="(item,index) in items">
-        <el-menu-item :index="item.parentId+''"
+        <el-menu-item :index="item.id+''"
                       @click.native="openMenu(item)"
                       :key="index">
           <template slot="title">
-            <i :class="item.icon"></i>
+            <i :class="item.source" style="padding-right: 5px;"></i>
             <span>{{generateTitle(item)}}</span>
           </template>
         </el-menu-item>
@@ -23,10 +29,15 @@ export default {
   name: "top-menu",
   data() {
     return {
+      itemHome: {
+        name: '首页',
+        source: 'el-icon-menu',
+      },
       activeIndex: "0",
       items: []
     };
   },
+  inject: ["index"],
   created() {
     this.getMenu();
   },
@@ -34,6 +45,18 @@ export default {
     ...mapGetters(["tagCurrent", "menu"])
   },
   methods: {
+    openHome(itemHome) {
+      this.index.openMenu(itemHome);
+      this.$router.push({
+        path: this.$router.$avueRouter.getPath({
+          name: itemHome.name,
+          src: ''
+        }, {})
+      });
+    },
+    openMenu(item) {
+      this.index.openMenu(item)
+    },
     getMenu() {
       this.$store.dispatch("GetTopMenu").then(res => {
         this.items = res;
@@ -41,34 +64,9 @@ export default {
     },
     generateTitle(item) {
       return this.$router.$avueRouter.generateTitle(
-        item.label,
+        item.name || item.label,
         (item.meta || {}).i18n
       );
-    },
-    openMenu(item) {
-      this.$store.dispatch("GetMenu", item.parentId).then(data => {
-        if (data.length !== 0) {
-          this.$router.$avueRouter.formatRoutes(data, true);
-        }
-        let itemActive,
-          childItemActive = 0;
-        if (item.path) {
-          itemActive = item;
-        } else {
-          if (this.menu[childItemActive].length == 0) {
-            itemActive = this.menu[childItemActive];
-          } else {
-            itemActive = this.menu[childItemActive].children[childItemActive];
-          }
-        }
-        this.$router.push({
-          path: this.$router.$avueRouter.getPath({
-            name: itemActive.label,
-            src: itemActive.path,
-            i18n: itemActive.meta.i18n
-          })
-        });
-      });
     }
   }
 };

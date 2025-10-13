@@ -3,8 +3,8 @@
     <basic-container>
       <third-register></third-register>
       <p style="text-align: center;">
-        <img src="https://img.shields.io/badge/Release-V4.6.0-green.svg" alt="Downloads"/>
-        <img src="https://img.shields.io/badge/JDK-14+-green.svg" alt="Build Status"/>
+        <img src="https://img.shields.io/badge/Release-V4.7.0-green.svg" alt="Downloads"/>
+        <img src="https://img.shields.io/badge/JDK-17+-green.svg" alt="Build Status"/>
         <img src="https://img.shields.io/badge/Spring%20Cloud-2025-blue.svg" alt="Coverage Status"/>
         <img src="https://img.shields.io/badge/Spring%20Boot-3.5-blue.svg" alt="Downloads"/>
         <a target="_blank" href="https://bladex.cn">
@@ -125,6 +125,15 @@
       <el-row>
         <basic-container>
           <el-collapse v-model="logActiveNames" @change="handleChange">
+            <el-collapse-item title="4.7.0发布 新增i18n国际化组件，新增顶部菜单模块" name="43">
+              <div>1.[升级]Spring 至 6.2.11</div>
+              <div>2.[升级]SpringBoot 至 3.5.6</div>
+              <div>3.[升级]Nacos 至 3.1.0</div>
+              <div>4.[升级]MybatisPlus 至 3.5.19</div>
+              <div>5.[新增]I18n国际化组件</div>
+              <div>6.[新增]顶部菜单模块</div>
+              <div>7.[新增]BaseService常用基础方法</div>
+            </el-collapse-item>
             <el-collapse-item title="4.6.0发布 升级适配 SpringCloud2025 SpringBoot3.5" name="42">
               <div>1.[升级]Spring 至 6.2.8</div>
               <div>2.[升级]SpringBoot 至 3.5.3</div>
@@ -610,7 +619,7 @@
     data() {
       return {
         activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['42']
+        logActiveNames: ['43']
       };
     },
     computed: {

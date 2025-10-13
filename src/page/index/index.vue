@@ -53,6 +53,11 @@ export default {
     sidebar
   },
   name: "index",
+  provide() {
+    return {
+      index: this
+    };
+  },
   data() {
     return {
       //刷新token锁
@@ -68,11 +73,22 @@ export default {
   mounted() {
     this.init();
   },
-  computed: mapGetters(["isLock", "isCollapse", "website"]),
+  computed: mapGetters(["isLock", "isCollapse", "website", "menu"]),
   props: [],
   methods: {
     showCollapse() {
       this.$store.commit("SET_COLLAPSE");
+    },
+    //打开菜单
+    openMenu(item = {}) {
+      this.$store.dispatch("GetMenu", item.id).then(data => {
+        if (data.length !== 0) {
+          this.$router.$avueRouter.formatRoutes(data, true);
+          if (!validatenull(item.path)) {
+            this.$router.push({ path: item.path });
+          }
+        }
+      });
     },
     // 屏幕检测
     init() {
