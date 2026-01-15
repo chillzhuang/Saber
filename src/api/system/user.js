@@ -87,6 +87,14 @@ export const updatePassword = (oldPassword, newPassword, newPassword1) => {
   })
 }
 
+export const updateInfo = row => {
+  return request({
+    url: '/blade-system/user/update-info',
+    method: 'post',
+    data: row
+  })
+}
+
 export const unlock = userIds => {
   return request({
     url: '/blade-system/user/unlock',

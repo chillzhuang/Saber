@@ -22,7 +22,7 @@
                    plain
                    @click="handleDelete">删 除
         </el-button>
-        <el-button icon="el-icon-delete"
+        <el-button icon="el-icon-user"
                    @click="handleRole"
                    plain>权限设置
         </el-button>
@@ -47,6 +47,15 @@
                    node-key="id"
                    ref="treeDataScope"
                    :default-checked-keys="dataScopeTreeObj"
+                   :props="props">
+          </el-tree>
+        </el-tab-pane>
+        <el-tab-pane label="接口权限">
+          <el-tree :data="apiScopeGrantList"
+                   show-checkbox
+                   node-key="id"
+                   ref="treeApiScope"
+                   :default-checked-keys="apiScopeTreeObj"
                    :props="props">
           </el-tree>
         </el-tab-pane>
@@ -79,8 +88,10 @@ export default {
       },
       menuGrantList: [],
       dataScopeGrantList: [],
+      apiScopeGrantList: [],
       menuTreeObj: [],
       dataScopeTreeObj: [],
+      apiScopeTreeObj: [],
       selectionList: [],
       query: {},
       loading: true,
@@ -211,7 +222,8 @@ export default {
     submit () {
       const menuList = this.$refs.treeMenu.getCheckedKeys();
       const dataScopeList = this.$refs.treeDataScope.getCheckedKeys();
-      grant(this.idsArray, menuList, dataScopeList).then(() => {
+      const apiScopeList = this.$refs.treeApiScope.getCheckedKeys();
+      grant(this.idsArray, menuList, dataScopeList, apiScopeList).then(() => {
         this.box = false;
         this.$message({
           type: "success",
@@ -294,13 +306,16 @@ export default {
       }
       this.menuTreeObj = [];
       this.dataScopeTreeObj = [];
+      this.apiScopeTreeObj = [];
       grantTree()
         .then(res => {
           this.menuGrantList = res.data.data.menu;
           this.dataScopeGrantList = res.data.data.dataScope;
+          this.apiScopeGrantList = res.data.data.apiScope;
           getRole(this.ids).then(res => {
             this.menuTreeObj = res.data.data.menu;
             this.dataScopeTreeObj = res.data.data.dataScope;
+            this.apiScopeTreeObj = res.data.data.apiScope;
             this.box = true;
           });
         });

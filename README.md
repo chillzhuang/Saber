@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/Release-V4.7.0-blue.svg" alt="Downloads">
+  <img src="https://img.shields.io/badge/Release-V4.8.0-blue.svg" alt="Downloads">
   <img src="https://img.shields.io/badge/JDK-17+-green.svg" alt="Build Status">
   <img src="https://img.shields.io/badge/license-Apache%202-blue.svg" alt="Build Status">
   <img src="https://img.shields.io/badge/Spring%20Cloud-2025-blue.svg" alt="Coverage Status">
@@ -25,7 +25,7 @@
 * 极简封装了多租户底层，用更少的代码换来拓展性更强的SaaS多租户系统。
 * 借鉴OAuth2，自研多终端认证系统，可控制子系统的token权限互相隔离。
 * 借鉴Security，自研Secure模块，采用JWT做Token认证，可拓展集成Redis等细颗粒度控制方案。
-* 稳定生产了六年，经历了从 Camden -> Hoxton -> 2023 的技术架构，也经历了从fat jar -> docker -> k8s + jenkins的部署架构。
+* 稳定生产了六年，经历了从 Camden -> Hoxton -> 2025 的技术架构，也经历了从fat jar -> docker -> k8s + jenkins的部署架构。
 * 项目分包明确，规范微服务的开发模式，使包与包之间的分工清晰。
 
 ## 架构图
@@ -37,39 +37,44 @@
 |----------------------|------------|
 | Java                 | 17+        |
 | NodeJS               | 18+        |
-| Spring               | 6.2.11     |
-| Spring Boot          | 3.5.6      |
-| Spring Cloud         | 2025.0.0   |
-| Spring Cloud Alibaba | 2023.0.3.3 |
-| Nacos Alibaba        | 3.1.0      |
+| Spring               | 6.2.15     |
+| Spring Boot          | 3.5.9      |
+| Spring Cloud         | 2025.0.1   |
+| Spring Cloud Alibaba | 2025.0.0.0 |
+| Nacos Alibaba        | 3.1.1      |
 | Mybatis Plus         | 3.5.19     |
 
 
 ## 工程结构
 ``` 
 SpringBlade
-├── blade-auth -- 授权服务提供
-├── blade-common -- 常用工具封装包
-├── blade-gateway -- Spring Cloud 网关
-├── blade-ops -- 运维中心
-├    ├── blade-admin -- spring-cloud后台管理
-├    ├── blade-develop -- 代码生成
-├    ├── blade-report -- 报表模块
-├    ├── blade-resource -- 资源模块
-├    ├── blade-seata-order -- seata分布式事务demo
-├    ├── blade-seata-storage -- seata分布式事务demo
-├── blade-service -- 业务模块
-├    ├── blade-demo -- 示例模块 
-├    ├── blade-desk -- 工作台模块 
-├    ├── blade-log -- 日志模块 
-├    └── blade-system -- 系统模块 
-├── blade-service-api -- 业务模块api封装
-├    ├── blade-demo-api -- 示例api 
-├    ├── blade-desk-api -- 工作台api 
-├    ├── blade-dict-api -- 字典api 
-├    ├── blade-scope-api -- 权限api 
-├    ├── blade-system-api -- 系统api 
-└──  └── blade-user-api -- 用户api 
+├── src/main/java/org/springblade
+│   ├── Application.java -- 启动类
+│   ├── common -- 公共模块
+│   │   ├── cache -- 缓存配置
+│   │   ├── config -- 系统配置
+│   │   ├── constant -- 常量定义
+│   │   ├── launch -- 启动配置
+│   │   └── tool -- 工具类
+│   ├── core -- 核心模块
+│   │   ├── log -- 日志拓展
+│   │   └── secure -- 安全拓展
+│   └── modules -- 业务模块
+│       ├── auth -- 认证授权模块
+│       ├── desk -- 工作台模块
+│       ├── develop -- 代码生成模块
+│       ├── resource -- 资源管理模块
+│       └── system -- 系统管理模块
+├── src/main/resources
+│   ├── application.yml -- 主配置文件
+│   ├── application-dev.yml -- 开发环境配置
+│   ├── application-test.yml -- 测试环境配置
+│   ├── application-prod.yml -- 生产环境配置
+│   └── config -- 其他配置文件
+├── doc -- 文档目录
+│   ├── script -- 启动脚本
+│   └── sql -- 数据库脚本
+└── pom.xml -- Maven配置文件
 ```
 
 ## 官方信息

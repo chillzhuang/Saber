@@ -48,3 +48,51 @@ export const getMenuDataScope = (id) => {
   })
 }
 
+
+export const getListApiScope = (current, size, params) => {
+  return request({
+    url: '/blade-system/api-scope/list',
+    method: 'get',
+    params: {
+      ...params,
+      current,
+      size,
+    },
+  });
+};
+
+export const removeApiScope = ids => {
+  return request({
+    url: '/blade-system/api-scope/remove',
+    method: 'post',
+    params: {
+      ids,
+    },
+  });
+};
+
+export const addApiScope = row => {
+  return request({
+    url: '/blade-system/api-scope/submit',
+    method: 'post',
+    data: row,
+  });
+};
+
+export const updateApiScope = row => {
+  return request({
+    url: '/blade-system/api-scope/submit',
+    method: 'post',
+    data: row,
+  });
+};
+
+export const getMenuApiScope = id => {
+  return request({
+    url: '/blade-system/api-scope/detail',
+    method: 'get',
+    params: {
+      id,
+    },
+  });
+};

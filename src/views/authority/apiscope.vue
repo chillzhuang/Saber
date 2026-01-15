@@ -22,15 +22,19 @@
     >
       <template #menu="{ row }">
         <el-button
-          text
           type="primary"
+          text
           icon="el-icon-setting"
-          v-if="permission.data_scope_setting"
+          v-if="permission.api_scope_setting"
           plain
           style="border: 0; background-color: transparent !important"
           @click.stop="handleDataScope(row)"
           >权限配置
         </el-button>
+      </template>
+      <template #name="{ row }">
+        <i :class="row.source" style="margin-right: 5px" />
+        <span>{{ row.name }}</span>
       </template>
       <template #source="{ row }">
         <div style="text-align: center">
@@ -39,7 +43,7 @@
       </template>
     </avue-crud>
     <el-drawer
-      :title="`[${scopeMenuName}] 数据权限配置`"
+      :title="`[${scopeMenuName}] 接口权限配置`"
       v-model="drawerVisible"
       :direction="direction"
       append-to-body
@@ -80,18 +84,16 @@
 </template>
 
 <script>
-import { baseUrl } from '@/config/env';
 import { add, remove, update, getLazyMenuList, getMenu } from '@/api/system/menu';
 import {
-  addDataScope,
-  removeDataScope,
-  updateDataScope,
-  getListDataScope,
-  getMenuDataScope,
+  addApiScope,
+  removeApiScope,
+  updateApiScope,
+  getListApiScope,
+  getMenuApiScope,
 } from '@/api/system/scope';
 import { mapGetters } from 'vuex';
 import iconList from '@/config/iconList';
-import func from '@/utils/func';
 
 export default {
   data() {
@@ -108,12 +110,10 @@ export default {
       },
       drawerVisible: false,
       direction: 'rtl',
-      scopeMenuId: 0,
-      scopeMenuCode: '',
-      scopeMenuName: '菜单',
       scopeLoading: false,
+      scopeMenuId: 0,
+      scopeMenuName: '菜单',
       menu: true,
-      watchMode: true,
       option: {
         lazy: true,
         tip: false,
@@ -135,6 +135,7 @@ export default {
           {
             label: '菜单名称',
             prop: 'name',
+            width: 300,
             search: true,
             rules: [
               {
@@ -159,7 +160,7 @@ export default {
             label: '上级菜单',
             prop: 'parentId',
             type: 'tree',
-            dicUrl: baseUrl + '/blade-system/menu/tree',
+            dicUrl: '/blade-system/menu/tree',
             hide: true,
             props: {
               label: 'title',
@@ -177,7 +178,7 @@ export default {
             prop: 'source',
             type: 'icon',
             slot: true,
-            width: 100,
+            width: 85,
             iconList: iconList,
             rules: [
               {
@@ -264,7 +265,7 @@ export default {
             label: '菜单排序',
             prop: 'sort',
             type: 'number',
-            width: 100,
+            width: 85,
             rules: [
               {
                 required: true,
@@ -323,11 +324,10 @@ export default {
             label: '权限名称',
             prop: 'scopeName',
             search: true,
-            value: '',
             rules: [
               {
                 required: true,
-                message: '请输入数据权限名称',
+                message: '请输入权限名称',
                 trigger: 'blur',
               },
             ],
@@ -336,38 +336,38 @@ export default {
             label: '权限编号',
             prop: 'resourceCode',
             search: true,
-            width: 100,
+            width: 180,
             rules: [
               {
                 required: true,
-                message: '请输入数据权限编号',
+                message: '请输入权限编号',
                 trigger: 'blur',
               },
             ],
           },
           {
-            label: '权限字段',
-            prop: 'scopeColumn',
-            width: 130,
+            label: '权限路径',
+            prop: 'scopePath',
+            width: 180,
             rules: [
               {
                 required: true,
-                message: '请输入数据权限编号',
+                message: '请输入权限编号',
                 trigger: 'blur',
               },
             ],
           },
           {
-            label: '规则类型',
+            label: '接口类型',
             type: 'select',
-            dicUrl: baseUrl + '/blade-system/dict/dictionary?code=data_scope_type',
+            dicUrl: '/blade-system/dict/dictionary?code=api_scope_type',
             props: {
               label: 'dictValue',
               value: 'dictKey',
             },
             dataType: 'number',
             slot: true,
-            width: 140,
+            width: 100,
             prop: 'scopeType',
             rules: [
               {
@@ -376,42 +376,6 @@ export default {
                 trigger: 'blur',
               },
             ],
-          },
-          {
-            label: '可见字段',
-            prop: 'scopeField',
-            span: 24,
-            hide: true,
-            value: '*',
-            rules: [
-              {
-                required: true,
-                message: '请输入数据权限可见的字段',
-                trigger: 'blur',
-              },
-            ],
-          },
-          {
-            label: '权限类名',
-            prop: 'scopeClass',
-            span: 24,
-            hide: true,
-            rules: [
-              {
-                required: true,
-                message: '请输入MybatisMapper对应方法的完整类名路径',
-                trigger: 'blur',
-              },
-            ],
-          },
-          {
-            label: '规则值',
-            prop: 'scopeValue',
-            span: 24,
-            minRows: 5,
-            type: 'textarea',
-            display: true,
-            hide: true,
           },
           {
             label: '备注',
@@ -424,11 +388,7 @@ export default {
       dataScope: [],
     };
   },
-  watch: {
-    'formScope.scopeType'() {
-      this.initScope();
-    },
-  },
+
   computed: {
     ...mapGetters(['permission']),
     permissionList() {
@@ -455,44 +415,6 @@ export default {
     },
   },
   methods: {
-    initScope() {
-      const scopeType = func.toInt(this.formScope.scopeType);
-      const watchMode = this.watchMode;
-      let column = '-',
-        name = '暂无';
-      if (scopeType === 1) {
-        column = '-';
-        name = '全部可见';
-      } else if (scopeType === 2) {
-        column = 'create_user';
-        name = '本人可见';
-      } else if (scopeType === 3) {
-        column = 'create_dept';
-        name = '所在机构可见';
-      } else if (scopeType === 4) {
-        column = 'create_dept';
-        name = '所在机构可见及子级可见';
-      } else if (scopeType === 5) {
-        column = '';
-        name = '自定义';
-      }
-      this.$refs.crudScope.option.column.filter(item => {
-        if (watchMode) {
-          if (item.prop === 'scopeName') {
-            this.formScope.scopeName = `${this.scopeMenuName} [${name}]`;
-          }
-          if (item.prop === 'resourceCode') {
-            this.formScope.resourceCode = this.scopeMenuCode;
-          }
-          if (item.prop === 'scopeColumn') {
-            this.formScope.scopeColumn = column;
-          }
-        }
-        if (item.prop === 'scopeValue') {
-          item.display = scopeType === 5;
-        }
-      });
-    },
     // 菜单管理模块
     rowSave(row, done, loading) {
       add(row).then(
@@ -619,7 +541,6 @@ export default {
     handleDataScope(row) {
       this.drawerVisible = true;
       this.scopeMenuId = row.id;
-      this.scopeMenuCode = row.code;
       this.scopeMenuName = row.name;
       this.onLoadScope(this.pageScope);
     },
@@ -631,7 +552,7 @@ export default {
         ...row,
         menuId: this.scopeMenuId,
       };
-      addDataScope(row).then(
+      addApiScope(row).then(
         () => {
           this.onLoadScope(this.pageScope);
           this.$message({
@@ -651,7 +572,7 @@ export default {
         ...row,
         menuId: this.scopeMenuId,
       };
-      updateDataScope(row).then(
+      updateApiScope(row).then(
         () => {
           this.onLoadScope(this.pageScope);
           this.$message({
@@ -673,7 +594,7 @@ export default {
         type: 'warning',
       })
         .then(() => {
-          return removeDataScope(row.id);
+          return removeApiScope(row.id);
         })
         .then(() => {
           this.onLoadScope(this.pageScope);
@@ -694,7 +615,7 @@ export default {
         type: 'warning',
       })
         .then(() => {
-          return removeDataScope(this.scopeIds);
+          return removeApiScope(this.scopeIds);
         })
         .then(() => {
           this.onLoadScope(this.pageScope);
@@ -706,13 +627,8 @@ export default {
         });
     },
     beforeOpenScope(done, type) {
-      if (['add'].includes(type)) {
-        this.watchMode = true;
-        this.initScope();
-      }
       if (['edit', 'view'].includes(type)) {
-        this.watchMode = false;
-        getMenuDataScope(this.formScope.id).then(res => {
+        getMenuApiScope(this.formScope.id).then(res => {
           this.formScope = res.data.data;
         });
       }
@@ -740,7 +656,7 @@ export default {
         ...params,
         menuId: this.scopeMenuId,
       };
-      getListDataScope(page.currentPage, page.pageSize, Object.assign(values, this.query)).then(
+      getListApiScope(page.currentPage, page.pageSize, Object.assign(values, this.query)).then(
         res => {
           const data = res.data.data;
           this.pageScope.total = data.total;
