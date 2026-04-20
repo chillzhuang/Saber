@@ -15,7 +15,7 @@
     "avue-plugin-ueditor": "^1.0.3",
     "axios": "^0.21.1",
     "crypto-js": "^4.1.1",
-    "sm-crypto": "^0.3.13",
+    "sm-crypto": "^0.4.0",
     "dayjs": "^1.10.6",
     "element-plus": "^2.7.3",
     "js-base64": "^3.7.4",
