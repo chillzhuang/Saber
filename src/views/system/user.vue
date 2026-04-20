@@ -70,9 +70,31 @@
                append-to-body
                v-model="roleBox"
                width="345px">
-
+      <el-row justify="space-between"
+              align="middle"
+              style="margin-bottom: 12px; background: #f5f7fa; padding: 6px 10px; border-radius: 4px">
+        <span style="display: inline-flex; align-items: center">
+          <el-switch v-model="roleLinked"
+                     active-text="节点联动"
+                     size="small"
+                     @change="handleLinkedChange('treeRole')" />
+          <el-tooltip content="开启后勾选父节点会自动勾选所有子节点，关闭则可独立勾选任意节点"
+                      placement="top">
+            <el-icon style="margin-left: 4px; color: #909399; cursor: pointer"><el-icon-question-filled /></el-icon>
+          </el-tooltip>
+        </span>
+        <el-button-group>
+          <el-button size="small"
+                     plain
+                     @click="handleSelectAll('treeRole', roleGrantList)">全选</el-button>
+          <el-button size="small"
+                     plain
+                     @click="handleInvertSelect('treeRole', roleGrantList, roleLinked)">反选</el-button>
+        </el-button-group>
+      </el-row>
       <el-tree :data="roleGrantList"
                show-checkbox
+               :check-strictly="!roleLinked"
                default-expand-all
                node-key="id"
                ref="treeRole"
@@ -146,6 +168,7 @@ export default {
       form: {},
       search: {},
       roleBox: false,
+      roleLinked: false,
       excelBox: false,
       loading: true,
       selectionList: [],
@@ -411,6 +434,56 @@ export default {
     },
   },
   methods: {
+    getAllNodeKeys (nodes) {
+      let keys = [];
+      nodes.forEach(node => {
+        keys.push(node.id);
+        if (node.children && node.children.length > 0) {
+          keys = keys.concat(this.getAllNodeKeys(node.children));
+        }
+      });
+      return keys;
+    },
+    getLeafKeys (nodes) {
+      let keys = [];
+      nodes.forEach(node => {
+        if (!node.children || node.children.length === 0) {
+          keys.push(node.id);
+        } else {
+          keys = keys.concat(this.getLeafKeys(node.children));
+        }
+      });
+      return keys;
+    },
+    handleSelectAll (treeRef, dataList) {
+      const tree = this.$refs[treeRef];
+      if (!tree) return;
+      const allKeys = this.getAllNodeKeys(dataList);
+      tree.setCheckedKeys(allKeys);
+    },
+    handleInvertSelect (treeRef, dataList, isLinked) {
+      const tree = this.$refs[treeRef];
+      if (!tree) return;
+      const checkedKeys = new Set(tree.getCheckedKeys());
+      if (isLinked) {
+        const leafKeys = this.getLeafKeys(dataList);
+        const invertedKeys = leafKeys.filter(key => !checkedKeys.has(key));
+        tree.setCheckedKeys(invertedKeys);
+      } else {
+        const allKeys = this.getAllNodeKeys(dataList);
+        const invertedKeys = allKeys.filter(key => !checkedKeys.has(key));
+        tree.setCheckedKeys(invertedKeys);
+      }
+    },
+    handleLinkedChange (treeRef) {
+      const tree = this.$refs[treeRef];
+      if (!tree) return;
+      const checkedKeys = tree.getCheckedKeys();
+      const halfCheckedKeys = tree.getHalfCheckedKeys();
+      this.$nextTick(() => {
+        tree.setCheckedKeys([...checkedKeys, ...halfCheckedKeys]);
+      });
+    },
     submitRole () {
       const roleList = this.$refs.treeRole.getCheckedKeys().join(",");
       grant(this.ids, roleList).then(() => {
@@ -533,6 +606,7 @@ export default {
         return;
       }
       this.roleTreeObj = [];
+      this.roleLinked = false;
       if (this.selectionList.length === 1) {
         this.roleTreeObj = this.selectionList[0].roleId.split(",");
       }

@@ -33,8 +33,31 @@
                width="345px">
       <el-tabs type="border-card">
         <el-tab-pane label="菜单权限">
+          <el-row justify="space-between"
+                  align="middle"
+                  style="margin-bottom: 12px; background: #f5f7fa; padding: 6px 10px; border-radius: 4px">
+            <span style="display: inline-flex; align-items: center">
+              <el-switch v-model="menuLinked"
+                         active-text="节点联动"
+                         size="small"
+                         @change="handleLinkedChange('treeMenu')" />
+              <el-tooltip content="开启后勾选父节点会自动勾选所有子节点，关闭则可独立勾选任意节点"
+                          placement="top">
+                <el-icon style="margin-left: 4px; color: #909399; cursor: pointer"><el-icon-question-filled /></el-icon>
+              </el-tooltip>
+            </span>
+            <el-button-group>
+              <el-button size="small"
+                         plain
+                         @click="handleSelectAll('treeMenu', menuGrantList)">全选</el-button>
+              <el-button size="small"
+                         plain
+                         @click="handleInvertSelect('treeMenu', menuGrantList, menuLinked)">反选</el-button>
+            </el-button-group>
+          </el-row>
           <el-tree :data="menuGrantList"
                    show-checkbox
+                   :check-strictly="!menuLinked"
                    node-key="id"
                    ref="treeMenu"
                    :default-checked-keys="menuTreeObj"
@@ -42,8 +65,31 @@
           </el-tree>
         </el-tab-pane>
         <el-tab-pane label="数据权限">
+          <el-row justify="space-between"
+                  align="middle"
+                  style="margin-bottom: 12px; background: #f5f7fa; padding: 6px 10px; border-radius: 4px">
+            <span style="display: inline-flex; align-items: center">
+              <el-switch v-model="dataScopeLinked"
+                         active-text="节点联动"
+                         size="small"
+                         @change="handleLinkedChange('treeDataScope')" />
+              <el-tooltip content="开启后勾选父节点会自动勾选所有子节点，关闭则可独立勾选任意节点"
+                          placement="top">
+                <el-icon style="margin-left: 4px; color: #909399; cursor: pointer"><el-icon-question-filled /></el-icon>
+              </el-tooltip>
+            </span>
+            <el-button-group>
+              <el-button size="small"
+                         plain
+                         @click="handleSelectAll('treeDataScope', dataScopeGrantList)">全选</el-button>
+              <el-button size="small"
+                         plain
+                         @click="handleInvertSelect('treeDataScope', dataScopeGrantList, dataScopeLinked)">反选</el-button>
+            </el-button-group>
+          </el-row>
           <el-tree :data="dataScopeGrantList"
                    show-checkbox
+                   :check-strictly="!dataScopeLinked"
                    node-key="id"
                    ref="treeDataScope"
                    :default-checked-keys="dataScopeTreeObj"
@@ -51,8 +97,31 @@
           </el-tree>
         </el-tab-pane>
         <el-tab-pane label="接口权限">
+          <el-row justify="space-between"
+                  align="middle"
+                  style="margin-bottom: 12px; background: #f5f7fa; padding: 6px 10px; border-radius: 4px">
+            <span style="display: inline-flex; align-items: center">
+              <el-switch v-model="apiScopeLinked"
+                         active-text="节点联动"
+                         size="small"
+                         @change="handleLinkedChange('treeApiScope')" />
+              <el-tooltip content="开启后勾选父节点会自动勾选所有子节点，关闭则可独立勾选任意节点"
+                          placement="top">
+                <el-icon style="margin-left: 4px; color: #909399; cursor: pointer"><el-icon-question-filled /></el-icon>
+              </el-tooltip>
+            </span>
+            <el-button-group>
+              <el-button size="small"
+                         plain
+                         @click="handleSelectAll('treeApiScope', apiScopeGrantList)">全选</el-button>
+              <el-button size="small"
+                         plain
+                         @click="handleInvertSelect('treeApiScope', apiScopeGrantList, apiScopeLinked)">反选</el-button>
+            </el-button-group>
+          </el-row>
           <el-tree :data="apiScopeGrantList"
                    show-checkbox
+                   :check-strictly="!apiScopeLinked"
                    node-key="id"
                    ref="treeApiScope"
                    :default-checked-keys="apiScopeTreeObj"
@@ -92,6 +161,9 @@ export default {
       menuTreeObj: [],
       dataScopeTreeObj: [],
       apiScopeTreeObj: [],
+      menuLinked: false,
+      dataScopeLinked: false,
+      apiScopeLinked: false,
       selectionList: [],
       query: {},
       loading: true,
@@ -219,6 +291,56 @@ export default {
     }
   },
   methods: {
+    getAllNodeKeys (nodes) {
+      let keys = [];
+      nodes.forEach(node => {
+        keys.push(node.id);
+        if (node.children && node.children.length > 0) {
+          keys = keys.concat(this.getAllNodeKeys(node.children));
+        }
+      });
+      return keys;
+    },
+    getLeafKeys (nodes) {
+      let keys = [];
+      nodes.forEach(node => {
+        if (!node.children || node.children.length === 0) {
+          keys.push(node.id);
+        } else {
+          keys = keys.concat(this.getLeafKeys(node.children));
+        }
+      });
+      return keys;
+    },
+    handleSelectAll (treeRef, dataList) {
+      const tree = this.$refs[treeRef];
+      if (!tree) return;
+      const allKeys = this.getAllNodeKeys(dataList);
+      tree.setCheckedKeys(allKeys);
+    },
+    handleInvertSelect (treeRef, dataList, isLinked) {
+      const tree = this.$refs[treeRef];
+      if (!tree) return;
+      const checkedKeys = new Set(tree.getCheckedKeys());
+      if (isLinked) {
+        const leafKeys = this.getLeafKeys(dataList);
+        const invertedKeys = leafKeys.filter(key => !checkedKeys.has(key));
+        tree.setCheckedKeys(invertedKeys);
+      } else {
+        const allKeys = this.getAllNodeKeys(dataList);
+        const invertedKeys = allKeys.filter(key => !checkedKeys.has(key));
+        tree.setCheckedKeys(invertedKeys);
+      }
+    },
+    handleLinkedChange (treeRef) {
+      const tree = this.$refs[treeRef];
+      if (!tree) return;
+      const checkedKeys = tree.getCheckedKeys();
+      const halfCheckedKeys = tree.getHalfCheckedKeys();
+      this.$nextTick(() => {
+        tree.setCheckedKeys([...checkedKeys, ...halfCheckedKeys]);
+      });
+    },
     submit () {
       const menuList = this.$refs.treeMenu.getCheckedKeys();
       const dataScopeList = this.$refs.treeDataScope.getCheckedKeys();
@@ -307,6 +429,9 @@ export default {
       this.menuTreeObj = [];
       this.dataScopeTreeObj = [];
       this.apiScopeTreeObj = [];
+      this.menuLinked = false;
+      this.dataScopeLinked = false;
+      this.apiScopeLinked = false;
       grantTree()
         .then(res => {
           this.menuGrantList = res.data.data.menu;

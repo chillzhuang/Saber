@@ -2,7 +2,7 @@
   <basic-container>
     <third-register></third-register>
     <p style="text-align: center">
-      <img src="https://img.shields.io/badge/Release-V4.8.0-green.svg" alt="Downloads" />
+      <img src="https://img.shields.io/badge/Release-V4.9.0-green.svg" alt="Downloads" />
       <img src="https://img.shields.io/badge/JDK-17+-green.svg" alt="Build Status" />
       <img src="https://img.shields.io/badge/Spring%20Cloud-2025-blue.svg" alt="Coverage Status" />
       <img src="https://img.shields.io/badge/Spring%20Boot-3.5-blue.svg" alt="Downloads" />
@@ -206,6 +206,16 @@
         <el-col :span="24">
           <basic-container>
             <el-collapse v-model="logActiveNames" @change="handleChange">
+              <el-collapse-item title="4.9.0发布 新增全栈AI开发Skills集合，新增全自动视图序列化机制" name="45">
+                <div>1.[升级]Spring 至 6.2.17</div>
+                <div>2.[升级]SpringBoot 至 3.5.13</div>
+                <div>3.[升级]SpringBootAdmin 至 3.5.8</div>
+                <div>4.[升级]SpringCloud 至 2025.0.2</div>
+                <div>5.[升级]Nacos 至 3.1.2</div>
+                <div>6.[新增]全栈AI开发Skills集合</div>
+                <div>7.[新增]BladeView视图序列化机制，支持按角色动态控制JSON输出字段</div>
+                <div>8.[新增]角色管理、顶部菜单的权限树节点联动与全选反选功能</div>
+              </el-collapse-item>
               <el-collapse-item title="4.8.0发布 新增接口权限模块，增强系统安全性" name="44">
                 <div>1.[升级]Spring 至 6.2.15</div>
                 <div>2.[升级]SpringBoot 至 3.5.9</div>
@@ -741,7 +751,7 @@ export default {
   data() {
     return {
       activeNames: ['1', '2', '3', '5'],
-      logActiveNames: ['44'],
+      logActiveNames: ['45'],
     };
   },
   computed: {
