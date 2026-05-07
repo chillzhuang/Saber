@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
-    "@smallwei/avue": "^3.4.4",
+    "@smallwei/avue": "3.4.4",
     "animate.css": "^4.1.1",
     "avue-plugin-ueditor": "^1.0.3",
     "axios": "^0.21.1",
