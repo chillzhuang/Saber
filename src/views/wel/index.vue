@@ -2,7 +2,7 @@
   <basic-container>
     <third-register></third-register>
     <p style="text-align: center">
-      <img src="https://img.shields.io/badge/Release-V5.0.1-green.svg" alt="Downloads" />
+      <img src="https://img.shields.io/badge/Release-V5.0.2-green.svg" alt="Downloads" />
       <img src="https://img.shields.io/badge/JDK-21+-green.svg" alt="Build Status" />
       <img
         src="https://img.shields.io/badge/Spring%20Cloud-2025.1-blue.svg"
@@ -208,6 +208,31 @@
           <basic-container>
             <el-collapse v-model="logActiveNames" @change="handleChange">
               <el-collapse-item
+                title="5.0.2发布 统一客户端IP可信解析规则，升级适配各项依赖最新版本"
+                name="49"
+              >
+                <div>1.[升级]SpringBoot 至 4.1.1</div>
+                <div>2.[升级]SpringBootAdmin 至 4.1.2</div>
+                <div>3.[升级]SpringCloud 至 2025.1.3</div>
+                <div>4.[升级]Nacos 至 3.2.4</div>
+                <div>5.[升级]MySQL Connector 至 9.7.0</div>
+                <div>6.[升级]Fastjson 至 2.0.65</div>
+                <div>7.[升级]阿里云 OSS 至 3.18.5，腾讯云 COS 至 5.6.279</div>
+                <div>8.[升级]阿里云 SMS 至 4.7.10，腾讯云 SMS 至 3.2.18</div>
+                <div>9.[升级]docker-compose 中间件镜像 Nacos 3.2.4、Sentinel 1.8.9、Redis 7</div>
+                <div>10.[新增]INetUtil 提供沿可信代理链解析真实客户端地址的统一入口</div>
+                <div>11.[新增]编译插件显式开启注解处理，锁定 proc 为 full</div>
+                <div>12.[优化]统一客户端IP解析规则，移除 Proxy-Client-IP 等可伪造的过时请求头</div>
+                <div>13.[优化]网关统一解析客户端IP并覆盖写入 X-Real-IP</div>
+                <div>14.[优化]停用 password 授权模式，收敛公开登录授权面</div>
+                <div>15.[优化]移除 OSS 配置中的七牛云密钥，改为占位值</div>
+                <div>16.[优化]移除 Sentinel 控制台地址的默认注入，规整通配符导入为显式引用</div>
+                <div>17.[优化]七牛封装迁移至 Region 新版 API，清除 Zone 等过期调用</div>
+                <div>18.[优化]修正 README 工程结构为 Cloud 微服务模块树</div>
+                <div>19.[修复]MinIO 批量删除未触发与上传流长度取值错误，端点地址去除尾部斜杠</div>
+                <div>20.[修复]七牛上传重试复用已消费流与批量删除桶名规则重复应用</div>
+              </el-collapse-item>
+              <el-collapse-item
                 title="5.0.1发布 增强角色判定与角色分配归属校验，建立全 TS 工程化底座"
                 name="48"
               >
@@ -264,9 +289,7 @@
                 <div>1.[升级]Avue 至 3.9.x，适配新版 i18n 接入方式与表头样式</div>
                 <div>2.[新增]TenantGuard 租户守卫工具，规避线程工具指定租户ID时的越权风险</div>
                 <div>3.[新增]APPLICATION_AI_NAME 应用常量，统一 AI 模块命名规范</div>
-                <div>
-                  4.[修复]avue-crud 行 hover 状态下固定列背景色丢失，统一序号列与操作栏视觉表现
-                </div>
+                <div>4.[修复]avue-crud 行 hover 状态下固定列背景色丢失，统一序号列与操作栏视觉表现</div>
                 <div>5.[优化]更新登录页品牌 logo 资源</div>
               </el-collapse-item>
               <el-collapse-item
@@ -813,7 +836,7 @@ defineOptions({ name: 'wel' });
 
 // 折叠面板默认展开项
 const activeNames = ref(['1', '2', '3', '5']);
-const logActiveNames = ref(['48']);
+const logActiveNames = ref(['49']);
 
 // 折叠面板展开状态变化回调
 const handleChange = (val: string | number | Array<string | number>) => {
